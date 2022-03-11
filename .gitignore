@@ -1,5 +1,12 @@
-Library/*
-Temp/*
+Library/**
+Temp/**
+Logs/**
+Library\**
+Temp\**
+Logs\**
+Library/
+Temp/
+Logs/
 Library/AnnotationManager
 Library/ArtifactDB
 Library/ArtifactDB-lock
@@ -8781,3 +8788,6 @@ Temp/UnityTempFile-7fd4603bc08af6845a8816dccf325589
 Temp/UnityTempFile-82db341bab264c544ad7a92d3cf40f35
 Temp/workerlic
 Temp/__Backupscenes/0.backup
+Logs/AssetImportWorker0.log
+Logs/shadercompiler-AssetImportWorker0.log
+Logs/shadercompiler-UnityShaderCompiler.exe0.log
