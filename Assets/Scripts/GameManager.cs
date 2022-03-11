@@ -63,4 +63,17 @@ public class GameManager : MonoBehaviour
     {
         enemies.Add(enemy);
     }
+
+    public void CalculateDamage(GameObject source, GameObject target, GameObject damageSource, bool isCrit)
+    {
+        StatBlock sourceStats = source.GetComponent<StatBlockComponent>().stats;
+        StatBlock targetStats = target.GetComponent<StatBlockComponent>().stats;
+        CharacterStat calculator = new CharacterStat(sourceStats.Attack.Value);
+        if (isCrit)
+        {
+            calculator.AddModifier(new StatModifier(sourceStats.CritDamage.Value, StatModType.PercentMult));
+        }
+        calculator.AddModifier(new StatModifier(Tools.ResistDamageMultiplier(targetStats.Armor.Value), StatModType.PercentMult));
+        EffectManager.Instance.DamageTextAnimation(((int)calculator.Value).ToString(), DamageDealtType.Physical, isCrit, 7.0f, target);
+    }
 }

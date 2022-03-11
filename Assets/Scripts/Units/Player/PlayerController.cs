@@ -59,11 +59,18 @@ public class PlayerController : MonoBehaviour
 
     public void AutoAttack(GameObject target)
     {
-        GameObject autoAttack = Instantiate(autoAttackProjectile, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-        ProjectileController projectile = autoAttack.GetComponent<ProjectileController>();
-        projectile.target = target;
-        projectile.source = this.gameObject;
-        projectile.isCrit = Tools.percentChance(stats.CritChance.Value);
+        if (stats.isMelee)
+        {
+            GameManager.Instance.CalculateDamage(this.gameObject, target, this.gameObject, Tools.percentChance(stats.CritChance.Value));
+        }
+        else
+        {
+            GameObject autoAttack = Instantiate(autoAttackProjectile, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+            ProjectileController projectile = autoAttack.GetComponent<ProjectileController>();
+            projectile.target = target;
+            projectile.source = this.gameObject;
+            projectile.isCrit = Tools.percentChance(stats.CritChance.Value);
+        }
     }
 
     public void AutoAttackFire()

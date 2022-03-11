@@ -28,8 +28,7 @@ public class ProjectileController : MonoBehaviour
             float distance = Vector2.Distance(transform.position, currentTarget.transform.position);
             if (distance <= 0.1f)
             {
-                Debug.Log(damage());
-                EffectManager.Instance.DamageTextAnimation(((int)damage()).ToString(), DamageDealtType.Physical, isCrit, 7.0f, currentTarget);
+                GameManager.Instance.CalculateDamage(source, currentTarget, this.gameObject, isCrit);
                 Destroy(gameObject);
             }
             else
@@ -40,18 +39,5 @@ public class ProjectileController : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, Time.deltaTime * 5);
             }
         }
-    }
-
-    private float damage()
-    {
-        StatBlock sourceStats = source.GetComponent<StatBlockComponent>().stats;
-        StatBlock targetStats = currentTarget.GetComponent<StatBlockComponent>().stats;
-        CharacterStat calculator = new CharacterStat(sourceStats.Attack.Value);
-        if (isCrit)
-        {
-            calculator.AddModifier(new StatModifier(sourceStats.CritDamage.Value, StatModType.PercentMult));
-        }
-        calculator.AddModifier(new StatModifier(Tools.ResistDamageMultiplier(targetStats.Armor.Value), StatModType.PercentMult));
-        return calculator.Value;
     }
 }

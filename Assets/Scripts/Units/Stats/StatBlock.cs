@@ -18,6 +18,8 @@ public class StatBlock
     public CharacterStat MArmor;
     public CharacterStat Armor;
     public CharacterStat MoveSpeed;
+    public bool Invincible;
+    public bool isMelee;
     public StatBlock()
     {
         Health = new CharacterResource();
