@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class BaseState : State
 {
-    protected float speed;
-    protected float rotationSpeed;
-
-    private float horizontalInput;
-    private float verticalInput;
-
+    private bool second;
     public BaseState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)
     {
     }
@@ -17,6 +12,7 @@ public class BaseState : State
     public override void Enter()
     {
         base.Enter();
+        second = false;
     }
 
     public override void Enter(GameObject param)
@@ -32,6 +28,17 @@ public class BaseState : State
     public override void HandleInput()
     {
         base.HandleInput();
+        second = Input.GetKeyDown(player.controls.SecondAbility);
+
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (second)
+        {
+            stateMachine.ChangeState(player.secondAbility);
+        }
     }
 
     public override void PhysicsUpdate()

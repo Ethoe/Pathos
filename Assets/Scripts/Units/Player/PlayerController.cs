@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public MovingState moving;
     public AttackingState attacking;
     public AttackMovingState attackMoving;
+    public SecondAbilityState secondAbility;
     public GameObject autoAttackProjectile;
     public GameObject skillShotProjectile;
     public StatBlock stats;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
         moving = new MovingState(this, controlSM);
         attacking = new AttackingState(this, controlSM);
         attackMoving = new AttackMovingState(this, controlSM);
+        secondAbility = new SecondAbilityState(this, controlSM);
         controlSM.Initialize(idle);
         rigidbody2d = GetComponent<Rigidbody2D>();
 
@@ -96,5 +98,10 @@ public class PlayerController : MonoBehaviour
     public void PlayerMove(Vector2 target)
     {
         rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * stats.MoveSpeed.Value));
+    }
+
+    public void PlayerMove(Vector2 target, float moveSpeed)
+    {
+        rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed));
     }
 }

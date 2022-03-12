@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstAbilityState : BaseState
+public class FirstAbilityState : BaseAbilityState
 {
     private int idleParam = Animator.StringToHash("Idle"); // TODO: change to 'ability' animation
     private bool attack;
@@ -18,8 +18,6 @@ public class FirstAbilityState : BaseState
     {
         base.Enter();
         player.TriggerAnimation(idleParam);
-        attack = false;
-        move = false;
     }
 
     public override void HandleInput()
