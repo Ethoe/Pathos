@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
             calculator.AddModifier(new StatModifier(sourceStats.CritDamage.Value, StatModType.PercentMult));
         }
         calculator.AddModifier(new StatModifier(Tools.ResistDamageMultiplier(targetStats.Armor.Value), StatModType.PercentMult));
+        targetStats.Health.CurrentValue -= calculator.Value;
         EffectManager.Instance.DamageTextAnimation(((int)calculator.Value).ToString(), DamageDealtType.Physical, isCrit, 7.0f, target);
     }
 }

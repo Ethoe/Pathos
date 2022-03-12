@@ -160,7 +160,6 @@ MonoBehaviour:
       BaseValue: 0
     AttackRange:
       BaseValue: 0
-    AttackFirePoint: 0
     CritChance:
       BaseValue: 0
     CritDamage:
@@ -176,9 +175,11 @@ MonoBehaviour:
     MArmor:
       BaseValue: 0
     Armor:
-      BaseValue: 100
+      BaseValue: 0
     MoveSpeed:
       BaseValue: 0
+    Invincible: 0
+    isMelee: 0
 --- !u!114 &3793258711291285077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +207,6 @@ MonoBehaviour:
       BaseValue: 0
     AttackRange:
       BaseValue: 0
-    AttackFirePoint: 0
     CritChance:
       BaseValue: 0
     CritDamage:
@@ -225,3 +225,5 @@ MonoBehaviour:
       BaseValue: 100
     MoveSpeed:
       BaseValue: 0
+    Invincible: 0
+    isMelee: 0
