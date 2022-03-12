@@ -42,6 +42,8 @@ public class EffectManager : MonoBehaviour
         DamageTextP.initialOffset = target.transform.position + new Vector3(0, 1.5f, 0);
         DamageTextP.finalOffset = target.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 2.5f, 0);
         DamageTMPro.colorGradient = DamageTypeColor(damagetype, isCrit);
+        if (isCrit)
+            text = text + "!";
         DamageTMPro.SetText(text);
 
     }

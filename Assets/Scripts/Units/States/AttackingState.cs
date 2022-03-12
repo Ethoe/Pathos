@@ -69,8 +69,8 @@ public class AttackingState : BaseState
     public override void HandleInput()
     {
         base.HandleInput();
-        move = Input.GetKeyDown(KeyCode.Mouse1);
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        move = Input.GetKeyDown(player.controls.Move);
+        if (Input.GetKeyDown(player.controls.AttackMove))
         {
             GameObject nextTarget = GetTarget();
             if (nextTarget == null)

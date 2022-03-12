@@ -23,12 +23,12 @@ public class MovingState : BaseState
     public override void HandleInput()
     {
         base.HandleInput();
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(player.controls.Move))
         {
             moveTarget = GetMouseLocation();
         }
 
-        attack = Input.GetKeyDown(KeyCode.Mouse0);
+        attack = Input.GetKeyDown(player.controls.AttackMove);
     }
 
     public override void LogicUpdate()

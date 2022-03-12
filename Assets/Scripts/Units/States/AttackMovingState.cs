@@ -27,8 +27,8 @@ public class AttackMovingState : BaseState
     public override void HandleInput()
     {
         base.HandleInput();
-        move = Input.GetKeyDown(KeyCode.Mouse1);
-        attack = Input.GetKeyDown(KeyCode.Mouse0);
+        move = Input.GetKeyDown(player.controls.Move);
+        attack = Input.GetKeyDown(player.controls.AttackMove);
     }
 
     public override void LogicUpdate()

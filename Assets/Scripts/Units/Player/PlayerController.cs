@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject autoAttackProjectile;
     public GameObject skillShotProjectile;
     public StatBlock stats;
+    public PlayerControls controls;
     public bool shoot;
 
     // Private Vars
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
         attackMoving = new AttackMovingState(this, controlSM);
         controlSM.Initialize(idle);
         rigidbody2d = GetComponent<Rigidbody2D>();
+
+        controls = new PlayerControls();
 
         stats = GetComponent<StatBlockComponent>().stats;
         stats.Attack.BaseValue = 100.0f;

@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : BaseState
+public class FirstAbilityState : BaseState
 {
-    private int idleParam = Animator.StringToHash("Idle");
+    private int idleParam = Animator.StringToHash("Idle"); // TODO: change to 'ability' animation
     private bool attack;
     private bool move;
-    public IdleState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)
+    private bool idle;
+    private GameObject ability;
+    public FirstAbilityState(PlayerController player, StateMachine stateMachine, GameObject ability) : base(player, stateMachine)
     {
+        this.ability = ability;
     }
+
     public override void Enter()
     {
         base.Enter();
