@@ -5,7 +5,6 @@ using UnityEngine;
 public class SecondAbilityState : BaseAbilityState
 {
     private int moveParam = Animator.StringToHash("Move"); // TODO: change to 'ability' animation
-    private float dashTime = .5f;
     private float dashTimer;
     private float dashSpeed = 15.0f;
     private float dashDistance = 3.0f;
@@ -23,8 +22,7 @@ public class SecondAbilityState : BaseAbilityState
         player.TriggerAnimation(moveParam);
         startPos = player.transform.position;
         moveTarget = ((GetMouseLocation() - startPos).normalized * dashDistance) + startPos; // Get angle of mouse and multiply vector by dashdistance magnitude
-        Debug.Log((GetMouseLocation() - startPos).normalized);
-        dashTimer = dashTime;
+        dashTimer = dashDistance / dashSpeed;
         deltaTime = Time.time;
     }
 
