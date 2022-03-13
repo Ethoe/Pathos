@@ -12,10 +12,6 @@ public class ProjectileController : MonoBehaviour
     // Private Vars
     private GameObject currentTarget;
     private bool targetting;
-    // Start is called before the first frame update
-    void Awake()
-    {
-    }
 
     void Update()
     {

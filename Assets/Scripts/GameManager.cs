@@ -11,6 +11,7 @@ public enum DamageDealtType
 public class GameManager : MonoBehaviour
 {
     private List<GameObject> enemies;
+    public GameObject player;
     private static GameManager _instance;
     public static GameManager Instance
     {

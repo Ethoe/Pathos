@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EventManager.instance.onDoorwayTriggerEnter += ExitRoom;
+
         animator = GetComponent<Animator>();
         shoot = false;
         controlSM = new StateMachine();
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         attacking = new AttackingState(this, controlSM);
         attackMoving = new AttackMovingState(this, controlSM);
         secondAbility = new SecondAbilityState(this, controlSM);
+        GameManager.Instance.player = gameObject;
         controlSM.Initialize(idle);
         rigidbody2d = GetComponent<Rigidbody2D>();
 
@@ -104,5 +107,10 @@ public class PlayerController : MonoBehaviour
     public void PlayerMove(Vector2 target, float moveSpeed)
     {
         rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed));
+    }
+
+    private void ExitRoom(Direction side)
+    {
+        controlSM.ChangeState(idle);
     }
 }
