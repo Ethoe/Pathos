@@ -12,7 +12,7 @@ public class EnemyUnit : MonoBehaviour
         GameManager.Instance.AddEnemy(this.gameObject);
         stats = GetComponent<StatBlockComponent>().stats;
         stats.Health.BaseValue = 1000;
-        stats.Health.CurrentValue = 1000;
+        stats.Health.CurrentValue = 100;
     }
 
     // Update is called once per frame
@@ -20,6 +20,7 @@ public class EnemyUnit : MonoBehaviour
     {
         if (stats.Health.CurrentValue <= 0)
         {
+            GameManager.Instance.RemoveEnemy(gameObject);
             Destroy(gameObject);
         }
     }

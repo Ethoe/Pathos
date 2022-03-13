@@ -167,6 +167,7 @@ public class AttackingState : BaseState
         if (target == null)
         {
             stateMachine.ChangeState(player.idle);
+            return;
         }
         if (Vector2.Distance(player.transform.position, target.transform.position) > player.stats.AttackRange.Value)
         {

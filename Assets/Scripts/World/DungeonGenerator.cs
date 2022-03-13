@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum Direction
+public enum Direction
 {
-    North,
-    East,
-    South,
-    West
+    Up,
+    Right,
+    Down,
+    Left
 }
 
 public class DungeonGenerator
@@ -114,5 +114,22 @@ public class DungeonGenerator
         currentRooms += 1;
         map[location.x, location.y] = room;
         generatorQueue.Enqueue(room);
+    }
+
+    public DungeonRoom GetRoom(DungeonRoom room, Direction side)
+    {
+        switch (side)
+        {
+            case Direction.Up:
+                return getRoom(room.location + Vector2Int.up);
+            case Direction.Down:
+                return getRoom(room.location + Vector2Int.down);
+            case Direction.Left:
+                return getRoom(room.location + Vector2Int.left);
+            case Direction.Right:
+                return getRoom(room.location + Vector2Int.right);
+            default:
+                return null;
+        }
     }
 }

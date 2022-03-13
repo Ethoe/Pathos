@@ -39,6 +39,7 @@
      <Compile Include="Assets\Scripts\World\DestroyOnAnimationEnd.cs" />
      <Compile Include="Assets\Scripts\EffectManager.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatBlockComponent.cs" />
+     <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseAbliltyState.cs" />
      <Compile Include="Assets\Scripts\Units\State.cs" />
      <Compile Include="Assets\Scripts\Tools\Tools.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackMovingState.cs" />
@@ -57,12 +58,14 @@
      <Compile Include="Assets\Scripts\Units\Stats\CharacterStat.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatModifier.cs" />
      <Compile Include="Assets\Scripts\World\DamageTextProcedural.cs" />
+     <Compile Include="Assets\Scripts\Units\States\PlayerStates\SecondAbilityState.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\EnemyUnit.cs" />
      <Compile Include="Assets\Scripts\Units\StateMachine.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\States\PlayerStates\SecondAbilityState.cs" />
-     <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseAbliltyState.cs" />
+     <Compile Include="Assets\Scripts\World\DoorEnter.cs" />
+     <Compile Include="Assets\Scripts\EventManager.cs" />
+     <Compile Include="Assets\Scripts\RoomManager.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

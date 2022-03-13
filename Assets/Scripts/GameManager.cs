@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 public enum DamageDealtType
@@ -12,7 +11,6 @@ public enum DamageDealtType
 public class GameManager : MonoBehaviour
 {
     private List<GameObject> enemies;
-    private DungeonGenerator currentLevel;
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -27,21 +25,6 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         enemies = new List<GameObject> { };
-        currentLevel = new DungeonGenerator(32);
-
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < currentLevel.map.GetLength(1); i++)
-        {
-            for (int j = 0; j < currentLevel.map.GetLength(0); j++)
-            {
-                if (currentLevel.map[i, j] != null)
-                    sb.Append("x");
-                else
-                    sb.Append('_');
-            }
-            sb.AppendLine();
-        }
-        Debug.Log(sb.ToString());
     }
 
     void Update()
@@ -56,7 +39,12 @@ public class GameManager : MonoBehaviour
 
     public bool RemoveEnemy(GameObject enemy)
     {
-        return enemies.Remove(enemy);
+        bool res = enemies.Remove(enemy);
+        if (enemies.Count <= 0)
+        {
+            EventManager.instance.ClearedRoomTrigger();
+        }
+        return res;
     }
 
     public void AddEnemy(GameObject enemy)
