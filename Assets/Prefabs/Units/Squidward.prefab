@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9121761334137381987}
   - component: {fileID: 6473172735878171592}
   - component: {fileID: 3793258711291285077}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Squidward
   m_TagString: Untagged
   m_Icon: {fileID: 0}

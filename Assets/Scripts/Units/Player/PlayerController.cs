@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public GameObject skillShotProjectile;
     public StatBlock stats;
     public PlayerControls controls;
+    public LayerMask hit;
     public bool shoot;
 
     // Private Vars

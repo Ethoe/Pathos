@@ -136,6 +136,9 @@ MonoBehaviour:
       BaseValue: 0
     Invincible: 0
     isMelee: 0
+  hit:
+    serializedVersion: 2
+    m_Bits: 128
   shoot: 0
 --- !u!50 &2981067955125792487
 Rigidbody2D:
