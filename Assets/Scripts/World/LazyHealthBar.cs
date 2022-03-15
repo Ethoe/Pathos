@@ -8,12 +8,15 @@ public class LazyHealthBar : MonoBehaviour
     private float currHPSlow;
 
     private StatBlockComponent statsComp;
+    private BoxCollider2D boundingBox;
+    public GameObject target;
     public Image barFast, barSlow;
     // Start is called before the first frame update
 
     void Start()
     {
-        statsComp = GetComponentInParent<StatBlockComponent>();
+        boundingBox = target.GetComponent<BoxCollider2D>();
+        statsComp = target.GetComponent<StatBlockComponent>();
         currHPSlow = statsComp.stats.Health.CurrentValue;
     }
 
@@ -21,11 +24,20 @@ public class LazyHealthBar : MonoBehaviour
     float t = 0;
     void Update()
     {
+        if (!target)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Bounds bounds = boundingBox.bounds;
+            transform.position = new Vector2(bounds.center.x, bounds.center.y - bounds.extents.y) + new Vector2(0, -.25f);
+        }
         //interpolating slowHP and currentHP inf unequal
         if (!Mathf.Approximately(currHPSlow, statsComp.stats.Health.CurrentValue))
         {
             currHPSlow = Mathf.Lerp(currHPSlow, statsComp.stats.Health.CurrentValue, t);
-            t += .25f * Time.deltaTime;
+            t += .05f * Time.deltaTime;
         }
         else
         {
