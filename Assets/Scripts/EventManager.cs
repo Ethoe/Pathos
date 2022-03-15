@@ -29,4 +29,14 @@ public class EventManager : MonoBehaviour
             onClearedRoom();
         }
     }
+
+    public delegate void DealDamageAction(GameObject target, DamageInfo damage);
+    public event DealDamageAction onDealDamage;
+    public void DealDamageTrigger(GameObject target, DamageInfo damage)
+    {
+        if (onDealDamage != null)
+        {
+            onDealDamage(target, damage);
+        }
+    }
 }

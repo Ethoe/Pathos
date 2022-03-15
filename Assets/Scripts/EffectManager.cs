@@ -22,27 +22,34 @@ public class EffectManager : MonoBehaviour
         _instance = this;
     }
 
+    void Start()
+    {
+        EventManager.instance.onDealDamage += DamageTextAnimation;
+    }
+
     void Update()
     {
 
     }
 
-    public void DamageTextAnimation(string text, DamageDealtType damagetype, bool isCrit, float size, GameObject target)
+    public void DamageTextAnimation(GameObject target, DamageInfo damage)
     {
         GameObject DamageText = Instantiate(popUpText, target.transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
         TextMeshPro DamageTMPro = DamageText.GetComponent<TextMeshPro>();
         DamageTextProcedural DamageTextP = DamageText.GetComponent<DamageTextProcedural>();
+        float size = 7;
+        string text = ((int)damage.damage).ToString();
         DamageTextP.fadeDuration = 1.0f;
         DamageTextP.color_i = new Color(1, 1, 1, 1);
         DamageTextP.color_f = new Color(1, 1, 1, 0);
-        if (isCrit)
-            size += 2;
+        if (damage.isCrit)
+            size += 3;
         DamageTextP.size_i = size;
         DamageTextP.size_f = 2;
-        DamageTextP.initialOffset = target.transform.position + new Vector3(0, 1.5f, 0);
-        DamageTextP.finalOffset = target.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 2.5f, 0);
-        DamageTMPro.colorGradient = DamageTypeColor(damagetype, isCrit);
-        if (isCrit)
+        DamageTextP.initialOffset = target.transform.position + new Vector3(0, 2f, 0);
+        DamageTextP.finalOffset = target.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 3f, 0);
+        DamageTMPro.colorGradient = DamageTypeColor(damage.damageType, damage.isCrit);
+        if (damage.isCrit)
             text = text + "!";
         DamageTMPro.SetText(text);
 

@@ -494,6 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bd989048bf0a04696aa4628e048226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!4 &714676012
 Transform:
   m_ObjectHideFlags: 0
@@ -5806,6 +5807,22 @@ PrefabInstance:
     - target: {fileID: 2981067955125792491, guid: 3ddff186252a5594f9e1530c678ce4a9, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461360614166106694, guid: 3ddff186252a5594f9e1530c678ce4a9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461360614166106694, guid: 3ddff186252a5594f9e1530c678ce4a9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461360614166106694, guid: 3ddff186252a5594f9e1530c678ce4a9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5.5536
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461360614166106694, guid: 3ddff186252a5594f9e1530c678ce4a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ddff186252a5594f9e1530c678ce4a9, type: 3}
