@@ -25,7 +25,7 @@ public class LazyHealthBar : MonoBehaviour
         if (!Mathf.Approximately(currHPSlow, statsComp.stats.Health.CurrentValue))
         {
             currHPSlow = Mathf.Lerp(currHPSlow, statsComp.stats.Health.CurrentValue, t);
-            t += 0.75f * Time.deltaTime;
+            t += .25f * Time.deltaTime;
         }
         else
         {
