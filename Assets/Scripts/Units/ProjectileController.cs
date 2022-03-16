@@ -19,7 +19,7 @@ public class ProjectileController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (targetting)
+        else if (targetting)
         {
             float distance = Vector2.Distance(transform.position, currentTarget.transform.position);
             if (distance <= 0.1f)
