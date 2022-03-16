@@ -96,10 +96,6 @@ public class RoomManager : MonoBehaviour
         spawnRoom();
 
         GameManager.Instance.player.transform.position = GetPlayerSpawn(side);
-
-        EventManager.instance.ClearedRoomTrigger();
-
-        Debug.Log("wowo on " + side);
     }
 
     private void BuildRoom()
