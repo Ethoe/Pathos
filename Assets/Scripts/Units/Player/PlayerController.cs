@@ -1,4 +1,4 @@
-using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -30,14 +30,17 @@ public class PlayerController : MonoBehaviour
 
         animator = GetComponent<Animator>();
         shoot = false;
+
         controlSM = new StateMachine();
         idle = new IdleState(this, controlSM);
         moving = new MovingState(this, controlSM);
         attacking = new AttackingState(this, controlSM);
         attackMoving = new AttackMovingState(this, controlSM);
         secondAbility = new SecondAbilityState(this, controlSM);
-        GameManager.Instance.player = gameObject;
         controlSM.Initialize(idle);
+
+        GameManager.Instance.player = gameObject;
+
         rigidbody2d = GetComponent<Rigidbody2D>();
 
         controls = new PlayerControls();
