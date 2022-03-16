@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af227f28ecc5cb4ab1893c9232ffd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoAttackProjectile: {fileID: 6386005434906321075, guid: c7ba581e7a062f349bf87488a8af2f6c, type: 3}
+  autoAttackProjectile: {fileID: 8347020074959097383, guid: c7ba581e7a062f349bf87488a8af2f6c, type: 3}
   skillShotProjectile: {fileID: 5078990967194104328, guid: 9dea573a4c0343c4c8d8065d9dff4b77, type: 3}
   stats:
     Health:

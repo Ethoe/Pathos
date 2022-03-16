@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -44,12 +43,7 @@ public class PlayerController : MonoBehaviour
         controls = new PlayerControls();
 
         stats = GetComponent<StatBlockComponent>().stats;
-        stats.Attack.BaseValue = 100.0f;
-        stats.CritChance.BaseValue = .5f;
-        stats.CritDamage.BaseValue = 1.0f;
-        stats.AttackSpeed.BaseValue = 1.0f;
-        stats.AttackRange.BaseValue = 3.0f;
-        stats.MoveSpeed.BaseValue = 5.0f;
+        JsonUtility.FromJsonOverwrite(Tools.LoadResourceTextfile("pika"), stats);
     }
 
     // Update is called once per frame

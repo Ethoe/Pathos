@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class StatBlock
@@ -37,5 +38,10 @@ public class StatBlock
         MArmor = new CharacterStat();
         Armor = new CharacterStat();
         MoveSpeed = new CharacterStat();
+    }
+
+    public string getJson()
+    {
+        return JsonUtility.ToJson(this);
     }
 }

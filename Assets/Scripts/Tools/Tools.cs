@@ -31,4 +31,11 @@ public static class Tools
     {
         return (Random.value < chance);
     }
+
+    public static string LoadResourceTextfile(string path)
+    {
+        string filePath = "Units/Stats/" + path.Replace(".json", "");
+        TextAsset targetFile = Resources.Load<TextAsset>(filePath);
+        return targetFile.text;
+    }
 }
