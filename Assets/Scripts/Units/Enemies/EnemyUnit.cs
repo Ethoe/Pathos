@@ -5,14 +5,15 @@ using UnityEngine;
 public class EnemyUnit : MonoBehaviour
 {
     public StatBlock stats;
+    public int difficultyLevel;
+    public string statLocation;
 
     // Start is called before the first frame update
     void Start()
     {
         GameManager.Instance.AddEnemy(this.gameObject);
         stats = GetComponent<StatBlockComponent>().stats;
-        stats.Health.BaseValue = 1000;
-        stats.Health.CurrentValue = 1000;
+        JsonUtility.FromJsonOverwrite(Tools.LoadResourceTextfile(statLocation), stats);
     }
 
     // Update is called once per frame

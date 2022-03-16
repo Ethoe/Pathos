@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         controls = new PlayerControls();
 
         stats = GetComponent<StatBlockComponent>().stats;
-        JsonUtility.FromJsonOverwrite(Tools.LoadResourceTextfile("pika"), stats);
+        JsonUtility.FromJsonOverwrite(Tools.LoadResourceTextfile("Stats/Players/pika"), stats);
     }
 
     // Update is called once per frame

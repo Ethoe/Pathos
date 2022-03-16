@@ -34,7 +34,7 @@ public static class Tools
 
     public static string LoadResourceTextfile(string path)
     {
-        string filePath = "Units/Stats/" + path.Replace(".json", "");
+        string filePath = "Units/" + path.Replace(".json", "");
         TextAsset targetFile = Resources.Load<TextAsset>(filePath);
         return targetFile.text;
     }

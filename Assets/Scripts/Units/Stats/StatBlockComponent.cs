@@ -9,7 +9,7 @@ public class StatBlockComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stats = new StatBlock();
+
     }
 
     // Update is called once per frame

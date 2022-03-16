@@ -14,10 +14,12 @@ public class RoomManager : MonoBehaviour
             return _instance;
         }
     }
+    public GameObject hpBar;
     private DungeonGenerator currentLevel;
     private DungeonRoom currentRoom;
     private Object solidWall, closedGate, openGate;
     private GameObject[] walls; // Goes Up Right Down Left
+    private object[] enemies;
     private List<Object> solidWalls;
 
     private void Awake()
@@ -30,6 +32,9 @@ public class RoomManager : MonoBehaviour
         walls = new GameObject[4];
         solidWalls = new List<Object>();
         currentRoom = currentLevel.enter;
+        enemies = Resources.LoadAll("Units/Objects/Enemies");
+
+        spawnRoom();
         BuildRoom();
 
         StringBuilder sb = new StringBuilder();
@@ -87,6 +92,8 @@ public class RoomManager : MonoBehaviour
         currentRoom = currentLevel.GetRoom(currentRoom, side);
 
         BuildRoom();
+
+        spawnRoom();
 
         GameManager.Instance.player.transform.position = GetPlayerSpawn(side);
 
@@ -158,5 +165,22 @@ public class RoomManager : MonoBehaviour
             default:
                 return new Vector2();
         }
+    }
+
+    private void spawnRoom()
+    {
+        for (int count = 0; count < 3; count++)
+        {
+            Vector2 spawnLocation = new Vector2(Random.Range(-8, 6), Random.Range(-9, 5));
+            GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];
+            spawnUnit(enemy, spawnLocation);
+        }
+    }
+
+    private void spawnUnit(GameObject unit, Vector2 spawnLocation)
+    {
+        GameObject currentUnit = Instantiate(unit, spawnLocation, Quaternion.identity);
+        GameObject hpUnit = Instantiate(hpBar, spawnLocation, Quaternion.identity);
+        hpUnit.GetComponent<LazyHealthBar>().target = currentUnit;
     }
 }

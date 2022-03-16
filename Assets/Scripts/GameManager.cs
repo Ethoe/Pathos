@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         StatBlock sourceStats = source.GetComponent<StatBlockComponent>().stats;
         StatBlock targetStats = target.GetComponent<StatBlockComponent>().stats;
+        Debug.Log(targetStats.Armor.Value);
         CharacterStat calculator = new CharacterStat(sourceStats.Attack.Value);
         if (isCrit)
         {

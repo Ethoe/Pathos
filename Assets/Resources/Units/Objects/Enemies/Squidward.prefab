@@ -180,6 +180,8 @@ MonoBehaviour:
       BaseValue: 0
     Invincible: 0
     isMelee: 0
+  difficultyLevel: 1
+  statLocation: Stats/Enemies/Squidward
 --- !u!114 &3793258711291285077
 MonoBehaviour:
   m_ObjectHideFlags: 0
