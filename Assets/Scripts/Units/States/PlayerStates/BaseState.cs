@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BaseState : State
 {
+    protected PlayerController player;
+
     private bool second;
-    public BaseState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)
+    public BaseState(PlayerController player, StateMachine stateMachine) : base(stateMachine)
     {
+        this.player = player;
     }
 
     public override void Enter()

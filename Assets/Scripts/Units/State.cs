@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class State
 {
-    protected PlayerController player;
     protected StateMachine stateMachine;
 
-    protected State(PlayerController player, StateMachine stateMachine)
+    protected State(StateMachine stateMachine)
     {
-        this.player = player;
         this.stateMachine = stateMachine;
     }
     public virtual void Enter()

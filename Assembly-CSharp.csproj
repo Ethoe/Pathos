@@ -43,6 +43,7 @@
      <Compile Include="Assets\Scripts\World\DoorEnter.cs" />
      <Compile Include="Assets\Scripts\Units\State.cs" />
      <Compile Include="Assets\Scripts\EventManager.cs" />
+     <Compile Include="Assets\Scripts\Tools\JsonHelper.cs" />
      <Compile Include="Assets\Scripts\RoomManager.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\DamageInfo.cs" />
      <Compile Include="Assets\Scripts\Tools\Tools.cs" />
@@ -68,7 +69,9 @@
      <Compile Include="Assets\Scripts\Units\StateMachine.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Tools\JsonHelper.cs" />
+     <Compile Include="Assets\Scripts\Units\Enemies\Squidward.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardBaseState.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardWanderState.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

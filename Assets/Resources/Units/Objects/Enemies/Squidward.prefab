@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9121761334137381987}
   - component: {fileID: 6473172735878171592}
   - component: {fileID: 3793258711291285077}
+  - component: {fileID: 8485031502723728218}
   m_Layer: 7
   m_Name: Squidward
   m_TagString: Untagged
@@ -94,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9121761334137381988}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -117,7 +118,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.022598624, y: -0.32448626}
@@ -229,3 +230,51 @@ MonoBehaviour:
       BaseValue: 0
     Invincible: 0
     isMelee: 0
+--- !u!114 &8485031502723728218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9121761334137381988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce5a06122e06e64f8fe4f7f26876402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    Health:
+      BaseValue: 0
+      CurrentValue: 0
+    HealthRegen:
+      BaseValue: 0
+    Mana:
+      BaseValue: 0
+      CurrentValue: 0
+    ManaRegen:
+      BaseValue: 0
+    AttackSpeed:
+      BaseValue: 0
+    AttackRange:
+      BaseValue: 0
+    CritChance:
+      BaseValue: 0
+    CritDamage:
+      BaseValue: 0
+    CoolDown:
+      BaseValue: 0
+    LifeSteal:
+      BaseValue: 0
+    Attack:
+      BaseValue: 0
+    Magic:
+      BaseValue: 0
+    MArmor:
+      BaseValue: 0
+    Armor:
+      BaseValue: 0
+    MoveSpeed:
+      BaseValue: 0
+    Invincible: 0
+    isMelee: 0
+  baseUnit: {fileID: 0}
