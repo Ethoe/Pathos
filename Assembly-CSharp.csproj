@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\World\DestroyOnAnimationEnd.cs" />
+     <Compile Include="Assets\Scripts\Units\Enemies\Squidward.cs" />
      <Compile Include="Assets\Scripts\EffectManager.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatBlockComponent.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseAbliltyState.cs" />
@@ -53,9 +54,11 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\MovingState.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\FirstAbilityState.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardBaseState.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\IdleState.cs" />
      <Compile Include="Assets\Scripts\Units\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Units\SkillshotController.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardWanderState.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatBlock.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseState.cs" />
      <Compile Include="Assets\Scripts\World\DungeonGenerator.cs" />
@@ -69,9 +72,7 @@
      <Compile Include="Assets\Scripts\Units\StateMachine.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\Enemies\Squidward.cs" />
-     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardBaseState.cs" />
-     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardWanderState.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardIdleState.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

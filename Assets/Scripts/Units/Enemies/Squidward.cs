@@ -8,6 +8,7 @@ public class Squidward : MonoBehaviour
     public StatBlock stats;
     public EnemyUnit baseUnit;
     public SquidwardWanderState wander;
+    public SquidwardIdleState idle;
     private Rigidbody2D rigidbody2d;
 
     // Start is called before the first frame update
@@ -15,6 +16,7 @@ public class Squidward : MonoBehaviour
     {
         aiSM = new StateMachine();
         wander = new SquidwardWanderState(this, aiSM);
+        idle = new SquidwardIdleState(this, aiSM);
         aiSM.Initialize(wander);
 
         stats = GetComponent<StatBlockComponent>().stats;
