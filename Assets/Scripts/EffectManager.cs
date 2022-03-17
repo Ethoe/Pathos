@@ -34,7 +34,7 @@ public class EffectManager : MonoBehaviour
 
     public void DamageTextAnimation(GameObject target, DamageInfo damage)
     {
-        GameObject DamageText = Instantiate(popUpText, target.transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
+        GameObject DamageText = Instantiate(popUpText, target.transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
         TextMeshPro DamageTMPro = DamageText.GetComponent<TextMeshPro>();
         DamageTextProcedural DamageTextP = DamageText.GetComponent<DamageTextProcedural>();
         float size = 7;
@@ -46,8 +46,8 @@ public class EffectManager : MonoBehaviour
             size += 3;
         DamageTextP.size_i = size;
         DamageTextP.size_f = 2;
-        DamageTextP.initialOffset = target.transform.position + new Vector3(0, 2f, 0);
-        DamageTextP.finalOffset = target.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 3f, 0);
+        DamageTextP.initialOffset = target.transform.position + new Vector3(0, 1f, 0);
+        DamageTextP.finalOffset = target.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 2f, 0);
         DamageTMPro.colorGradient = DamageTypeColor(damage.damageType, damage.isCrit);
         if (damage.isCrit)
             text = text + "!";

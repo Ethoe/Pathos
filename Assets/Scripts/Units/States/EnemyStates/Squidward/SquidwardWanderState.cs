@@ -14,7 +14,7 @@ public class SquidwardWanderState : SquidwardBaseState
     {
         base.Enter();
         goingTo = new Vector2(unit.transform.position.x + Random.Range(-5, 5), unit.transform.position.y + Random.Range(-5, 5));
-        RaycastHit2D hit = Physics2D.Raycast(goingTo, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Walls")); // Layer 9 is walls
+        RaycastHit2D hit = Physics2D.Raycast(goingTo, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Walls"));
         if (hit.collider != null)
         {
             goingTo = new Vector2(unit.transform.position.x + Random.Range(-5, 5), unit.transform.position.y + Random.Range(-5, 5));

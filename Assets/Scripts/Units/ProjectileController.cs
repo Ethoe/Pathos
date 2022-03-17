@@ -32,7 +32,7 @@ public class ProjectileController : MonoBehaviour
                 Vector3 direction = currentTarget.transform.position - transform.position;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 100;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, Time.deltaTime * 5);
+                transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, Time.deltaTime * 7.5f);
             }
         }
     }
