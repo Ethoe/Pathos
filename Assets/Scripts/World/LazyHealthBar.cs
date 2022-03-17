@@ -30,8 +30,6 @@ public class LazyHealthBar : MonoBehaviour
         }
         else
         {
-            Bounds bounds = boundingBox.bounds;
-            transform.position = new Vector2(bounds.center.x, bounds.center.y - bounds.extents.y) + new Vector2(0, -.25f);
             //interpolating slowHP and currentHP inf unequal
             if (!Mathf.Approximately(currHPSlow, statsComp.stats.Health.CurrentValue))
             {
@@ -47,6 +45,19 @@ public class LazyHealthBar : MonoBehaviour
             //Setting fill amount
             barFast.fillAmount = statsComp.stats.Health.CurrentValue / statsComp.stats.Health.Value;
             barSlow.fillAmount = currHPSlow / statsComp.stats.Health.Value;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (!target)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Bounds bounds = boundingBox.bounds;
+            transform.position = new Vector2(bounds.center.x, bounds.center.y - bounds.extents.y) + new Vector2(0, -.25f);
         }
     }
 }
