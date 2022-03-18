@@ -55,8 +55,19 @@ public class GameManager : MonoBehaviour
 
     public void CalculateDamage(GameObject source, GameObject target, GameObject damageSource, bool isCrit)
     {
-        StatBlock sourceStats = source.GetComponent<StatBlockComponent>().stats;
-        StatBlock targetStats = target.GetComponent<StatBlockComponent>().stats;
+        StatBlockComponent sourceC = source.GetComponent<StatBlockComponent>();
+        StatBlockComponent targetC = target.GetComponent<StatBlockComponent>();
+
+        // TODO: expand this
+
+        if (sourceC || targetC)
+        {
+            return;
+        }
+
+        StatBlock sourceStats = sourceC.stats;
+        StatBlock targetStats = targetC.stats;
+
         CharacterStat calculator = new CharacterStat(sourceStats.Attack.Value);
         if (isCrit)
         {

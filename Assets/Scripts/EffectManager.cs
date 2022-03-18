@@ -6,7 +6,6 @@ using TMPro;
 public class EffectManager : MonoBehaviour
 {
     private static EffectManager _instance;
-
     public GameObject popUpText;
     public static EffectManager Instance
     {

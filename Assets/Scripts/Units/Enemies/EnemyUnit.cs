@@ -7,21 +7,22 @@ public class EnemyUnit : MonoBehaviour
     public StatBlock stats;
     public int difficultyLevel;
     public string statLocation;
+    public GameObject ability;
+    public StateMachine aiSM;
+    protected Rigidbody2D rigidbody2d;
+    public GameObject aggrod;
 
-    private Rigidbody2D rigidbody2d;
-
-
-    // Start is called before the first frame update
-    void Start()
+    protected void start()
     {
         GameManager.Instance.AddEnemy(this.gameObject);
         stats = GetComponent<StatBlockComponent>().stats;
         JsonUtility.FromJsonOverwrite(Tools.LoadResourceTextfile(statLocation), stats);
         rigidbody2d = GetComponent<Rigidbody2D>();
+        aiSM = new StateMachine();
+        aggrod = GameManager.Instance.player;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected void update()
     {
         if (stats.Health.CurrentValue <= 0)
         {
@@ -29,6 +30,8 @@ public class EnemyUnit : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    protected void fixedUpdate() { }
 
     public void UnitMove(Vector2 target, float moveSpeed)
     {

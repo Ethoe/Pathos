@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Character
   - Enemy
-  - Projectile
+  - EnemyProjectile
   - Walls
-  - 
+  - AllyProjectile
   - 
   - 
   - 
