@@ -53,14 +53,14 @@ public class GameManager : MonoBehaviour
         enemies.Add(enemy);
     }
 
-    public void CalculateDamage(GameObject source, GameObject target, GameObject damageSource, bool isCrit)
+    public void CalculateDamage(GameObject source, GameObject target, float damageSource, bool isCrit)
     {
         StatBlockComponent sourceC = source.GetComponent<StatBlockComponent>();
         StatBlockComponent targetC = target.GetComponent<StatBlockComponent>();
 
         // TODO: expand this
 
-        if (sourceC || targetC)
+        if (!sourceC || !targetC)
         {
             return;
         }
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         StatBlock sourceStats = sourceC.stats;
         StatBlock targetStats = targetC.stats;
 
-        CharacterStat calculator = new CharacterStat(sourceStats.Attack.Value);
+        CharacterStat calculator = new CharacterStat(damageSource);
         if (isCrit)
         {
             calculator.AddModifier(new StatModifier(sourceStats.CritDamage.Value, StatModType.PercentMult));

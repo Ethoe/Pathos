@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         if (stats.isMelee)
         {
-            GameManager.Instance.CalculateDamage(this.gameObject, target, this.gameObject, Tools.percentChance(stats.CritChance.Value));
+            GameManager.Instance.CalculateDamage(this.gameObject, target, stats.Attack.Value, Tools.percentChance(stats.CritChance.Value));
         }
         else
         {

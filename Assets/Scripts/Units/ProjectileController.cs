@@ -24,7 +24,7 @@ public class ProjectileController : MonoBehaviour
             float distance = Vector2.Distance(transform.position, currentTarget.transform.position);
             if (distance <= 0.1f)
             {
-                GameManager.Instance.CalculateDamage(source, currentTarget, this.gameObject, isCrit);
+                GameManager.Instance.CalculateDamage(source, currentTarget, source.GetComponent<StatBlockComponent>().stats.Attack.Value, isCrit);
                 Destroy(gameObject);
             }
             else
