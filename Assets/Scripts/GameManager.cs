@@ -55,15 +55,16 @@ public class GameManager : MonoBehaviour
 
     public void CalculateDamage(GameObject source, GameObject target, float damageSource, bool isCrit)
     {
+        if (!source || !target) // If source or target is gone on hit no damage, is this right?
+            return;
+
         StatBlockComponent sourceC = source.GetComponent<StatBlockComponent>();
         StatBlockComponent targetC = target.GetComponent<StatBlockComponent>();
 
         // TODO: expand this
 
         if (!sourceC || !targetC)
-        {
             return;
-        }
 
         StatBlock sourceStats = sourceC.stats;
         StatBlock targetStats = targetC.stats;
