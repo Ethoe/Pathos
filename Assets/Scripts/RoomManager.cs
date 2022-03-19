@@ -102,42 +102,42 @@ public class RoomManager : MonoBehaviour
     {
         if (currentLevel.GetRoom(currentRoom, Direction.Up) != null)
         {
-            walls[0] = (GameObject)Instantiate(closedGate, new Vector2(-1, 8), Quaternion.Euler(0, 0, 0));
+            walls[0] = (GameObject)Instantiate(closedGate, new Vector2(0, 9), Quaternion.Euler(0, 0, 0));
         }
         else
         {
             walls[0] = null;
-            solidWalls.Add(Instantiate(solidWall, new Vector2(-1, 8), Quaternion.Euler(0, 0, 0)));
+            solidWalls.Add(Instantiate(solidWall, new Vector2(0, 9), Quaternion.Euler(0, 0, 0)));
         }
 
         if (currentLevel.GetRoom(currentRoom, Direction.Right) != null)
         {
-            walls[1] = (GameObject)Instantiate(closedGate, new Vector2(9, -1), Quaternion.Euler(0, 0, 270));
+            walls[1] = (GameObject)Instantiate(closedGate, new Vector2(9, 1), Quaternion.Euler(0, 0, 270));
         }
         else
         {
             walls[1] = null;
-            solidWalls.Add(Instantiate(solidWall, new Vector2(9, -1), Quaternion.Euler(0, 0, 270)));
+            solidWalls.Add(Instantiate(solidWall, new Vector2(9, 1), Quaternion.Euler(0, 0, 270)));
         }
 
         if (currentLevel.GetRoom(currentRoom, Direction.Down) != null)
         {
-            walls[2] = (GameObject)Instantiate(closedGate, new Vector2(0, -11), Quaternion.Euler(0, 0, 180));
+            walls[2] = (GameObject)Instantiate(closedGate, new Vector2(1, -8), Quaternion.Euler(0, 0, 180));
         }
         else
         {
             walls[2] = null;
-            solidWalls.Add(Instantiate(solidWall, new Vector2(0, -11), Quaternion.Euler(0, 0, 180)));
+            solidWalls.Add(Instantiate(solidWall, new Vector2(1, -8), Quaternion.Euler(0, 0, 180)));
         }
 
         if (currentLevel.GetRoom(currentRoom, Direction.Left) != null)
         {
-            walls[3] = (GameObject)Instantiate(closedGate, new Vector2(-10, -2), Quaternion.Euler(0, 0, 90));
+            walls[3] = (GameObject)Instantiate(closedGate, new Vector2(-8, 0), Quaternion.Euler(0, 0, 90));
         }
         else
         {
             walls[3] = null;
-            solidWalls.Add(Instantiate(solidWall, new Vector2(-10, -2), Quaternion.Euler(0, 0, 90)));
+            solidWalls.Add(Instantiate(solidWall, new Vector2(-8, 0), Quaternion.Euler(0, 0, 90)));
         }
     }
 
@@ -151,13 +151,13 @@ public class RoomManager : MonoBehaviour
         switch (side)
         {
             case Direction.Up:
-                return new Vector2(0, -9);
+                return new Vector2(1, -7);
             case Direction.Right:
-                return new Vector2(-8, -1);
+                return new Vector2(-7, 1);
             case Direction.Down:
-                return new Vector2(0, 6);
+                return new Vector2(1, 8);
             case Direction.Left:
-                return new Vector2(7, -1);
+                return new Vector2(8, 1);
             default:
                 return new Vector2();
         }
@@ -165,9 +165,9 @@ public class RoomManager : MonoBehaviour
 
     private void spawnRoom()
     {
-        for (int count = 0; count < 3; count++)
+        for (int count = 0; count < 1; count++)
         {
-            Vector2 spawnLocation = new Vector2(Random.Range(-8, 6), Random.Range(-9, 5));
+            Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
             GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];
             spawnUnit(enemy, spawnLocation);
         }
