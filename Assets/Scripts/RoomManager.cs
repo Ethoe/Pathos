@@ -211,7 +211,7 @@ public class RoomManager : MonoBehaviour
             //EventManager.instance.ClearedRoomTrigger();
             return;
         }
-        for (int count = 0; count < 1; count++)
+        for (int count = 0; count < 3; count++)
         {
             Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
             GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];

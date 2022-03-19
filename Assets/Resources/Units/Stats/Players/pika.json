@@ -3,16 +3,6 @@
         "BaseValue": 1000.0,
         "CurrentValue": 1000.0
     },
-    "HealthRegen": {
-        "BaseValue": 0.0
-    },
-    "Mana": {
-        "BaseValue": 100.0,
-        "CurrentValue": 100.0
-    },
-    "ManaRegen": {
-        "BaseValue": 10.0
-    },
     "AttackSpeed": {
         "BaseValue": 1.0
     },
@@ -32,13 +22,7 @@
         "BaseValue": 0.0
     },
     "Attack": {
-        "BaseValue": 101.0
-    },
-    "Magic": {
-        "BaseValue": 0.0
-    },
-    "MArmor": {
-        "BaseValue": 0.0
+        "BaseValue": 500.0
     },
     "Armor": {
         "BaseValue": 0.0

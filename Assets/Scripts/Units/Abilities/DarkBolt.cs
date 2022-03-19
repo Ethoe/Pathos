@@ -6,6 +6,6 @@ public class DarkBolt : SkillshotController
 {
     public override float FlatDamage()
     {
-        return 100.0f + (stats.Magic.Value * .80f); // 80% scaling
+        return 10.0f + (stats.Attack.Value * .80f); // 80% scaling
     }
 }

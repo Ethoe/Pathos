@@ -5,9 +5,6 @@ using UnityEngine;
 public class StatBlock
 {
     public CharacterResource Health;
-    public CharacterStat HealthRegen;
-    public CharacterResource Mana;
-    public CharacterStat ManaRegen;
     public CharacterStat AttackSpeed;
     public CharacterStat AttackRange;
     public CharacterStat CritChance;
@@ -15,8 +12,6 @@ public class StatBlock
     public CharacterStat CoolDown;
     public CharacterStat LifeSteal;
     public CharacterStat Attack;
-    public CharacterStat Magic;
-    public CharacterStat MArmor;
     public CharacterStat Armor;
     public CharacterStat MoveSpeed;
     public bool Invincible;
@@ -24,9 +19,6 @@ public class StatBlock
     public StatBlock()
     {
         Health = new CharacterResource();
-        Mana = new CharacterResource();
-        HealthRegen = new CharacterStat();
-        ManaRegen = new CharacterStat();
         AttackSpeed = new CharacterStat();
         AttackRange = new CharacterStat();
         CritChance = new CharacterStat();
@@ -34,8 +26,6 @@ public class StatBlock
         CoolDown = new CharacterStat();
         LifeSteal = new CharacterStat();
         Attack = new CharacterStat();
-        Magic = new CharacterStat();
-        MArmor = new CharacterStat();
         Armor = new CharacterStat();
         MoveSpeed = new CharacterStat();
     }

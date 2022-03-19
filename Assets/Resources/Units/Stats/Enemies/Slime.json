@@ -7,7 +7,7 @@
         "BaseValue": 1.0
     },
     "AttackRange": {
-        "BaseValue": 3.0
+        "BaseValue": 1.0
     },
     "CritChance": {
         "BaseValue": 0.25
@@ -31,5 +31,5 @@
         "BaseValue": 2.5
     },
     "Invincible": false,
-    "isMelee": false
+    "isMelee": true
 }
