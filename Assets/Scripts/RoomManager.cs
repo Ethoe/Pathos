@@ -34,22 +34,24 @@ public class RoomManager : MonoBehaviour
         currentRoom = currentLevel.enter;
         enemies = Resources.LoadAll("Units/Objects/Enemies");
 
-        spawnRoom();
         BuildRoom();
+        spawnRoom();
 
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < currentLevel.map.GetLength(1); i++)
-        {
-            for (int j = 0; j < currentLevel.map.GetLength(0); j++)
-            {
-                if (currentLevel.map[i, j] != null)
-                    sb.Append(currentLevel.map[i, j].location);
-                else
-                    sb.Append("(0, 0)");
-            }
-            sb.AppendLine();
-        }
-        Debug.Log(sb.ToString());
+        /*
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < currentLevel.map.GetLength(1); i++)
+                {
+                    for (int j = 0; j < currentLevel.map.GetLength(0); j++)
+                    {
+                        if (currentLevel.map[i, j] != null)
+                            sb.Append(currentLevel.map[i, j].location);
+                        else
+                            sb.Append("(0, 0)");
+                    }
+                    sb.AppendLine();
+                }
+                Debug.Log(sb.ToString());
+        */
     }
 
     private void Start()
@@ -87,6 +89,7 @@ public class RoomManager : MonoBehaviour
     }
     private void ExitRoom(Direction side)
     {
+        Debug.Log(side);
         for (int i = 0; i < walls.Length; i++)
         {
             if (walls[i] != null)
@@ -114,9 +117,12 @@ public class RoomManager : MonoBehaviour
     private void BuildRoom()
     {
         UnityEngine.Object roomWall;
+        GameObject room;
+        bool setDirection = false;
         if (currentRoom.type != RoomType.RegularRoom)
         {
             roomWall = openGate;
+            setDirection = true;
         }
         else
         {
@@ -125,7 +131,10 @@ public class RoomManager : MonoBehaviour
 
         if (currentLevel.GetRoom(currentRoom, Direction.Up) != null)
         {
-            walls[0] = (GameObject)Instantiate(roomWall, new Vector2(0, 9), Quaternion.Euler(0, 0, 0));
+            room = (GameObject)Instantiate(roomWall, new Vector2(0, 9), Quaternion.Euler(0, 0, 0));
+            walls[0] = room;
+            if (setDirection)
+                room.GetComponentInChildren<DoorEnter>().side = Direction.Up;
         }
         else
         {
@@ -135,7 +144,10 @@ public class RoomManager : MonoBehaviour
 
         if (currentLevel.GetRoom(currentRoom, Direction.Right) != null)
         {
-            walls[1] = (GameObject)Instantiate(roomWall, new Vector2(9, 1), Quaternion.Euler(0, 0, 270));
+            room = (GameObject)Instantiate(roomWall, new Vector2(9, 1), Quaternion.Euler(0, 0, 270));
+            walls[1] = room;
+            if (setDirection)
+                room.GetComponentInChildren<DoorEnter>().side = Direction.Right;
         }
         else
         {
@@ -145,7 +157,10 @@ public class RoomManager : MonoBehaviour
 
         if (currentLevel.GetRoom(currentRoom, Direction.Down) != null)
         {
-            walls[2] = (GameObject)Instantiate(roomWall, new Vector2(1, -8), Quaternion.Euler(0, 0, 180));
+            room = (GameObject)Instantiate(roomWall, new Vector2(1, -8), Quaternion.Euler(0, 0, 180));
+            walls[2] = room;
+            if (setDirection)
+                room.GetComponentInChildren<DoorEnter>().side = Direction.Down;
         }
         else
         {
@@ -155,7 +170,10 @@ public class RoomManager : MonoBehaviour
 
         if (currentLevel.GetRoom(currentRoom, Direction.Left) != null)
         {
-            walls[3] = (GameObject)Instantiate(roomWall, new Vector2(-8, 0), Quaternion.Euler(0, 0, 90));
+            room = (GameObject)Instantiate(roomWall, new Vector2(-8, 0), Quaternion.Euler(0, 0, 90));
+            walls[3] = room;
+            if (setDirection)
+                room.GetComponentInChildren<DoorEnter>().side = Direction.Left;
         }
         else
         {
@@ -190,7 +208,7 @@ public class RoomManager : MonoBehaviour
     {
         if (currentRoom.type == RoomType.FloorEnd || currentRoom.type == RoomType.FloorStart)
         {
-            EventManager.instance.ClearedRoomTrigger();
+            //EventManager.instance.ClearedRoomTrigger();
             return;
         }
         for (int count = 0; count < 1; count++)

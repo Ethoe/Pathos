@@ -138,13 +138,13 @@ public class DungeonGenerator
         switch (side)
         {
             case Direction.Up:
-                return getRoom(room.location + Vector2Int.up);
+                return getRoom(room.location + new Vector2Int(-1, 0));
             case Direction.Down:
-                return getRoom(room.location + Vector2Int.down);
+                return getRoom(room.location + new Vector2Int(1, 0));
             case Direction.Left:
-                return getRoom(room.location + Vector2Int.left);
+                return getRoom(room.location + new Vector2Int(0, -1));
             case Direction.Right:
-                return getRoom(room.location + Vector2Int.right);
+                return getRoom(room.location + new Vector2Int(0, 1));
             default:
                 return null;
         }
