@@ -30,6 +30,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public delegate void FilledRoomAction();
+    public event FilledRoomAction onFilledRoom;
+    public void FilledRoomTrigger()
+    {
+        if (onFilledRoom != null)
+        {
+            onFilledRoom();
+        }
+    }
+
     public delegate void DealDamageAction(GameObject target, DamageInfo damage);
     public event DealDamageAction onDealDamage;
     public void DealDamageTrigger(GameObject target, DamageInfo damage)

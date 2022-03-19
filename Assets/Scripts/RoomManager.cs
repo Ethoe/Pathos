@@ -43,9 +43,9 @@ public class RoomManager : MonoBehaviour
             for (int j = 0; j < currentLevel.map.GetLength(0); j++)
             {
                 if (currentLevel.map[i, j] != null)
-                    sb.Append("x");
+                    sb.Append(currentLevel.map[i, j].location);
                 else
-                    sb.Append('_');
+                    sb.Append("(0, 0)");
             }
             sb.AppendLine();
         }
@@ -56,6 +56,7 @@ public class RoomManager : MonoBehaviour
     {
         EventManager.instance.onDoorwayTriggerEnter += ExitRoom;
         EventManager.instance.onClearedRoom += ClearRoom;
+        EventManager.instance.onFilledRoom += CloseRoom;
     }
 
     private void ClearRoom()
@@ -70,7 +71,19 @@ public class RoomManager : MonoBehaviour
                 walls[i] = gate;
             }
         }
+    }
 
+    private void CloseRoom()
+    {
+        for (int i = 0; i < walls.Length; i++)
+        {
+            if (walls[i] != null)
+            {
+                GameObject gate = (GameObject)Instantiate(closedGate, walls[i].transform.position, walls[i].transform.rotation);
+                Destroy(walls[i]);
+                walls[i] = gate;
+            }
+        }
     }
     private void ExitRoom(Direction side)
     {
@@ -100,9 +113,19 @@ public class RoomManager : MonoBehaviour
 
     private void BuildRoom()
     {
+        UnityEngine.Object roomWall;
+        if (currentRoom.type != RoomType.RegularRoom)
+        {
+            roomWall = openGate;
+        }
+        else
+        {
+            roomWall = closedGate;
+        }
+
         if (currentLevel.GetRoom(currentRoom, Direction.Up) != null)
         {
-            walls[0] = (GameObject)Instantiate(closedGate, new Vector2(0, 9), Quaternion.Euler(0, 0, 0));
+            walls[0] = (GameObject)Instantiate(roomWall, new Vector2(0, 9), Quaternion.Euler(0, 0, 0));
         }
         else
         {
@@ -112,7 +135,7 @@ public class RoomManager : MonoBehaviour
 
         if (currentLevel.GetRoom(currentRoom, Direction.Right) != null)
         {
-            walls[1] = (GameObject)Instantiate(closedGate, new Vector2(9, 1), Quaternion.Euler(0, 0, 270));
+            walls[1] = (GameObject)Instantiate(roomWall, new Vector2(9, 1), Quaternion.Euler(0, 0, 270));
         }
         else
         {
@@ -122,7 +145,7 @@ public class RoomManager : MonoBehaviour
 
         if (currentLevel.GetRoom(currentRoom, Direction.Down) != null)
         {
-            walls[2] = (GameObject)Instantiate(closedGate, new Vector2(1, -8), Quaternion.Euler(0, 0, 180));
+            walls[2] = (GameObject)Instantiate(roomWall, new Vector2(1, -8), Quaternion.Euler(0, 0, 180));
         }
         else
         {
@@ -132,7 +155,7 @@ public class RoomManager : MonoBehaviour
 
         if (currentLevel.GetRoom(currentRoom, Direction.Left) != null)
         {
-            walls[3] = (GameObject)Instantiate(closedGate, new Vector2(-8, 0), Quaternion.Euler(0, 0, 90));
+            walls[3] = (GameObject)Instantiate(roomWall, new Vector2(-8, 0), Quaternion.Euler(0, 0, 90));
         }
         else
         {
@@ -165,6 +188,11 @@ public class RoomManager : MonoBehaviour
 
     private void spawnRoom()
     {
+        if (currentRoom.type == RoomType.FloorEnd || currentRoom.type == RoomType.FloorStart)
+        {
+            EventManager.instance.ClearedRoomTrigger();
+            return;
+        }
         for (int count = 0; count < 1; count++)
         {
             Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));

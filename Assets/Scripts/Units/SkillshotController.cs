@@ -3,7 +3,8 @@ using UnityEngine;
 public class SkillshotController : MonoBehaviour
 {
     // Public Vars
-    protected float lifeSpan = 1.0f;
+    protected Vector2 origin;
+    public float range;
     public float coolDown;
     public GameObject owner;
     public StatBlock stats;
@@ -20,12 +21,12 @@ public class SkillshotController : MonoBehaviour
     void Start()
     {
         stats = owner.GetComponent<StatBlockComponent>().stats;
+        origin = owner.transform.position;
     }
 
     void Update()
     {
-        lifeSpan -= Time.deltaTime;
-        if (lifeSpan < 0)
+        if (Vector2.Distance(origin, gameObject.transform.position) >= range)
             Destroy(gameObject);
     }
 

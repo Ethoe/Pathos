@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
 
     public void AddEnemy(GameObject enemy)
     {
+        if (enemies.Count <= 0)
+        {
+            EventManager.instance.FilledRoomTrigger();
+        }
         enemies.Add(enemy);
     }
 

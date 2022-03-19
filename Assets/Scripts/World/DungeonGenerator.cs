@@ -19,15 +19,18 @@ public class DungeonGenerator
     private int numberRooms;
     private int currentRooms;
     private Queue<DungeonRoom> generatorQueue;
+    private List<DungeonRoom> deadEnds;
 
     public DungeonGenerator(int rooms)
     {
         map = new DungeonRoom[size, size]; // Create an empty 16,16 map
         generatorQueue = new Queue<DungeonRoom>();
+        deadEnds = new List<DungeonRoom>();
         numberRooms = rooms;
         currentRooms = 1;
         tries = 0;
         Generate();
+        DecideRooms();
     }
 
     private void Generate()
@@ -38,14 +41,20 @@ public class DungeonGenerator
         tries += 1;
         generatorQueue.Enqueue(enter);
 
+
         while (generatorQueue.Count > 0)
         {
             DungeonRoom room = generatorQueue.Dequeue();
             // 1. Determine neighbor cell
-            generateNeighbor(room.location + Vector2Int.down);
-            generateNeighbor(room.location + Vector2Int.up);
-            generateNeighbor(room.location + Vector2Int.left);
-            generateNeighbor(room.location + Vector2Int.right);
+            int neighbors = 0;
+            neighbors += generateNeighbor(room.location + Vector2Int.down);
+            neighbors += generateNeighbor(room.location + Vector2Int.up);
+            neighbors += generateNeighbor(room.location + Vector2Int.left);
+            neighbors += generateNeighbor(room.location + Vector2Int.right);
+            if (neighbors == 0)
+            {
+                deadEnds.Add(room);
+            }
         }
 
         if (currentRooms < numberRooms) // Did not generate enough rooms
@@ -54,9 +63,15 @@ public class DungeonGenerator
                 return;
             map = new DungeonRoom[size, size]; // Create an empty 16,16 map
             generatorQueue = new Queue<DungeonRoom>();
+            deadEnds = new List<DungeonRoom>();
             currentRooms = 1;
             Generate();
         }
+    }
+
+    private void DecideRooms()
+    {
+        deadEnds[Random.Range(0, deadEnds.Count - 1)].type = RoomType.FloorEnd;
     }
 
     private int countNeighbors(Vector2Int location)
@@ -86,34 +101,36 @@ public class DungeonGenerator
         return map[location.x, location.y];
     }
 
-    private void generateNeighbor(Vector2Int location)
+    private int generateNeighbor(Vector2Int location)
     {
         if (0 > location.x || location.x >= size)
-            return;
+            return 0;
 
         if (0 > location.y || location.y >= size)
-            return;
+            return 0;
 
         // 2. If room count done, give up (out of order for a bit more effieciency)
         if (currentRooms >= numberRooms)
-            return;
+            return 0;
 
         // 3. If has room, give up
         if (getRoom(location) != null)
-            return;
+            return 0;
 
         // 4. If has more than 1 neighbor, give up
         if (countNeighbors(location) > 1)
-            return;
+            return 0;
 
         // 5. Random chance to give up
         if (Tools.percentChance(.50f))
-            return;
+            return 0;
 
         DungeonRoom room = new DungeonRoom(location);
+        room.type = RoomType.RegularRoom;
         currentRooms += 1;
         map[location.x, location.y] = room;
         generatorQueue.Enqueue(room);
+        return 1;
     }
 
     public DungeonRoom GetRoom(DungeonRoom room, Direction side)
