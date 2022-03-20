@@ -82,6 +82,8 @@
      <Compile Include="Assets\Scripts\Units\Abilities\SlimePop.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeAttackState.cs" />
      <Compile Include="Assets\Scripts\Tools\WeightedChance.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeTrackingState.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeIdleState.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

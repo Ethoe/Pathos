@@ -56,4 +56,9 @@ public class EnemyUnit : MonoBehaviour
     {
         return abilityCooldown - (abilityCooldown * stats.CoolDown.Value);
     }
+
+    public void TriggerAnimation(int param)
+    {
+        animator.Play(param, 0, 0.0f);
+    }
 }

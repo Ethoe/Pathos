@@ -6,6 +6,8 @@ public class SlimeWanderState : SlimeBaseState
 {
     private Vector2 goingTo;
     private float wanderTime;
+    private int moveParam = Animator.StringToHash("MoveBlendTree");
+    private WeightedChanceExecutor weightedChanceExecutor;
 
     public SlimeWanderState(Slime unit, StateMachine stateMachine) : base(unit, stateMachine)
     {
@@ -20,7 +22,13 @@ public class SlimeWanderState : SlimeBaseState
             goingTo = new Vector2(unit.transform.position.x + Random.Range(-5, 5), unit.transform.position.y + Random.Range(-5, 5));
             hit = Physics2D.Raycast(goingTo, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Walls"));
         }
-        wanderTime = 4.0f;
+        weightedChanceExecutor = new WeightedChanceExecutor(
+            new WeightedChanceParam(() => stateMachine.ChangeState(unit.wander), 49),
+            new WeightedChanceParam(() => stateMachine.ChangeState(unit.track), 50),
+            new WeightedChanceParam(() => stateMachine.ChangeState(unit.idle), 1)
+        ); //25% chance (since 25 + 25 + 50 = 100)
+        unit.TriggerAnimation(moveParam);
+        wanderTime = Random.Range(4, 8);
     }
 
     public override void HandleInput()
@@ -34,14 +42,7 @@ public class SlimeWanderState : SlimeBaseState
         wanderTime -= Time.deltaTime;
         if (Vector2.Distance(unit.transform.position, goingTo) <= 0.1 || wanderTime <= 0)
         {
-            if (Tools.percentChance(.5f)) // 70% chance to wander around again
-            {
-                stateMachine.ChangeState(unit.wander);
-            }
-            else
-            {
-                //stateMachine.ChangeState(unit.idle);
-            }
+            weightedChanceExecutor.Execute();
         }
     }
 

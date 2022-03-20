@@ -7,6 +7,8 @@ public class Slime : EnemyUnit
 
     public SlimeWanderState wander;
     public SlimeAttackState attack;
+    public SlimeTrackingState track;
+    public SlimeIdleState idle;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,9 @@ public class Slime : EnemyUnit
         abilityCooldown = 5.0f;
         wander = new SlimeWanderState(this, aiSM);
         attack = new SlimeAttackState(this, aiSM);
-        aiSM.Initialize(attack);
+        track = new SlimeTrackingState(this, aiSM);
+        idle = new SlimeIdleState(this, aiSM);
+        aiSM.Initialize(track);
     }
 
     // Update is called once per frame
@@ -37,5 +41,4 @@ public class Slime : EnemyUnit
         projectile.owner = this.gameObject;
         projectile.duration = .5f;
     }
-
 }
