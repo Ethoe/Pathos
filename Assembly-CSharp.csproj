@@ -39,8 +39,10 @@
      <Compile Include="Assets\Scripts\World\DestroyOnAnimationEnd.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\Squidward.cs" />
      <Compile Include="Assets\Scripts\EffectManager.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeWanderState.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardAttackingState.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatBlockComponent.cs" />
+     <Compile Include="Assets\Scripts\Units\Enemies\Slime.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseAbliltyState.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardIdleState.cs" />
      <Compile Include="Assets\Scripts\World\DoorEnter.cs" />
@@ -69,15 +71,17 @@
      <Compile Include="Assets\Scripts\Units\Stats\CharacterStat.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatModifier.cs" />
      <Compile Include="Assets\Scripts\World\DamageTextProcedural.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeBaseState.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\SecondAbilityState.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\EnemyUnit.cs" />
      <Compile Include="Assets\Scripts\World\LazyHealthBar.cs" />
      <Compile Include="Assets\Scripts\Units\StateMachine.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\Enemies\Slime.cs" />
-     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeBaseState.cs" />
-     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeWanderState.cs" />
+     <Compile Include="Assets\Scripts\Units\PointAbilityController.cs" />
+     <Compile Include="Assets\Scripts\Units\Abilities\SlimePop.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeAttackState.cs" />
+     <Compile Include="Assets\Scripts\Tools\WeightedChance.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -723,6 +727,9 @@
     <Reference Include="UnityEngine.UI">
         <HintPath>D:\Users\Projects\Unity\Pathos\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="com.talecrafter.animationimporter.Editor">
+        <HintPath>D:\Users\Projects\Unity\Pathos\Library\ScriptAssemblies\com.talecrafter.animationimporter.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics">
         <HintPath>D:\Users\Projects\Unity\Pathos\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
@@ -761,9 +768,6 @@
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
         <HintPath>D:\Users\Projects\Unity\Pathos\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="com.talecrafter.animationimporter.Editor">
-        <HintPath>D:\Users\Projects\Unity\Pathos\Library\ScriptAssemblies\com.talecrafter.animationimporter.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

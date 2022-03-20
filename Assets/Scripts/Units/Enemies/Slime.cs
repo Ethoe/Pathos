@@ -6,12 +6,15 @@ public class Slime : EnemyUnit
 {
 
     public SlimeWanderState wander;
+    public SlimeAttackState attack;
     // Start is called before the first frame update
     void Start()
     {
         this.start();
+        abilityCooldown = 5.0f;
         wander = new SlimeWanderState(this, aiSM);
-        aiSM.Initialize(wander);
+        attack = new SlimeAttackState(this, aiSM);
+        aiSM.Initialize(attack);
     }
 
     // Update is called once per frame
@@ -27,14 +30,12 @@ public class Slime : EnemyUnit
         aiSM.CurrentState.PhysicsUpdate();
     }
 
-    public void Ability(Vector2 direction)
+    public void Ability()
     {
-        float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90.0f;
-        GameObject projectileObject = Instantiate(ability, rigidbody2d.position, Quaternion.AngleAxis(angle, Vector3.forward));
-        SkillshotController projectile = projectileObject.GetComponent<SkillshotController>();
+        GameObject projectileObject = Instantiate(ability, rigidbody2d.position, Quaternion.identity);
+        PointAbilityController projectile = projectileObject.GetComponent<PointAbilityController>();
         projectile.owner = this.gameObject;
-        projectile.range = 10.0f;
-        projectile.Launch(direction, 10 * 50); // 50 = 1 unit per second
+        projectile.duration = .5f;
     }
 
 }

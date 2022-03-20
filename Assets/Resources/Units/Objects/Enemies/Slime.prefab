@@ -140,9 +140,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.4365713}
+  m_Offset: {x: 0, y: -0.06888813}
   serializedVersion: 2
-  m_Radius: 0.39217132
+  m_Radius: 0.35956103
 --- !u!114 &7250248914366284831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +217,6 @@ MonoBehaviour:
     isMelee: 0
   difficultyLevel: 1
   statLocation: Stats/Enemies/Slime
-  ability: {fileID: 0}
+  ability: {fileID: 702103384415296957, guid: fa02d5677ef374b46b5a47862b023fbb, type: 3}
   aggrod: {fileID: 0}
   animator: {fileID: 0}

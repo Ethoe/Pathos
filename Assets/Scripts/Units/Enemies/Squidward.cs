@@ -12,6 +12,7 @@ public class Squidward : EnemyUnit
     void Start()
     {
         this.start();
+        abilityCooldown = 2f;
         wander = new SquidwardWanderState(this, aiSM);
         idle = new SquidwardIdleState(this, aiSM);
         attacking = new SquidwardAttackingState(this, aiSM);

@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SquidwardAttackingState : SquidwardBaseState
+public class SlimeAttackState : SlimeBaseState
 {
-    public SquidwardAttackingState(Squidward unit, StateMachine stateMachine) : base(unit, stateMachine)
+    public SlimeAttackState(Slime unit, StateMachine stateMachine) : base(unit, stateMachine)
     {
+        WeightedChanceExecutor weightedChanceExecutor = new WeightedChanceExecutor(
+            new WeightedChanceParam(() => stateMachine.ChangeState(unit.wander), 25)
+        ); //25% chance (since 25 + 25 + 50 = 100)
     }
     public override void Enter()
     {
@@ -23,7 +26,7 @@ public class SquidwardAttackingState : SquidwardBaseState
         base.LogicUpdate();
         if (unit.abilityTimer <= 0)
         {
-            unit.Ability(unit.aggrod.transform.position - unit.transform.position);
+            unit.Ability();
             unit.abilityTimer = unit.AbilityCooldown();
         }
     }

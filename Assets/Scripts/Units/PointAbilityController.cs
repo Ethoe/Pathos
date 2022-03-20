@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class SkillshotController : MonoBehaviour
+public class PointAbilityController : MonoBehaviour
 {
     // Public Vars
     protected Vector2 origin;
     protected SpriteRenderer sprite;
-    public bool stopOnHit = true;
-    public float range;
+    public bool stopOnHit = false;
+    public float duration;
     public GameObject owner;
     public StatBlock stats;
 
     // Private Vars
+    private bool isActive = true;
     private Rigidbody2D rigidbody2d;
+    private float timeAlive;
 
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        timeAlive = Time.time;
     }
 
     // Start is called before the first frame update
@@ -28,20 +31,20 @@ public class SkillshotController : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(origin, gameObject.transform.position) >= range)
+        duration -= Time.deltaTime;
+        if (duration <= 0)
+        {
             EndSkillshot();
+            isActive = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        GameManager.Instance.CalculateDamage(owner, other.gameObject, FlatDamage(), false);
+        if (isActive)
+            GameManager.Instance.CalculateDamage(owner, other.gameObject, FlatDamage(), false);
         if (stopOnHit)
             Destroy(gameObject);
-    }
-
-    public void Launch(Vector2 direction, float force)
-    {
-        rigidbody2d.AddForce(direction.normalized * force);
     }
 
     protected virtual void EndSkillshot()

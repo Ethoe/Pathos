@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyUnit : MonoBehaviour
 {
     public StatBlock stats;
+    public float abilityTimer;
     public int difficultyLevel;
     public string statLocation;
     public GameObject ability;
@@ -13,6 +14,7 @@ public class EnemyUnit : MonoBehaviour
     public Animator animator;
     protected Rigidbody2D rigidbody2d;
     protected Vector2 oldPosition;
+    protected float abilityCooldown;
 
     protected void start()
     {
@@ -21,13 +23,14 @@ public class EnemyUnit : MonoBehaviour
         JsonUtility.FromJsonOverwrite(Tools.LoadResourceTextfile(statLocation), stats);
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        oldPosition = this.gameObject.transform.position;
         aiSM = new StateMachine();
+        oldPosition = this.gameObject.transform.position;
         aggrod = GameManager.Instance.player;
     }
 
     protected void update()
     {
+        abilityTimer -= Time.deltaTime;
         if (stats.Health.CurrentValue <= 0)
         {
             GameManager.Instance.RemoveEnemy(gameObject);
@@ -47,5 +50,10 @@ public class EnemyUnit : MonoBehaviour
     {
         oldPosition = transform.position;
         rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed));
+    }
+
+    public float AbilityCooldown()
+    {
+        return abilityCooldown - (abilityCooldown * stats.CoolDown.Value);
     }
 }
