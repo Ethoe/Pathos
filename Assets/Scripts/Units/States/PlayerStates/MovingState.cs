@@ -35,7 +35,7 @@ public class MovingState : BaseState
     {
         base.LogicUpdate();
         float distance = Vector2.Distance(player.transform.position, moveTarget);
-        if (distance <= 0.1f)
+        if (Mathf.Approximately(distance, 0))
         {
             stateMachine.ChangeState(player.idle);
         }

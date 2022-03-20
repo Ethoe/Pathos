@@ -18,6 +18,7 @@ public class SlimeWanderState : SlimeBaseState
         if (hit.collider != null)
         {
             goingTo = new Vector2(unit.transform.position.x + Random.Range(-5, 5), unit.transform.position.y + Random.Range(-5, 5));
+            hit = Physics2D.Raycast(goingTo, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Walls"));
         }
         wanderTime = 4.0f;
     }

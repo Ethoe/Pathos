@@ -4,6 +4,8 @@ public class SkillshotController : MonoBehaviour
 {
     // Public Vars
     protected Vector2 origin;
+    protected SpriteRenderer sprite;
+
     public float range;
     public float coolDown;
     public GameObject owner;
@@ -15,6 +17,7 @@ public class SkillshotController : MonoBehaviour
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
@@ -27,7 +30,7 @@ public class SkillshotController : MonoBehaviour
     void Update()
     {
         if (Vector2.Distance(origin, gameObject.transform.position) >= range)
-            Destroy(gameObject);
+            EndSkillshot();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -41,6 +44,11 @@ public class SkillshotController : MonoBehaviour
         rigidbody2d.AddForce(direction.normalized * force);
     }
 
+    protected virtual void EndSkillshot()
+    {
+        Debug.Log("Base");
+        Destroy(gameObject);
+    }
     public virtual float FlatDamage()
     {
         return 0;
