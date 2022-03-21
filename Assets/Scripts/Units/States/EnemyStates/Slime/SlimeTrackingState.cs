@@ -12,7 +12,8 @@ public class SlimeTrackingState : SlimeBaseState
     public SlimeTrackingState(Slime unit, StateMachine stateMachine) : base(unit, stateMachine)
     {
         weightedChanceExecutor = new WeightedChanceExecutor(
-            new WeightedChanceParam(() => stateMachine.ChangeState(unit.attack), 100)
+            new WeightedChanceParam(() => stateMachine.ChangeState(unit.track), 50),
+            new WeightedChanceParam(() => stateMachine.ChangeState(unit.wander), 50)
         );
     }
     public override void Enter()
@@ -31,9 +32,14 @@ public class SlimeTrackingState : SlimeBaseState
     {
         base.LogicUpdate();
         trackingTime -= Time.deltaTime;
-        if (Vector2.Distance(unit.transform.position, GameManager.Instance.player.transform.position) <= 0.3 || trackingTime <= 0)
+        if (unit.abilityTimer > 0)
         {
             weightedChanceExecutor.Execute();
+        }
+
+        if (Vector2.Distance(unit.transform.position, GameManager.Instance.player.transform.position) <= 0.3 || trackingTime <= 0)
+        {
+            stateMachine.ChangeState(unit.attack);
         }
     }
 

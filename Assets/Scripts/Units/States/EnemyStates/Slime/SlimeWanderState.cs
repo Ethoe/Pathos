@@ -26,7 +26,7 @@ public class SlimeWanderState : SlimeBaseState
             new WeightedChanceParam(() => stateMachine.ChangeState(unit.wander), 49),
             new WeightedChanceParam(() => stateMachine.ChangeState(unit.track), 50),
             new WeightedChanceParam(() => stateMachine.ChangeState(unit.idle), 1)
-        ); //25% chance (since 25 + 25 + 50 = 100)
+        );
         unit.TriggerAnimation(moveParam);
         wanderTime = Random.Range(4, 8);
     }
