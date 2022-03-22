@@ -10,14 +10,14 @@ public class SlimeIdleState : SlimeBaseState
 
     public SlimeIdleState(Slime unit, StateMachine stateMachine) : base(unit, stateMachine)
     {
-    }
-    public override void Enter()
-    {
-        base.Enter();
         weightedChanceExecutor = new WeightedChanceExecutor(
             new WeightedChanceParam(() => stateMachine.ChangeState(unit.attack), 50),
             new WeightedChanceParam(() => stateMachine.ChangeState(unit.wander), 50)
         );
+    }
+    public override void Enter()
+    {
+        base.Enter();
         unit.TriggerAnimation(idleParam);
         idleTime = Random.Range(4, 8);
     }
