@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         if (enemies.Count <= 0)
         {
             EventManager.instance.ClearedRoomTrigger();
+            BuffableEntity buff = player.GetComponent<BuffableEntity>();
+            SpeedBuff speedBuff = ScriptableBuff.CreateInstance<SpeedBuff>();
+            speedBuff.Duration = 4.0f;
+            speedBuff.SpeedIncrease = 10.0f;
+            buff.AddBuff(speedBuff.InitializeBuff(player));
         }
         return res;
     }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6672582497625290565}
   - component: {fileID: 7081065695166749081}
   - component: {fileID: 1640720926268515119}
+  - component: {fileID: 1551568880110406814}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -231,3 +232,15 @@ MonoBehaviour:
       BaseValue: 0
     Invincible: 0
     isMelee: 0
+--- !u!114 &1551568880110406814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2981067955125792491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80170f72dd329c442810fb21ac4beb72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
