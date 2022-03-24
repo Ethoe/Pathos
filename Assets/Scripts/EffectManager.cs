@@ -31,24 +31,24 @@ public class EffectManager : MonoBehaviour
 
     }
 
-    public void DamageTextAnimation(GameObject target, DamageInfo damage)
+    public void DamageTextAnimation(DamageContext context)
     {
-        GameObject DamageText = Instantiate(popUpText, target.transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
+        GameObject DamageText = Instantiate(popUpText, context.target.transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
         TextMeshPro DamageTMPro = DamageText.GetComponent<TextMeshPro>();
         DamageTextProcedural DamageTextP = DamageText.GetComponent<DamageTextProcedural>();
         float size = 7;
-        string text = ((int)damage.damage).ToString();
+        string text = ((int)context.baseDamage).ToString();
         DamageTextP.fadeDuration = 1.0f;
         DamageTextP.color_i = new Color(1, 1, 1, 1);
         DamageTextP.color_f = new Color(1, 1, 1, 0);
-        if (damage.isCrit)
+        if (context.isCrit)
             size += 3;
         DamageTextP.size_i = size;
         DamageTextP.size_f = 2;
-        DamageTextP.initialOffset = target.transform.position + new Vector3(0, 1f, 0);
-        DamageTextP.finalOffset = target.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 2f, 0);
-        DamageTMPro.colorGradient = DamageTypeColor(damage.damageType, damage.isCrit);
-        if (damage.isCrit)
+        DamageTextP.initialOffset = context.target.transform.position + new Vector3(0, 1f, 0);
+        DamageTextP.finalOffset = context.target.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 2f, 0);
+        DamageTMPro.colorGradient = DamageTypeColor(context.type, context.isCrit);
+        if (context.isCrit)
             text = text + "!";
         DamageTMPro.SetText(text);
 
@@ -58,11 +58,11 @@ public class EffectManager : MonoBehaviour
     {
         switch (type)
         {
-            case DamageDealtType.Physical:
+            case DamageDealtType.Basic:
                 if (isCrit)
                     return new VertexGradient(new Color(1f, 0f, 0f, 1f), new Color(1f, 0f, 0f, 1f), new Color(0f, 0f, 0f, 1f), new Color(0f, 0f, 0f, 1f));
                 return new VertexGradient(new Color(1f, 1f, 1f, 1f), new Color(1f, 1f, 1f, 1f), new Color(1f, 0f, 0f, 1f), new Color(1f, 0f, 0f, 1f));
-            case DamageDealtType.Magic:
+            case DamageDealtType.Ability:
                 if (isCrit)
                     return new VertexGradient(new Color(0.117f, 0.321f, 1f, 1f), new Color(0.117f, 0.321f, 1f, 1f), new Color(0f, 0f, 0f, 1f), new Color(0f, 0f, 0f, 1f));
                 return new VertexGradient(new Color(1f, 1f, 1f, 1f), new Color(1f, 1f, 1f, 1f), new Color(0.098f, 0.321f, 1f, 1f), new Color(0.098f, 0.321f, 1f, 1f));

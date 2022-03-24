@@ -40,13 +40,13 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public delegate void DealDamageAction(GameObject target, DamageInfo damage);
+    public delegate void DealDamageAction(DamageContext context);
     public event DealDamageAction onDealDamage;
-    public void DealDamageTrigger(GameObject target, DamageInfo damage)
+    public void DealDamageTrigger(DamageContext context)
     {
         if (onDealDamage != null)
         {
-            onDealDamage(target, damage);
+            onDealDamage(context);
         }
     }
 }

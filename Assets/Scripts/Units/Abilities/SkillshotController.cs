@@ -34,7 +34,7 @@ public class SkillshotController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        GameManager.Instance.CalculateDamage(owner, other.gameObject, FlatDamage(), false);
+        GameManager.Instance.CalculateDamage(new DamageContext(owner, other.gameObject, FlatDamage(), false, DamageDealtType.Ability));
         if (stopOnHit)
             Destroy(gameObject);
     }
