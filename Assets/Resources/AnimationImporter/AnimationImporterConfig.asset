@@ -15,12 +15,12 @@ MonoBehaviour:
   _animationNamesThatDoNotLoop:
   - death
   _automaticImporting: 0
-  _spritePixelsPerUnit: 16
+  _spritePixelsPerUnit: 2
   _pivotAlignmentType: 0
   _targetObjectType: 0
   _pathToSpriteRendererComponent: 
   _pathToImageComponent: 
-  _spriteAlignment: 7
+  _spriteAlignment: 0
   _spriteAlignmentCustomX: 0
   _spriteAlignmentCustomY: 0
   _spritesTargetLocation:

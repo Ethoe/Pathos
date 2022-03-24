@@ -8,7 +8,7 @@ public class AttackMovingState : BaseState
     private bool move;
     private bool idle;
     private GameObject target;
-    private int movingParam = Animator.StringToHash("Move");
+    private int movingParam = Animator.StringToHash("WalkBlend");
 
     public AttackMovingState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)
     {

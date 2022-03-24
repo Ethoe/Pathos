@@ -6,7 +6,7 @@ public class MovingState : BaseState
 {
     private bool attack;
     private Vector2 moveTarget;
-    private int movingParam = Animator.StringToHash("Move");
+    private int movingParam = Animator.StringToHash("WalkBlend");
 
 
     public MovingState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)

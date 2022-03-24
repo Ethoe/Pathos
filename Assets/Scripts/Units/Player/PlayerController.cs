@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     // Private Vars
     private Rigidbody2D rigidbody2d;
     private Animator animator;
+    protected Vector2 oldPosition;
     #endregion
 
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         EventManager.instance.onDoorwayTriggerEnter += ExitRoom;
 
         animator = GetComponent<Animator>();
+        oldPosition = this.gameObject.transform.position;
         shoot = false;
 
         controlSM = new StateMachine();
@@ -55,11 +57,15 @@ public class PlayerController : MonoBehaviour
         controlSM.CurrentState.HandleInput();
         controlSM.CurrentState.LogicUpdate();
 
-        animator.SetFloat("AttackSpeed", stats.AttackSpeed.Value);
+        animator.SetFloat("Attack Speed", stats.AttackSpeed.Value);
     }
 
     void FixedUpdate()
     {
+        Vector2 moving = ((Vector2)this.gameObject.transform.position - oldPosition).normalized;
+        animator.SetFloat("Move X", moving.x);
+        animator.SetFloat("Move Y", moving.y);
+
         controlSM.CurrentState.PhysicsUpdate();
     }
 
@@ -98,11 +104,13 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerMove(Vector2 target)
     {
+        oldPosition = transform.position;
         rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * stats.MoveSpeed.Value));
     }
 
     public void PlayerMove(Vector2 target, float moveSpeed)
     {
+        oldPosition = transform.position;
         rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed));
     }
 

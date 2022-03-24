@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IdleState : BaseState
 {
-    private int idleParam = Animator.StringToHash("Idle");
+    private int idleParam = Animator.StringToHash("IdleBlend");
     private bool attack;
     private bool move;
     public IdleState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)

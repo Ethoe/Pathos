@@ -12,7 +12,7 @@ public class AttackingState : BaseState
     private GameObject target;
     private float attackSpeedTimer;
     private float deltaTime;
-    private int autoParam = Animator.StringToHash("AutoAttack");
+    private int autoParam = Animator.StringToHash("AttackBlend");
 
 
     public AttackingState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)

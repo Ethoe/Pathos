@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SecondAbilityState : BaseAbilityState
 {
-    private int moveParam = Animator.StringToHash("Move"); // TODO: change to 'ability' animation
+    private int moveParam = Animator.StringToHash("DashBlend"); // TODO: change to 'ability' animation
     private float dashTimer;
     private float dashSpeed = 15.0f;
     private float dashDistance = 3.0f;
