@@ -20,6 +20,12 @@ public class MovingState : BaseState
         attack = false;
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+        EventManager.instance.PlayerExitMove();
+    }
+
     public override void HandleInput()
     {
         base.HandleInput();
@@ -35,7 +41,7 @@ public class MovingState : BaseState
     {
         base.LogicUpdate();
         float distance = Vector2.Distance(player.transform.position, moveTarget);
-        if (Mathf.Approximately(distance, 0))
+        if (distance <= .1f)
         {
             stateMachine.ChangeState(player.idle);
         }
@@ -54,6 +60,7 @@ public class MovingState : BaseState
     private Vector2 GetMouseLocation()
     {
         moveTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return moveTarget;
+        EventManager.instance.PlayerClick(moveTarget);
+        return moveTarget + new Vector2(0, player.boundingBox.bounds.extents.y);
     }
 }

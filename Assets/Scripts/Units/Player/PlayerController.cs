@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public PlayerControls controls;
     public LayerMask hit;
     public bool shoot;
+    public Collider2D boundingBox;
 
     // Private Vars
     private Rigidbody2D rigidbody2d;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.player = gameObject;
 
         rigidbody2d = GetComponent<Rigidbody2D>();
+        boundingBox = GetComponent<Collider2D>();
 
         controls = new PlayerControls();
 
@@ -117,5 +119,10 @@ public class PlayerController : MonoBehaviour
     private void ExitRoom(Direction side)
     {
         controlSM.ChangeState(idle);
+    }
+
+    public void OnDestroy()
+    {
+        EventManager.instance.onDoorwayTriggerEnter -= ExitRoom;
     }
 }
