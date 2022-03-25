@@ -37,7 +37,7 @@ public class SlimeTrackingState : SlimeBaseState
             weightedChanceExecutor.Execute();
         }
 
-        if (Vector2.Distance(unit.transform.position, GameManager.Instance.player.transform.position) <= 0.3 || trackingTime <= 0)
+        if (Vector2.Distance(unit.transform.position, GameManager.Instance.player.transform.position) <= 0.5 || trackingTime <= 0)
         {
             stateMachine.ChangeState(unit.attack);
         }
