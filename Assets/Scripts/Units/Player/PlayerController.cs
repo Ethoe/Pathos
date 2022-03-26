@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public PlayerControls controls;
     public LayerMask hit;
     public bool shoot;
-    public Collider2D boundingBox;
+    public SpriteRenderer spriteRenderer;
 
     // Private Vars
     private Rigidbody2D rigidbody2d;
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.player = gameObject;
 
         rigidbody2d = GetComponent<Rigidbody2D>();
-        boundingBox = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         controls = new PlayerControls();
 

@@ -61,6 +61,6 @@ public class MovingState : BaseState
     {
         moveTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         EventManager.instance.PlayerClick(moveTarget);
-        return moveTarget + new Vector2(0, player.boundingBox.bounds.extents.y);
+        return moveTarget + new Vector2(0, player.spriteRenderer.bounds.extents.y);
     }
 }
