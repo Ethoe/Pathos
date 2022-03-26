@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask hit;
     public bool shoot;
     public SpriteRenderer spriteRenderer;
+    public BuffableEntity buffBar;
 
     // Private Vars
     private Rigidbody2D rigidbody2d;
@@ -29,6 +30,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         EventManager.instance.onDoorwayTriggerEnter += ExitRoom;
+        EventManager.instance.onDealDamage += ReceiveDamage;
+        EventManager.instance.onDealDamage += DealDamage;
+
+        buffBar = gameObject.GetComponent<BuffableEntity>();
 
         animator = GetComponent<Animator>();
         oldPosition = this.gameObject.transform.position;
@@ -124,5 +129,24 @@ public class PlayerController : MonoBehaviour
     public void OnDestroy()
     {
         EventManager.instance.onDoorwayTriggerEnter -= ExitRoom;
+        EventManager.instance.onDealDamage -= ReceiveDamage;
+        EventManager.instance.onDealDamage -= DealDamage;
+    }
+
+    protected virtual void ReceiveDamage(DamageContext damage)
+    {
+        if (damage.target == gameObject)
+        {
+            stats.Health.CurrentValue -= damage.baseDamage;
+        }
+    }
+
+    protected virtual void DealDamage(DamageContext damage)
+    {
+        if (damage.source == gameObject)
+        {
+            Debug.Log("dealt dmg " + damage.baseDamage);
+            stats.Health.CurrentValue += damage.baseDamage * stats.LifeSteal.Value;
+        }
     }
 }

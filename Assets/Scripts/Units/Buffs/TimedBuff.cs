@@ -15,7 +15,7 @@ public abstract class TimedBuff
     }
     public void Tick(float delta)
     {
-        if (Buff.IsPermanent)
+        if (!Buff.IsPermanent)
         {
             Duration -= delta;
             if (Duration <= 0)

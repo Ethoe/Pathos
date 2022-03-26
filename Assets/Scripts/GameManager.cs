@@ -21,10 +21,7 @@ public class GameManager : MonoBehaviour
         enemies = new List<GameObject> { };
     }
 
-    void Start()
-    {
-
-    }
+    void Start() { }
 
     public List<GameObject> GetEnemies()
     {
@@ -81,7 +78,7 @@ public class GameManager : MonoBehaviour
             calculator.AddModifier(new StatModifier(sourceStats.CritDamage.Value, StatModType.PercentMult));
         }
         calculator.AddModifier(new StatModifier(Tools.ResistDamageMultiplier(targetStats.Armor.Value), StatModType.PercentMult));
-        targetStats.Health.CurrentValue -= calculator.Value;
+
         EventManager.instance.DealDamageTrigger(new DamageContext(context.source, context.target, calculator.Value, context.isCrit, context.type));
     }
 }

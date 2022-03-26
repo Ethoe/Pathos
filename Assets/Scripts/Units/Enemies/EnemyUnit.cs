@@ -26,6 +26,8 @@ public class EnemyUnit : MonoBehaviour
         aiSM = new StateMachine();
         oldPosition = this.gameObject.transform.position;
         aggrod = GameManager.Instance.player;
+        EventManager.instance.onDealDamage += ReceiveDamage;
+        EventManager.instance.onDealDamage += DealDamage;
     }
 
     protected void update()
@@ -34,6 +36,8 @@ public class EnemyUnit : MonoBehaviour
         if (stats.Health.CurrentValue <= 0)
         {
             GameManager.Instance.RemoveEnemy(gameObject);
+            EventManager.instance.onDealDamage -= ReceiveDamage;
+            EventManager.instance.onDealDamage -= DealDamage;
             Destroy(gameObject);
         }
         if (animator != null)
@@ -60,5 +64,21 @@ public class EnemyUnit : MonoBehaviour
     public void TriggerAnimation(int param)
     {
         animator.Play(param, 0, 0.0f);
+    }
+
+    protected virtual void ReceiveDamage(DamageContext damage)
+    {
+        if (damage.target == gameObject)
+        {
+            stats.Health.CurrentValue -= damage.baseDamage;
+        }
+    }
+
+    protected virtual void DealDamage(DamageContext damage)
+    {
+        if (damage.source == gameObject)
+        {
+            stats.Health.CurrentValue += damage.baseDamage * stats.LifeSteal.Value;
+        }
     }
 }
