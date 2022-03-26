@@ -3,7 +3,11 @@ public enum RoomType
 {
     FloorStart,
     FloorEnd,
-    RegularRoom,
+    Shop,
+    Standard,
+    StandardCleared,
+    Boss,
+    BossCleared,
 }
 public class DungeonRoom
 {

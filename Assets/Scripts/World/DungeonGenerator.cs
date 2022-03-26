@@ -126,7 +126,7 @@ public class DungeonGenerator
             return 0;
 
         DungeonRoom room = new DungeonRoom(location);
-        room.type = RoomType.RegularRoom;
+        room.type = RoomType.Standard;
         currentRooms += 1;
         map[location.x, location.y] = room;
         generatorQueue.Enqueue(room);
@@ -148,5 +148,12 @@ public class DungeonGenerator
             default:
                 return null;
         }
+    }
+
+    public void SetRoomType(DungeonRoom room, RoomType type)
+    {
+        Vector2Int location = room.location;
+
+        map[location.x, location.y].type = type;
     }
 }

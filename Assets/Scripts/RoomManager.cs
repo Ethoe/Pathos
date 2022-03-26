@@ -63,6 +63,7 @@ public class RoomManager : MonoBehaviour
 
     private void ClearRoom()
     {
+        currentLevel.SetRoomType(currentRoom, RoomType.StandardCleared);
         for (int i = 0; i < walls.Length; i++)
         {
             if (walls[i] != null)
@@ -119,7 +120,7 @@ public class RoomManager : MonoBehaviour
         UnityEngine.Object roomWall;
         GameObject room;
         bool setDirection = false;
-        if (currentRoom.type != RoomType.RegularRoom)
+        if (currentRoom.type != RoomType.Standard)
         {
             roomWall = openGate;
             setDirection = true;
@@ -211,11 +212,14 @@ public class RoomManager : MonoBehaviour
             //EventManager.instance.ClearedRoomTrigger();
             return;
         }
-        for (int count = 0; count < 3; count++)
+        if (currentRoom.type == RoomType.Standard)
         {
-            Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
-            GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];
-            spawnUnit(enemy, spawnLocation);
+            for (int count = 0; count < 3; count++)
+            {
+                Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
+                GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];
+                spawnUnit(enemy, spawnLocation);
+            }
         }
     }
 
