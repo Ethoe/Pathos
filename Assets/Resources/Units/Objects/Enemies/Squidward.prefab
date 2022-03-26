@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1831451221
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8014b1194b52b1a46b58852f15813247, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -149,13 +149,6 @@ MonoBehaviour:
     Health:
       BaseValue: 0
       CurrentValue: 0
-    HealthRegen:
-      BaseValue: 0
-    Mana:
-      BaseValue: 0
-      CurrentValue: 0
-    ManaRegen:
-      BaseValue: 0
     AttackSpeed:
       BaseValue: 0
     AttackRange:
@@ -169,10 +162,6 @@ MonoBehaviour:
     LifeSteal:
       BaseValue: 0
     Attack:
-      BaseValue: 0
-    Magic:
-      BaseValue: 0
-    MArmor:
       BaseValue: 0
     Armor:
       BaseValue: 100
@@ -196,13 +185,6 @@ MonoBehaviour:
     Health:
       BaseValue: 0
       CurrentValue: 0
-    HealthRegen:
-      BaseValue: 0
-    Mana:
-      BaseValue: 0
-      CurrentValue: 0
-    ManaRegen:
-      BaseValue: 0
     AttackSpeed:
       BaseValue: 0
     AttackRange:
@@ -217,18 +199,15 @@ MonoBehaviour:
       BaseValue: 0
     Attack:
       BaseValue: 0
-    Magic:
-      BaseValue: 0
-    MArmor:
-      BaseValue: 0
     Armor:
       BaseValue: 0
     MoveSpeed:
       BaseValue: 0
     Invincible: 0
     isMelee: 0
+  abilityTimer: 0
   difficultyLevel: 1
   statLocation: Stats/Enemies/Squidward
   ability: {fileID: 4098796617896256146, guid: ea7f647f56d42584ca16462dd9d1976c, type: 3}
-  baseUnit: {fileID: 0}
-  ability: {fileID: 4098796617896256146, guid: ea7f647f56d42584ca16462dd9d1976c, type: 3}
+  aggrod: {fileID: 0}
+  animator: {fileID: 0}
