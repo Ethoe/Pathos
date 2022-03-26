@@ -15,12 +15,16 @@ public abstract class TimedBuff
     }
     public void Tick(float delta)
     {
-        Duration -= delta;
-        if (Duration <= 0)
+        if (Buff.IsPermanent)
         {
-            End();
-            IsFinished = true;
+            Duration -= delta;
+            if (Duration <= 0)
+            {
+                End();
+                IsFinished = true;
+            }
         }
+        TickEffect();
     }
 
     public void Activate()
@@ -31,12 +35,20 @@ public abstract class TimedBuff
             EffectStacks++;
         }
 
-        if (Buff.IsDurationStacked || Duration <= 0)
+        if (!Buff.IsPermanent)
         {
-            Duration += Buff.Duration;
+            if (Buff.IsDurationStacked || Duration <= 0)
+            {
+                Duration += Buff.Duration;
+            }
+            else
+            {
+                Duration = Buff.Duration;
+            }
         }
     }
 
+    protected abstract void TickEffect();
     protected abstract void ApplyEffect();
     public abstract void End();
 }

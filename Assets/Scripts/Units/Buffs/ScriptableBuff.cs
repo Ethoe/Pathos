@@ -13,5 +13,8 @@ public abstract class ScriptableBuff : ScriptableObject
     // Effect value is increased each time the buff is applied.
     public bool IsEffectStacked;
 
+    // Duration does not tick down.
+    public bool IsPermanent;
+
     public abstract TimedBuff InitializeBuff(GameObject obj);
 }

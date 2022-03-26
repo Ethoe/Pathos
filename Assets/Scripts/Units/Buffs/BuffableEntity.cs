@@ -34,4 +34,12 @@ public class BuffableEntity : MonoBehaviour
             buff.Activate();
         }
     }
+
+    public void RemoveBuff(TimedBuff buff)
+    {
+        if (_buffs.ContainsKey(buff.Buff))
+        {
+            _buffs[buff.Buff].End();
+        }
+    }
 }
