@@ -38,6 +38,7 @@ public class DungeonGenerator
         map[8, 8] = new DungeonRoom(new Vector2Int(8, 8)); // Create a room in the center lets call it starting room
         enter = map[8, 8];
         enter.type = RoomType.FloorStart;
+        enter.visited = true;
         tries += 1;
         generatorQueue.Enqueue(enter);
 
@@ -153,7 +154,6 @@ public class DungeonGenerator
     public void SetRoomType(DungeonRoom room, RoomType type)
     {
         Vector2Int location = room.location;
-
         map[location.x, location.y].type = type;
     }
 }

@@ -24,6 +24,13 @@ public class EventManager : MonoBehaviour
             onClearedRoom();
     }
 
+    public event Action onGenerateRoom;
+    public void GenerateRoomTrigger()
+    {
+        if (onGenerateRoom != null)
+            onGenerateRoom();
+    }
+
     public event Action onFilledRoom;
     public void FilledRoomTrigger()
     {

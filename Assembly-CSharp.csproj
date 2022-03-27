@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Units\Abilities\SkillshotController.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardWanderState.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatBlock.cs" />
+     <Compile Include="Assets\Scripts\Units\Items\ItemComponent.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\DarkBolt.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseState.cs" />
      <Compile Include="Assets\Scripts\World\DungeonGenerator.cs" />
@@ -92,7 +93,7 @@
      <Compile Include="Assets\Scripts\Units\States\StateMachine.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\Items\ItemComponent.cs" />
+     <Compile Include="Assets\Scripts\World\Minimap.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

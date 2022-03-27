@@ -145,7 +145,6 @@ public class PlayerController : MonoBehaviour
     {
         if (damage.source == gameObject)
         {
-            Debug.Log("dealt dmg " + damage.baseDamage);
             stats.Health.CurrentValue += damage.baseDamage * stats.LifeSteal.Value;
         }
     }

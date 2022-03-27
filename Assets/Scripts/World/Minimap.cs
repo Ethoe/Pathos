@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Minimap : MonoBehaviour
+{
+    public GameObject mask, StandardRoom;
+    private List<GameObject> rooms;
+    void Start()
+    {
+        rooms = new List<GameObject>();
+        EventManager.instance.onGenerateRoom += loadMinimap;
+        loadMinimap();
+    }
+
+    void OnDestroy()
+    {
+        EventManager.instance.onGenerateRoom -= loadMinimap;
+    }
+
+    void loadMinimap()
+    {
+        Vector2 roomLoc = RoomManager.Instance.currentRoom.location;
+        DungeonRoom[,] map = RoomManager.Instance.currentLevel.map;
+
+        foreach (var room in rooms)
+        {
+            Destroy(room);
+        }
+        rooms.Clear();
+
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                if (map[x, y] != null && map[x, y].visited)
+                {
+                    GameObject newRoom = Instantiate<GameObject>(StandardRoom);
+                    newRoom.transform.SetParent(mask.transform);
+                    newRoom.transform.localPosition = Quaternion.Euler(0, 0, -90) * ((new Vector2(x, y) - roomLoc) * 25);
+                    rooms.Add(newRoom);
+                }
+            }
+        }
+    }
+}

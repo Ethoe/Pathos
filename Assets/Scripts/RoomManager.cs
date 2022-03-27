@@ -15,8 +15,8 @@ public class RoomManager : MonoBehaviour
         }
     }
     public GameObject hpBar;
-    private DungeonGenerator currentLevel;
-    private DungeonRoom currentRoom;
+    public DungeonGenerator currentLevel;
+    public DungeonRoom currentRoom;
     private Object solidWall, closedGate, openGate;
     private GameObject[] walls; // Goes Up Right Down Left
     private object[] enemies;
@@ -34,24 +34,8 @@ public class RoomManager : MonoBehaviour
         currentRoom = currentLevel.enter;
         enemies = Resources.LoadAll("Units/Objects/Enemies");
 
-        BuildRoom();
+        buildRoom();
         spawnRoom();
-
-        /*
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < currentLevel.map.GetLength(1); i++)
-                {
-                    for (int j = 0; j < currentLevel.map.GetLength(0); j++)
-                    {
-                        if (currentLevel.map[i, j] != null)
-                            sb.Append(currentLevel.map[i, j].location);
-                        else
-                            sb.Append("(0, 0)");
-                    }
-                    sb.AppendLine();
-                }
-                Debug.Log(sb.ToString());
-        */
     }
 
     private void Start()
@@ -90,7 +74,6 @@ public class RoomManager : MonoBehaviour
     }
     private void ExitRoom(Direction side)
     {
-        Debug.Log(side);
         for (int i = 0; i < walls.Length; i++)
         {
             if (walls[i] != null)
@@ -108,14 +91,16 @@ public class RoomManager : MonoBehaviour
 
         currentRoom = currentLevel.GetRoom(currentRoom, side);
 
-        BuildRoom();
+        currentRoom.visited = true;
 
+        EventManager.instance.GenerateRoomTrigger();
+        buildRoom();
         spawnRoom();
 
         GameManager.Instance.player.transform.position = GetPlayerSpawn(side);
     }
 
-    private void BuildRoom()
+    private void buildRoom()
     {
         UnityEngine.Object roomWall;
         GameObject room;
@@ -214,7 +199,7 @@ public class RoomManager : MonoBehaviour
         }
         if (currentRoom.type == RoomType.Standard)
         {
-            for (int count = 0; count < 3; count++)
+            for (int count = 0; count < 1; count++)
             {
                 Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
                 GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];
