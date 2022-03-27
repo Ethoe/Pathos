@@ -1,15 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Minimap : MonoBehaviour
 {
-    public GameObject mask, StandardRoom;
+    public GameObject mask, StandardRoom, currentRoom;
     private List<GameObject> rooms;
     void Start()
     {
         rooms = new List<GameObject>();
         EventManager.instance.onGenerateRoom += loadMinimap;
+        GameObject newRoom = Instantiate<GameObject>(currentRoom);
+        newRoom.transform.SetParent(gameObject.transform);
+        newRoom.transform.localPosition = new Vector2(0, 0);
         loadMinimap();
     }
 
