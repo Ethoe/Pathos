@@ -42,6 +42,7 @@
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\Squidward.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeTrackingState.cs" />
+     <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\TMCSBuff.cs" />
      <Compile Include="Assets\Scripts\EffectManager.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeWanderState.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardAttackingState.cs" />
@@ -80,6 +81,7 @@
      <Compile Include="Assets\Scripts\Units\Stats\CharacterResource.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\SlimePop.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\CharacterStat.cs" />
+     <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedTMCSBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatModifier.cs" />
      <Compile Include="Assets\Scripts\World\DamageTextProcedural.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeBaseState.cs" />
@@ -90,8 +92,7 @@
      <Compile Include="Assets\Scripts\Units\States\StateMachine.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\TMCSBuff.cs" />
-     <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedTMCSBuff.cs" />
+     <Compile Include="Assets\Scripts\Units\Items\ItemComponent.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3316cfc4de375f5409424123c1da72e1, type: 3}
-  m_Name: wowie
+  m_Script: {fileID: 11500000, guid: 68bae7cb4f8f9d440916165d8437c8b9, type: 3}
+  m_Name: SpeedBuff
   m_EditorClassIdentifier: 
-  Duration: 5
+  Duration: 0
   IsDurationStacked: 0
-  IsEffectStacked: 1
-  IsPermanent: 0
-  SpeedIncrease: 0.1
-  AttackSpeedIncrease: 0.1
+  IsEffectStacked: 0
+  IsPermanent: 1
+  SpeedIncrease: 10
