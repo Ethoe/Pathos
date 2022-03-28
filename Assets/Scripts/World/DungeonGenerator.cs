@@ -26,15 +26,16 @@ public class DungeonGenerator
         map = new DungeonRoom[size, size]; // Create an empty 16,16 map
         generatorQueue = new Queue<DungeonRoom>();
         deadEnds = new List<DungeonRoom>();
-        numberRooms = rooms;
         currentRooms = 1;
         tries = 0;
-        Generate();
+        Generate(rooms);
         DecideRooms();
     }
 
-    private void Generate()
+    public void Generate(int targetRooms)
     {
+        numberRooms = targetRooms;
+        CleanDungeon();
         map[8, 8] = new DungeonRoom(new Vector2Int(8, 8)); // Create a room in the center lets call it starting room
         enter = map[8, 8];
         enter.type = RoomType.FloorStart;
@@ -66,7 +67,7 @@ public class DungeonGenerator
             generatorQueue = new Queue<DungeonRoom>();
             deadEnds = new List<DungeonRoom>();
             currentRooms = 1;
-            Generate();
+            Generate(targetRooms);
         }
     }
 
@@ -155,5 +156,22 @@ public class DungeonGenerator
     {
         Vector2Int location = room.location;
         map[location.x, location.y].type = type;
+    }
+
+    public void CleanDungeon()
+    {
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                if (map[x, y] != null)
+                {
+                    foreach (var drop in map[x, y].drops)
+                    {
+                        Object.Destroy(drop.Object);
+                    }
+                }
+            }
+        }
     }
 }

@@ -58,4 +58,11 @@ public class EventManager : MonoBehaviour
         if (onPlayerExitMove != null)
             onPlayerExitMove();
     }
+
+    public event Action<GameObject> onSpawnDrop;
+    public void SpawnDrop(GameObject gameobject)
+    {
+        if (onSpawnDrop != null)
+            onSpawnDrop(gameobject);
+    }
 }

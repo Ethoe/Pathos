@@ -89,6 +89,11 @@ public class RoomManager : MonoBehaviour
             solidWalls.RemoveAt(i);
         }
 
+        foreach (var drop in currentRoom.drops)
+        {
+            drop.Object.SetActive(false);
+        }
+
         currentRoom = currentLevel.GetRoom(currentRoom, side);
 
         currentRoom.visited = true;
@@ -194,7 +199,6 @@ public class RoomManager : MonoBehaviour
     {
         if (currentRoom.type == RoomType.FloorEnd || currentRoom.type == RoomType.FloorStart)
         {
-            //EventManager.instance.ClearedRoomTrigger();
             return;
         }
         if (currentRoom.type == RoomType.Standard)
@@ -205,6 +209,11 @@ public class RoomManager : MonoBehaviour
                 GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];
                 spawnUnit(enemy, spawnLocation);
             }
+        }
+
+        foreach (var drop in currentRoom.drops)
+        {
+            drop.Object.SetActive(true);
         }
     }
 
