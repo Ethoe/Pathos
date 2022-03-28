@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         controls = new PlayerControls();
 
         stats = GetComponent<StatBlockComponent>().stats;
-        JsonUtility.FromJsonOverwrite(Tools.LoadResourceTextfile("Stats/Players/pika"), stats);
+        Debug.Log(stats.MoveSpeed.Value);
     }
 
     // Update is called once per frame

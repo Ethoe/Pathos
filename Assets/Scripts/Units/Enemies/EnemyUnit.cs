@@ -20,7 +20,6 @@ public class EnemyUnit : MonoBehaviour
     {
         GameManager.Instance.AddEnemy(this.gameObject);
         stats = GetComponent<StatBlockComponent>().stats;
-        JsonUtility.FromJsonOverwrite(Tools.LoadResourceTextfile(statLocation), stats);
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         aiSM = new StateMachine();

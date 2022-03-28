@@ -102,35 +102,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoAttackProjectile: {fileID: 8347020074959097383, guid: c7ba581e7a062f349bf87488a8af2f6c, type: 3}
   skillShotProjectile: {fileID: 5078990967194104328, guid: 9dea573a4c0343c4c8d8065d9dff4b77, type: 3}
-  stats:
-    Health:
-      BaseValue: 0
-      CurrentValue: 0
-    AttackSpeed:
-      BaseValue: 0
-    AttackRange:
-      BaseValue: 0
-    CritChance:
-      BaseValue: 0
-    CritDamage:
-      BaseValue: 0
-    CoolDown:
-      BaseValue: 0
-    LifeSteal:
-      BaseValue: 0
-    Attack:
-      BaseValue: 0
-    Armor:
-      BaseValue: 0
-    MoveSpeed:
-      BaseValue: 0
-    Invincible: 0
-    isMelee: 0
+  stats: {fileID: 0}
   hit:
     serializedVersion: 2
     m_Bits: 128
   shoot: 0
   spriteRenderer: {fileID: 0}
+  buffBar: {fileID: 0}
 --- !u!50 &2981067955125792487
 Rigidbody2D:
   serializedVersion: 4
@@ -209,30 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8023319431ca3f24c8f8acdcbdbabdf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    Health:
-      BaseValue: 0
-      CurrentValue: 0
-    AttackSpeed:
-      BaseValue: 0
-    AttackRange:
-      BaseValue: 0
-    CritChance:
-      BaseValue: 0
-    CritDamage:
-      BaseValue: 0
-    CoolDown:
-      BaseValue: 0
-    LifeSteal:
-      BaseValue: 0
-    Attack:
-      BaseValue: 0
-    Armor:
-      BaseValue: 0
-    MoveSpeed:
-      BaseValue: 0
-    Invincible: 0
-    isMelee: 0
+  originalStats: {fileID: 11400000, guid: 0c9edafa68446a240aa60f1fb8a02a56, type: 2}
+  stats: {fileID: 0}
 --- !u!114 &1551568880110406814
 MonoBehaviour:
   m_ObjectHideFlags: 0

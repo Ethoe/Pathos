@@ -33,6 +33,7 @@ public class RoomManager : MonoBehaviour
         solidWalls = new List<Object>();
         currentRoom = currentLevel.enter;
         enemies = Resources.LoadAll("Units/Objects/Enemies");
+        Debug.Log(enemies.Length);
 
         buildRoom();
         spawnRoom();
@@ -89,9 +90,12 @@ public class RoomManager : MonoBehaviour
             solidWalls.RemoveAt(i);
         }
 
-        foreach (var drop in currentRoom.drops)
+        if (currentRoom.drops != null)
         {
-            drop.Object.SetActive(false);
+            foreach (var drop in currentRoom.drops)
+            {
+                drop.Object.SetActive(false);
+            }
         }
 
         currentRoom = currentLevel.GetRoom(currentRoom, side);
@@ -211,9 +215,12 @@ public class RoomManager : MonoBehaviour
             }
         }
 
-        foreach (var drop in currentRoom.drops)
+        if (currentRoom.drops != null)
         {
-            drop.Object.SetActive(true);
+            foreach (var drop in currentRoom.drops)
+            {
+                drop.Object.SetActive(true);
+            }
         }
     }
 

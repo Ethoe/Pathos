@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
+using UnityEngine;
+
 
 [Serializable]
 public class CharacterStat

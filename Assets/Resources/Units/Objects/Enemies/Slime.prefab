@@ -155,30 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8023319431ca3f24c8f8acdcbdbabdf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    Health:
-      BaseValue: 0
-      CurrentValue: 0
-    AttackSpeed:
-      BaseValue: 0
-    AttackRange:
-      BaseValue: 0
-    CritChance:
-      BaseValue: 0
-    CritDamage:
-      BaseValue: 0
-    CoolDown:
-      BaseValue: 0
-    LifeSteal:
-      BaseValue: 0
-    Attack:
-      BaseValue: 0
-    Armor:
-      BaseValue: 0
-    MoveSpeed:
-      BaseValue: 0
-    Invincible: 0
-    isMelee: 0
+  originalStats: {fileID: 11400000, guid: 72a5d5b725422b740bd101d7eeb596c3, type: 2}
+  stats: {fileID: 0}
 --- !u!114 &7250248914366284816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,30 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab097b7492247b24d96a4240ec6ec657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    Health:
-      BaseValue: 0
-      CurrentValue: 0
-    AttackSpeed:
-      BaseValue: 0
-    AttackRange:
-      BaseValue: 0
-    CritChance:
-      BaseValue: 0
-    CritDamage:
-      BaseValue: 0
-    CoolDown:
-      BaseValue: 0
-    LifeSteal:
-      BaseValue: 0
-    Attack:
-      BaseValue: 0
-    Armor:
-      BaseValue: 0
-    MoveSpeed:
-      BaseValue: 0
-    Invincible: 0
-    isMelee: 0
+  stats: {fileID: 0}
   abilityTimer: 0
   difficultyLevel: 1
   statLocation: Stats/Enemies/Slime

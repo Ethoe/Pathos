@@ -145,30 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8023319431ca3f24c8f8acdcbdbabdf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    Health:
-      BaseValue: 0
-      CurrentValue: 0
-    AttackSpeed:
-      BaseValue: 0
-    AttackRange:
-      BaseValue: 0
-    CritChance:
-      BaseValue: 0
-    CritDamage:
-      BaseValue: 0
-    CoolDown:
-      BaseValue: 0
-    LifeSteal:
-      BaseValue: 0
-    Attack:
-      BaseValue: 0
-    Armor:
-      BaseValue: 100
-    MoveSpeed:
-      BaseValue: 0
-    Invincible: 0
-    isMelee: 0
+  originalStats: {fileID: 11400000, guid: 383ffe3124cd79e4a8257c13b8be9d1e, type: 2}
+  stats: {fileID: 0}
 --- !u!114 &8485031502723728218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,30 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce5a06122e06e64f8fe4f7f26876402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    Health:
-      BaseValue: 0
-      CurrentValue: 0
-    AttackSpeed:
-      BaseValue: 0
-    AttackRange:
-      BaseValue: 0
-    CritChance:
-      BaseValue: 0
-    CritDamage:
-      BaseValue: 0
-    CoolDown:
-      BaseValue: 0
-    LifeSteal:
-      BaseValue: 0
-    Attack:
-      BaseValue: 0
-    Armor:
-      BaseValue: 0
-    MoveSpeed:
-      BaseValue: 0
-    Invincible: 0
-    isMelee: 0
+  stats: {fileID: 0}
   abilityTimer: 0
   difficultyLevel: 1
   statLocation: Stats/Enemies/Squidward
