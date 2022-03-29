@@ -23,7 +23,7 @@ public class EffectManager : MonoBehaviour
 
     void Start()
     {
-        EventManager.instance.onDealDamage += DamageTextAnimation;
+        EventManager.StartListening(Events.DealDamageTrigger, DamageTextAnimation);
     }
 
     void Update()
@@ -31,8 +31,9 @@ public class EffectManager : MonoBehaviour
 
     }
 
-    public void DamageTextAnimation(DamageContext context)
+    public void DamageTextAnimation(Dictionary<string, object> message)
     {
+        var context = (DamageContext)message["damage"];
         GameObject DamageText = Instantiate(popUpText, context.target.transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
         TextMeshPro DamageTMPro = DamageText.GetComponent<TextMeshPro>();
         DamageTextProcedural DamageTextP = DamageText.GetComponent<DamageTextProcedural>();

@@ -1,68 +1,90 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+
+public enum Events
+{
+    DoorwayTriggerEnter,
+    ClearedRoomTrigger,
+    GenerateRoomTrigger,
+    FilledRoomTrigger,
+    DealDamageTrigger,
+    PlayerClick,
+    PlayerExitMove,
+    SpawnDrop,
+}
 
 public class EventManager : MonoBehaviour
 {
-    public static EventManager instance;
+    private Dictionary<Events, Action<Dictionary<string, object>>> eventDictionary;
 
-    private void Awake()
+    private static EventManager eventManager;
+
+    public static EventManager instance
     {
-        instance = this;
+        get
+        {
+            if (!eventManager)
+            {
+                eventManager = FindObjectOfType(typeof(EventManager)) as EventManager;
+
+                if (!eventManager)
+                {
+                    Debug.LogError("There needs to be one active EventManager script on a GameObject in your scene.");
+                }
+                else
+                {
+                    eventManager.Init();
+
+                    //  Sets this to not be destroyed when reloading scene
+                    DontDestroyOnLoad(eventManager);
+                }
+            }
+            return eventManager;
+        }
     }
 
-    public event Action<Direction> onDoorwayTriggerEnter;
-    public void DoorwayTriggerEnter(Direction side)
+    void Init()
     {
-        if (onDoorwayTriggerEnter != null)
-            onDoorwayTriggerEnter(side);
+        if (eventDictionary == null)
+        {
+            eventDictionary = new Dictionary<Events, Action<Dictionary<string, object>>>();
+        }
     }
 
-    public event Action onClearedRoom;
-    public void ClearedRoomTrigger()
+    public static void StartListening(Events eventName, Action<Dictionary<string, object>> listener)
     {
-        if (onClearedRoom != null)
-            onClearedRoom();
+        Action<Dictionary<string, object>> thisEvent;
+
+        if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent += listener;
+            instance.eventDictionary[eventName] = thisEvent;
+        }
+        else
+        {
+            thisEvent += listener;
+            instance.eventDictionary.Add(eventName, thisEvent);
+        }
     }
 
-    public event Action onGenerateRoom;
-    public void GenerateRoomTrigger()
+    public static void StopListening(Events eventName, Action<Dictionary<string, object>> listener)
     {
-        if (onGenerateRoom != null)
-            onGenerateRoom();
+        if (eventManager == null) return;
+        Action<Dictionary<string, object>> thisEvent;
+        if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent -= listener;
+            instance.eventDictionary[eventName] = thisEvent;
+        }
     }
 
-    public event Action onFilledRoom;
-    public void FilledRoomTrigger()
+    public static void TriggerEvent(Events eventName, Dictionary<string, object> message)
     {
-        if (onFilledRoom != null)
-            onFilledRoom();
-    }
-
-    public event Action<DamageContext> onDealDamage;
-    public void DealDamageTrigger(DamageContext context)
-    {
-        if (onDealDamage != null)
-            onDealDamage(context);
-    }
-
-    public event Action<Vector2> onPlayerClick;
-    public void PlayerClick(Vector2 location)
-    {
-        if (onPlayerClick != null)
-            onPlayerClick(location);
-    }
-
-    public event Action onPlayerExitMove;
-    public void PlayerExitMove()
-    {
-        if (onPlayerExitMove != null)
-            onPlayerExitMove();
-    }
-
-    public event Action<GameObject> onSpawnDrop;
-    public void SpawnDrop(GameObject gameobject)
-    {
-        if (onSpawnDrop != null)
-            onSpawnDrop(gameobject);
+        Action<Dictionary<string, object>> thisEvent = null;
+        if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent.Invoke(message);
+        }
     }
 }

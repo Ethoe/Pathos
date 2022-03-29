@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.instance.onDoorwayTriggerEnter += ExitRoom;
-        EventManager.instance.onDealDamage += ReceiveDamage;
-        EventManager.instance.onDealDamage += DealDamage;
+        EventManager.StartListening(Events.DealDamageTrigger, ReceiveDamage);
+        EventManager.StartListening(Events.DealDamageTrigger, DealDamage);
+        EventManager.StartListening(Events.DoorwayTriggerEnter, ExitRoom);
 
         buffBar = gameObject.GetComponent<BuffableEntity>();
 
@@ -121,28 +121,30 @@ public class PlayerController : MonoBehaviour
         rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed));
     }
 
-    private void ExitRoom(Direction side)
+    private void ExitRoom(Dictionary<string, object> message)
     {
         controlSM.ChangeState(idle);
     }
 
     public void OnDestroy()
     {
-        EventManager.instance.onDoorwayTriggerEnter -= ExitRoom;
-        EventManager.instance.onDealDamage -= ReceiveDamage;
-        EventManager.instance.onDealDamage -= DealDamage;
+        EventManager.StopListening(Events.DealDamageTrigger, ReceiveDamage);
+        EventManager.StopListening(Events.DealDamageTrigger, DealDamage);
+        EventManager.StopListening(Events.DoorwayTriggerEnter, ExitRoom);
     }
 
-    protected virtual void ReceiveDamage(DamageContext damage)
+    protected virtual void ReceiveDamage(Dictionary<string, object> message)
     {
+        var damage = (DamageContext)message["damage"];
         if (damage.target == gameObject)
         {
             stats.Health.CurrentValue -= damage.baseDamage;
         }
     }
 
-    protected virtual void DealDamage(DamageContext damage)
+    protected virtual void DealDamage(Dictionary<string, object> message)
     {
+        var damage = (DamageContext)message["damage"];
         if (damage.source == gameObject)
         {
             stats.Health.CurrentValue += damage.baseDamage * stats.LifeSteal.Value;

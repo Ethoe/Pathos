@@ -23,7 +23,7 @@ public class MovingState : BaseState
     public override void Exit()
     {
         base.Exit();
-        EventManager.instance.PlayerExitMove();
+        EventManager.TriggerEvent(Events.PlayerExitMove, null);
     }
 
     public override void HandleInput()
@@ -66,7 +66,7 @@ public class MovingState : BaseState
     private Vector2 GetMouseLocation()
     {
         moveTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        EventManager.instance.PlayerClick(moveTarget);
+        EventManager.TriggerEvent(Events.PlayerClick, new Dictionary<string, object> { { "target", moveTarget } });
         return moveTarget + new Vector2(0, player.spriteRenderer.bounds.extents.y);
     }
 }

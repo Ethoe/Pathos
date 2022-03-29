@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         bool res = enemies.Remove(enemy);
         if (enemies.Count <= 0)
         {
-            EventManager.instance.ClearedRoomTrigger();
+            EventManager.TriggerEvent(Events.ClearedRoomTrigger, null);
         }
         return res;
     }
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     {
         if (enemies.Count <= 0)
         {
-            EventManager.instance.FilledRoomTrigger();
+            EventManager.TriggerEvent(Events.FilledRoomTrigger, null);
         }
         enemies.Add(enemy);
     }
@@ -78,7 +78,11 @@ public class GameManager : MonoBehaviour
             calculator.AddModifier(new StatModifier(sourceStats.CritDamage.Value, StatModType.PercentMult));
         }
         calculator.AddModifier(new StatModifier(Tools.ResistDamageMultiplier(targetStats.Armor.Value), StatModType.PercentMult));
-
-        EventManager.instance.DealDamageTrigger(new DamageContext(context.source, context.target, calculator.Value, context.isCrit, context.type));
+        EventManager.TriggerEvent(Events.DealDamageTrigger, new Dictionary<string, object> {
+            {
+                "damage",
+                new DamageContext(context.source, context.target, calculator.Value, context.isCrit, context.type)
+            }
+        });
     }
 }

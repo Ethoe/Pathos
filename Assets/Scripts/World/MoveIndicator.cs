@@ -7,25 +7,28 @@ public class MoveIndicator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.instance.onPlayerClick += moveIndicator;
-        EventManager.instance.onPlayerExitMove += exitMove;
+
+        EventManager.StartListening(Events.PlayerClick, moveIndicator);
+        EventManager.StartListening(Events.PlayerExitMove, exitMove);
         this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void OnDestroy()
     {
-        EventManager.instance.onPlayerClick -= moveIndicator;
-        EventManager.instance.onPlayerExitMove -= exitMove;
+        EventManager.StopListening(Events.PlayerClick, moveIndicator);
+        EventManager.StopListening(Events.PlayerExitMove, exitMove);
+
     }
 
-    void moveIndicator(Vector2 location)
+    void moveIndicator(Dictionary<string, object> message)
     {
+        var location = (Vector2)message["target"];
         this.gameObject.transform.position = location;
         this.gameObject.SetActive(true);
     }
 
-    void exitMove()
+    void exitMove(Dictionary<string, object> message)
     {
         this.gameObject.SetActive(false);
     }

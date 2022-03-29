@@ -7,6 +7,6 @@ public class DoorEnter : MonoBehaviour
     public Direction side = Direction.Up;
     void OnTriggerEnter2D(Collider2D other)
     {
-        EventManager.instance.DoorwayTriggerEnter(side);
+        EventManager.TriggerEvent(Events.DoorwayTriggerEnter, new Dictionary<string, object> { { "side", side } });
     }
 }

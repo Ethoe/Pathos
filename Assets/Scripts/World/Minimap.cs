@@ -10,19 +10,19 @@ public class Minimap : MonoBehaviour
     void Start()
     {
         rooms = new List<GameObject>();
-        EventManager.instance.onGenerateRoom += loadMinimap;
+        EventManager.StartListening(Events.GenerateRoomTrigger, loadMinimap);
         GameObject newRoom = Instantiate<GameObject>(currentRoom);
         newRoom.transform.SetParent(gameObject.transform);
         newRoom.transform.localPosition = new Vector2(0, 0);
-        loadMinimap();
+        loadMinimap(null);
     }
 
     void OnDestroy()
     {
-        EventManager.instance.onGenerateRoom -= loadMinimap;
+        EventManager.StopListening(Events.GenerateRoomTrigger, loadMinimap);
     }
 
-    void loadMinimap()
+    void loadMinimap(Dictionary<string, object> message)
     {
         Vector2 roomLoc = RoomManager.Instance.currentRoom.location;
         DungeonRoom[,] map = RoomManager.Instance.currentLevel.map;

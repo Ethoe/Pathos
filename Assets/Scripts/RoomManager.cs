@@ -41,12 +41,12 @@ public class RoomManager : MonoBehaviour
 
     private void Start()
     {
-        EventManager.instance.onDoorwayTriggerEnter += ExitRoom;
-        EventManager.instance.onClearedRoom += ClearRoom;
-        EventManager.instance.onFilledRoom += CloseRoom;
+        EventManager.StartListening(Events.DoorwayTriggerEnter, ExitRoom);
+        EventManager.StartListening(Events.ClearedRoomTrigger, ClearRoom);
+        EventManager.StartListening(Events.FilledRoomTrigger, CloseRoom);
     }
 
-    private void ClearRoom()
+    private void ClearRoom(Dictionary<string, object> message)
     {
         currentLevel.SetRoomType(currentRoom, RoomType.StandardCleared);
         for (int i = 0; i < walls.Length; i++)
@@ -61,7 +61,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private void CloseRoom()
+    private void CloseRoom(Dictionary<string, object> message)
     {
         for (int i = 0; i < walls.Length; i++)
         {
@@ -73,8 +73,9 @@ public class RoomManager : MonoBehaviour
             }
         }
     }
-    private void ExitRoom(Direction side)
+    private void ExitRoom(Dictionary<string, object> message)
     {
+        var side = (Direction)message["side"];
         for (int i = 0; i < walls.Length; i++)
         {
             if (walls[i] != null)
@@ -102,7 +103,7 @@ public class RoomManager : MonoBehaviour
 
         currentRoom.visited = true;
 
-        EventManager.instance.GenerateRoomTrigger();
+        EventManager.TriggerEvent(Events.GenerateRoomTrigger, null);
         buildRoom();
         spawnRoom();
 

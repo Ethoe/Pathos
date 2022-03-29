@@ -25,8 +25,8 @@ public class EnemyUnit : MonoBehaviour
         aiSM = new StateMachine();
         oldPosition = this.gameObject.transform.position;
         aggrod = GameManager.Instance.player;
-        EventManager.instance.onDealDamage += ReceiveDamage;
-        EventManager.instance.onDealDamage += DealDamage;
+        EventManager.StartListening(Events.DealDamageTrigger, ReceiveDamage);
+        EventManager.StartListening(Events.DealDamageTrigger, DealDamage);
     }
 
     protected void update()
@@ -35,8 +35,8 @@ public class EnemyUnit : MonoBehaviour
         if (stats.Health.CurrentValue <= 0)
         {
             GameManager.Instance.RemoveEnemy(gameObject);
-            EventManager.instance.onDealDamage -= ReceiveDamage;
-            EventManager.instance.onDealDamage -= DealDamage;
+            EventManager.StopListening(Events.DealDamageTrigger, ReceiveDamage);
+            EventManager.StopListening(Events.DealDamageTrigger, DealDamage);
             Destroy(gameObject);
         }
         if (animator != null)
@@ -65,16 +65,18 @@ public class EnemyUnit : MonoBehaviour
         animator.Play(param, 0, 0.0f);
     }
 
-    protected virtual void ReceiveDamage(DamageContext damage)
+    protected virtual void ReceiveDamage(Dictionary<string, object> message)
     {
+        var damage = (DamageContext)message["damage"];
         if (damage.target == gameObject)
         {
             stats.Health.CurrentValue -= damage.baseDamage;
         }
     }
 
-    protected virtual void DealDamage(DamageContext damage)
+    protected virtual void DealDamage(Dictionary<string, object> message)
     {
+        var damage = (DamageContext)message["damage"];
         if (damage.source == gameObject)
         {
             stats.Health.CurrentValue += damage.baseDamage * stats.LifeSteal.Value;
