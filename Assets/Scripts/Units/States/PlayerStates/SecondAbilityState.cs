@@ -18,7 +18,7 @@ public class SecondAbilityState : BaseAbilityState
     public override void Enter()
     {
         base.Enter();
-        player.stats.Invincible = true;
+        player.statsComponent.stats.Invincible = true;
         player.TriggerAnimation(moveParam);
         startPos = player.transform.position;
         moveTarget = ((GetMouseLocation() - startPos).normalized * dashDistance) + startPos; // Get angle of mouse and multiply vector by dashdistance magnitude
@@ -29,7 +29,7 @@ public class SecondAbilityState : BaseAbilityState
     public override void Exit()
     {
         base.Exit();
-        player.stats.Invincible = false;
+        player.statsComponent.stats.Invincible = false;
     }
 
     public override void HandleInput()
@@ -62,7 +62,6 @@ public class SecondAbilityState : BaseAbilityState
 
     private Vector2 GetMouseLocation()
     {
-        moveTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return moveTarget;
+        return Vector2.zero;
     }
 }

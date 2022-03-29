@@ -7,22 +7,21 @@ public class IdleState : BaseState
     private int idleParam = Animator.StringToHash("IdleBlend");
     private bool attack;
     private bool move;
-    public IdleState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)
-    {
-    }
+    public IdleState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine) { }
     public override void Enter()
     {
         base.Enter();
         player.TriggerAnimation(idleParam);
         attack = false;
         move = false;
+        ((PlayerStateMachine)stateMachine).locked = false;
     }
 
     public override void HandleInput()
     {
         base.HandleInput();
-        move = Input.GetKeyDown(player.controls.Move);
-        attack = Input.GetKeyDown(player.controls.AttackMove);
+        move = moveAction.triggered;
+        attack = attackAction.triggered;
     }
 
     public override void LogicUpdate()

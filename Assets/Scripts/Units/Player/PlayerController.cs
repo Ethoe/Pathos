@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     #region Variables
     // Public Vars
-    public StateMachine controlSM;
+    public PlayerStateMachine controlSM;
     public IdleState idle;
     public MovingState moving;
     public AttackingState attacking;
@@ -13,16 +14,24 @@ public class PlayerController : MonoBehaviour
     public SecondAbilityState secondAbility;
     public GameObject autoAttackProjectile;
     public GameObject skillShotProjectile;
-    public StatBlock stats;
     public PlayerControls controls;
-    public LayerMask hit;
     public bool shoot;
+    public LayerMask hit;
+
+    [HideInInspector]
+    public StatBlockComponent statsComponent;
+
+    [HideInInspector]
     public SpriteRenderer spriteRenderer;
+    [HideInInspector]
     public BuffableEntity buffBar;
+    [HideInInspector]
+    public PlayerInput playerInput;
+    [HideInInspector]
+    public Animator animator;
 
     // Private Vars
     private Rigidbody2D rigidbody2d;
-    private Animator animator;
     protected Vector2 oldPosition;
     #endregion
 
@@ -39,7 +48,9 @@ public class PlayerController : MonoBehaviour
         oldPosition = this.gameObject.transform.position;
         shoot = false;
 
-        controlSM = new StateMachine();
+
+        playerInput = GetComponent<PlayerInput>();
+        controlSM = new PlayerStateMachine();
         idle = new IdleState(this, controlSM);
         moving = new MovingState(this, controlSM);
         attacking = new AttackingState(this, controlSM);
@@ -54,8 +65,8 @@ public class PlayerController : MonoBehaviour
 
         controls = new PlayerControls();
 
-        stats = GetComponent<StatBlockComponent>().stats;
-        Debug.Log(stats.MoveSpeed.Value);
+        statsComponent = GetComponent<StatBlockComponent>();
+        Debug.Log(statsComponent.stats.MoveSpeed.Value);
     }
 
     // Update is called once per frame
@@ -63,8 +74,6 @@ public class PlayerController : MonoBehaviour
     {
         controlSM.CurrentState.HandleInput();
         controlSM.CurrentState.LogicUpdate();
-
-        animator.SetFloat("Attack Speed", stats.AttackSpeed.Value);
     }
 
     void FixedUpdate()
@@ -78,9 +87,17 @@ public class PlayerController : MonoBehaviour
 
     public void AutoAttack(GameObject target)
     {
-        if (stats.isMelee)
+        if (statsComponent.stats.isMelee)
         {
-            GameManager.Instance.CalculateDamage(new DamageContext(this.gameObject, target, stats.Attack.Value, Tools.percentChance(stats.CritChance.Value), DamageDealtType.Basic));
+            GameManager.Instance.CalculateDamage(
+                new DamageContext(
+                    this.gameObject,
+                    target,
+                    statsComponent.stats.Attack.Value,
+                    Tools.percentChance(statsComponent.stats.CritChance.Value),
+                    DamageDealtType.Basic
+                    )
+                );
         }
         else
         {
@@ -88,7 +105,7 @@ public class PlayerController : MonoBehaviour
             ProjectileController projectile = autoAttack.GetComponent<ProjectileController>();
             projectile.target = target;
             projectile.source = this.gameObject;
-            projectile.isCrit = Tools.percentChance(stats.CritChance.Value);
+            projectile.isCrit = Tools.percentChance(statsComponent.stats.CritChance.Value);
         }
     }
 
@@ -112,7 +129,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerMove(Vector2 target)
     {
         oldPosition = transform.position;
-        rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * stats.MoveSpeed.Value));
+        rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * statsComponent.stats.MoveSpeed.Value));
     }
 
     public void PlayerMove(Vector2 target, float moveSpeed)
@@ -138,7 +155,7 @@ public class PlayerController : MonoBehaviour
         var damage = (DamageContext)message["damage"];
         if (damage.target == gameObject)
         {
-            stats.Health.CurrentValue -= damage.baseDamage;
+            statsComponent.stats.Health.CurrentValue -= damage.baseDamage;
         }
     }
 
@@ -147,7 +164,7 @@ public class PlayerController : MonoBehaviour
         var damage = (DamageContext)message["damage"];
         if (damage.source == gameObject)
         {
-            stats.Health.CurrentValue += damage.baseDamage * stats.LifeSteal.Value;
+            statsComponent.stats.Health.CurrentValue += damage.baseDamage * statsComponent.stats.LifeSteal.Value;
         }
     }
 }

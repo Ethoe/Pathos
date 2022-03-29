@@ -1,26 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BaseState : State
 {
     protected PlayerController player;
+    public InputAction moveAction;
+    public InputAction attackAction;
+    public InputAction abilityOneAction;
+    public InputAction abilityTwoAction;
+    public InputAction abilityThreeAction;
+    public InputAction abilityFourAction;
+    public InputAction mousePosition;
 
-    private bool second;
-    public BaseState(PlayerController player, StateMachine stateMachine) : base(stateMachine)
+    public BaseState(PlayerController player, PlayerStateMachine stateMachine) : base(stateMachine)
     {
         this.player = player;
+        this.stateMachine = (PlayerStateMachine)stateMachine;
+        moveAction = player.playerInput.actions["Move"];
+        attackAction = player.playerInput.actions["Attack"];
+        abilityOneAction = player.playerInput.actions["AbilityOne"];
+        abilityTwoAction = player.playerInput.actions["AbilityTwo"];
+        abilityThreeAction = player.playerInput.actions["AbilityThree"];
+        abilityFourAction = player.playerInput.actions["AbilityFour"];
+        mousePosition = player.playerInput.actions["MousePosition"];
     }
 
     public override void Enter()
     {
         base.Enter();
-        second = false;
-    }
-
-    public override void Enter(GameObject param)
-    {
-        base.Enter(param);
+        Debug.Log("Entered state: " + this.ToString());
     }
 
     public override void Exit()
@@ -31,17 +39,13 @@ public class BaseState : State
     public override void HandleInput()
     {
         base.HandleInput();
-        second = Input.GetKeyDown(player.controls.SecondAbility);
 
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (second)
-        {
-            stateMachine.ChangeState(player.secondAbility);
-        }
+        player.animator.SetFloat("Attack Speed", player.statsComponent.stats.AttackSpeed.Value);
     }
 
     public override void PhysicsUpdate()

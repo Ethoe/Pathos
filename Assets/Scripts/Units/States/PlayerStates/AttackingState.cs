@@ -9,19 +9,18 @@ public class AttackingState : BaseState
     private bool hasNext;
     private bool moving;
     private bool first = true;
-    private GameObject target;
     private float attackSpeedTimer;
     private float deltaTime;
     private int autoParam = Animator.StringToHash("AttackBlend");
 
 
-    public AttackingState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)
+    public AttackingState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
     }
 
     private void init()
     {
-        if (target == null)
+        if (((PlayerStateMachine)stateMachine).target == null)
         {
             stateMachine.ChangeState(player.moving);
             hasNext = true;
@@ -55,22 +54,18 @@ public class AttackingState : BaseState
     public override void Enter()
     {
         base.Enter();
-        target = GetTarget();
-        init();
-    }
-
-    public override void Enter(GameObject param)
-    {
-        base.Enter(param);
-        target = param;
+        if (((PlayerStateMachine)stateMachine).target == null)
+        {
+            ((PlayerStateMachine)stateMachine).target = GetTarget();
+        }
         init();
     }
 
     public override void HandleInput()
     {
         base.HandleInput();
-        move = Input.GetKeyDown(player.controls.Move);
-        if (Input.GetKeyDown(player.controls.AttackMove))
+        move = moveAction.triggered;
+        if (attackAction.triggered)
         {
             GameObject nextTarget = GetTarget();
             if (nextTarget == null)
@@ -79,7 +74,7 @@ public class AttackingState : BaseState
             }
             else
             {
-                if (nextTarget == target)
+                if (nextTarget == ((PlayerStateMachine)stateMachine).target)
                 {
                     hasNext = true;
                 }
@@ -88,12 +83,12 @@ public class AttackingState : BaseState
                     if (!fired)
                     {
                         StartAttack();
-                        target = nextTarget;
+                        ((PlayerStateMachine)stateMachine).target = nextTarget;
                     }
                     else if (fired)
                     {
                         hasNext = true;
-                        target = nextTarget;
+                        ((PlayerStateMachine)stateMachine).target = nextTarget;
                     }
                 }
             }
@@ -103,6 +98,8 @@ public class AttackingState : BaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        player.animator.SetFloat("Attack Speed", player.statsComponent.stats.AttackSpeed.Value);
+
         if (move)
         {
             stateMachine.ChangeState(player.moving);
@@ -112,7 +109,7 @@ public class AttackingState : BaseState
         deltaTime = Time.time;
         if (player.shoot && !fired)
         {
-            player.AutoAttack(target);
+            player.AutoAttack(((PlayerStateMachine)stateMachine).target);
             fired = true;
         }
         if (hasNext && attackSpeedTimer < 0)
@@ -127,7 +124,7 @@ public class AttackingState : BaseState
 
     private GameObject GetTarget()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(mousePosition.ReadValue<Vector2>());
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, Mathf.Infinity, player.hit);
@@ -164,18 +161,18 @@ public class AttackingState : BaseState
     private void StartAttack()
     {
         player.shoot = false;
-        if (target == null)
+        if (((PlayerStateMachine)stateMachine).target == null)
         {
             stateMachine.ChangeState(player.idle);
             return;
         }
-        if (Vector2.Distance(player.transform.position, target.transform.position) > player.stats.AttackRange.Value)
+        if (Vector2.Distance(player.transform.position, ((PlayerStateMachine)stateMachine).target.transform.position) > player.statsComponent.stats.AttackRange.Value)
         {
-            stateMachine.ChangeState(player.attackMoving, target);
+            stateMachine.ChangeState(player.attackMoving);
         }
         else
         {
-            attackSpeedTimer = Tools.AttackDuration(player.stats.AttackSpeed.Value);
+            attackSpeedTimer = Tools.AttackDuration(player.statsComponent.stats.AttackSpeed.Value);
             player.TriggerAnimation(autoParam);
             deltaTime = Time.time;
             fired = false;

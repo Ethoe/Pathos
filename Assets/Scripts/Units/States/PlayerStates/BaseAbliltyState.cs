@@ -19,12 +19,6 @@ public class BaseAbilityState : State
         buffer = player.idle;
     }
 
-    public override void Enter(GameObject param)
-    {
-        base.Enter(param);
-        buffer = player.idle;
-    }
-
     public override void Exit()
     {
         base.Exit();

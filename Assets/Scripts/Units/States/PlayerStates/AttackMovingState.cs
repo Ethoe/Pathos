@@ -7,17 +7,15 @@ public class AttackMovingState : BaseState
     private bool attack;
     private bool move;
     private bool idle;
-    private GameObject target;
     private int movingParam = Animator.StringToHash("WalkBlend");
 
-    public AttackMovingState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)
+    public AttackMovingState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
     }
 
-    public override void Enter(GameObject param)
+    public override void Enter()
     {
-        base.Enter(param);
-        target = param;
+        base.Enter();
         player.TriggerAnimation(movingParam);
         attack = false;
         move = false;
@@ -27,17 +25,17 @@ public class AttackMovingState : BaseState
     public override void HandleInput()
     {
         base.HandleInput();
-        move = Input.GetKeyDown(player.controls.Move);
-        attack = Input.GetKeyDown(player.controls.AttackMove);
+        move = moveAction.triggered;
+        attack = attackAction.triggered;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (target)
+        if (((PlayerStateMachine)stateMachine).target)
         {
-            float distance = Vector2.Distance(player.transform.position, target.transform.position);
-            if (distance < player.stats.AttackRange.Value)
+            float distance = Vector2.Distance(player.transform.position, ((PlayerStateMachine)stateMachine).target.transform.position);
+            if (distance < player.statsComponent.stats.AttackRange.Value)
             {
                 attack = true;
             }
@@ -49,7 +47,7 @@ public class AttackMovingState : BaseState
 
         if (attack)
         {
-            stateMachine.ChangeState(player.attacking, target);
+            stateMachine.ChangeState(player.attacking);
         }
         else if (move)
         {
@@ -64,9 +62,9 @@ public class AttackMovingState : BaseState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        if (target)
+        if (((PlayerStateMachine)stateMachine).target)
         {
-            player.PlayerMove(target.transform.position);
+            player.PlayerMove(((PlayerStateMachine)stateMachine).target.transform.position);
         }
         else
         {

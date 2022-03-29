@@ -14,12 +14,6 @@ public class SlimeBaseState : State
     {
         base.Enter();
     }
-
-    public override void Enter(GameObject param)
-    {
-        base.Enter(param);
-    }
-
     public override void Exit()
     {
         base.Exit();

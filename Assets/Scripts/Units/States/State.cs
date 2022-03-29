@@ -15,11 +15,6 @@ public class State
 
     }
 
-    public virtual void Enter(GameObject param)
-    {
-
-    }
-
     public virtual void HandleInput()
     {
 

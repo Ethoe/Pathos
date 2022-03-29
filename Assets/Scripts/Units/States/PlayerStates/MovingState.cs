@@ -9,7 +9,7 @@ public class MovingState : BaseState
     private int movingParam = Animator.StringToHash("WalkBlend");
 
 
-    public MovingState(PlayerController player, StateMachine stateMachine) : base(player, stateMachine)
+    public MovingState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
     }
     public override void Enter()
@@ -18,6 +18,7 @@ public class MovingState : BaseState
         player.TriggerAnimation(movingParam);
         moveTarget = GetMouseLocation();
         attack = false;
+        ((PlayerStateMachine)stateMachine).locked = false;
     }
 
     public override void Exit()
@@ -29,17 +30,12 @@ public class MovingState : BaseState
     public override void HandleInput()
     {
         base.HandleInput();
-        if (Input.GetKeyDown(player.controls.Move))
+        if (moveAction.triggered || moveAction.ReadValue<float>() > 0f)
         {
             moveTarget = GetMouseLocation();
         }
 
-        if (Input.GetKey(player.controls.Move))
-        {
-            moveTarget = GetMouseLocation();
-        }
-
-        attack = Input.GetKeyDown(player.controls.AttackMove);
+        attack = attackAction.triggered;
     }
 
     public override void LogicUpdate()
@@ -65,7 +61,7 @@ public class MovingState : BaseState
 
     private Vector2 GetMouseLocation()
     {
-        moveTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        moveTarget = Camera.main.ScreenToWorldPoint(mousePosition.ReadValue<Vector2>());
         EventManager.TriggerEvent(Events.PlayerClick, new Dictionary<string, object> { { "target", moveTarget } });
         return moveTarget + new Vector2(0, player.spriteRenderer.bounds.extents.y);
     }

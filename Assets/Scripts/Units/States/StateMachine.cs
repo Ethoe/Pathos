@@ -16,11 +16,4 @@ public class StateMachine
         CurrentState = newState;
         newState.Enter();
     }
-
-    public void ChangeState(State newState, GameObject param)
-    {
-        CurrentState.Exit();
-        CurrentState = newState;
-        newState.Enter(param);
-    }
 }
