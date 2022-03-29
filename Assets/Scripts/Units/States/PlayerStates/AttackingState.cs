@@ -109,7 +109,7 @@ public class AttackingState : BaseState
         deltaTime = Time.time;
         if (player.shoot && !fired)
         {
-            player.AutoAttack(((PlayerStateMachine)stateMachine).target);
+            player.abilities.Activate(AbilityClass.Attack, ((PlayerStateMachine)stateMachine).target, Vector2.zero);
             fired = true;
         }
         if (hasNext && attackSpeedTimer < 0)

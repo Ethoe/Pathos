@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Units\Abilities\ScriptableAbility.cs" />
      <Compile Include="Assets\Scripts\World\MoveIndicator.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeTrackingState.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\Scripts\Units\Stats\StatBlock.cs" />
      <Compile Include="Assets\Scripts\Units\Items\ItemComponent.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseState.cs" />
+     <Compile Include="Assets\Scripts\Units\Abilities\TimedAbility.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedTMCSBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatModifier.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeBaseState.cs" />
@@ -68,10 +70,13 @@
      <Compile Include="Assets\Scripts\Units\Enemies\Squidward.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\TMCSBuff.cs" />
      <Compile Include="Assets\Scripts\World\Minimap.cs" />
+     <Compile Include="Assets\Settings\Controls.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeWanderState.cs" />
+     <Compile Include="Assets\Scripts\Units\Abilities\AbilityHolder.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardAttackingState.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\Slime.cs" />
      <Compile Include="Assets\Scripts\World\DamageContext.cs" />
+     <Compile Include="Assets\Scripts\Units\States\PlayerStates\PlayerStateMachine.cs" />
      <Compile Include="Assets\Scripts\Units\States\State.cs" />
      <Compile Include="Assets\Scripts\Tools\Tools.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeAttackState.cs" />
@@ -94,8 +99,8 @@
      <Compile Include="Assets\Scripts\World\LazyHealthBar.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Settings\Controls.cs" />
-     <Compile Include="Assets\Scripts\Units\States\PlayerStates\PlayerStateMachine.cs" />
+     <Compile Include="Assets\Scripts\Units\Abilities\Attacks\AttackAbility.cs" />
+     <Compile Include="Assets\Scripts\Units\Abilities\Attacks\TimedAttackAbility.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

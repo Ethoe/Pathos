@@ -8,6 +8,7 @@ public class IdleState : BaseState
     private bool attack;
     private bool move;
     public IdleState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine) { }
+
     public override void Enter()
     {
         base.Enter();

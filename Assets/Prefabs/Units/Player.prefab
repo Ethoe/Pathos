@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1640720926268515119}
   - component: {fileID: 1551568880110406814}
   - component: {fileID: 3516895897127379638}
+  - component: {fileID: 7424349667249107095}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -101,15 +102,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af227f28ecc5cb4ab1893c9232ffd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoAttackProjectile: {fileID: 8347020074959097383, guid: c7ba581e7a062f349bf87488a8af2f6c, type: 3}
-  skillShotProjectile: {fileID: 5078990967194104328, guid: 9dea573a4c0343c4c8d8065d9dff4b77, type: 3}
-  stats: {fileID: 0}
+  shoot: 0
   hit:
     serializedVersion: 2
     m_Bits: 128
-  shoot: 0
+  statsComponent: {fileID: 0}
   spriteRenderer: {fileID: 0}
   buffBar: {fileID: 0}
+  playerInput: {fileID: 0}
+  animator: {fileID: 0}
+  abilities: {fileID: 0}
 --- !u!50 &2981067955125792487
 Rigidbody2D:
   serializedVersion: 4
@@ -232,3 +234,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7424349667249107095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2981067955125792491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9dee364fa99b34d9bc3247ca29861c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attack: {fileID: 11400000, guid: 8dcfd21856f8dba459d094fa79676549, type: 2}
+  AbiltyOne: {fileID: 0}
+  AbiltyTwo: {fileID: 0}
+  AbiltyThree: {fileID: 0}
+  AbiltyFour: {fileID: 0}

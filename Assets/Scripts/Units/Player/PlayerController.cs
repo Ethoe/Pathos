@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
     public AttackingState attacking;
     public AttackMovingState attackMoving;
     public SecondAbilityState secondAbility;
-    public GameObject autoAttackProjectile;
-    public GameObject skillShotProjectile;
     public PlayerControls controls;
     public bool shoot;
     public LayerMask hit;
@@ -29,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public PlayerInput playerInput;
     [HideInInspector]
     public Animator animator;
+    [HideInInspector]
+    public AbilityHolder abilities;
 
     // Private Vars
     private Rigidbody2D rigidbody2d;
@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
         EventManager.StartListening(Events.DoorwayTriggerEnter, ExitRoom);
 
         buffBar = gameObject.GetComponent<BuffableEntity>();
+
+        abilities = GetComponent<AbilityHolder>();
 
         animator = GetComponent<Animator>();
         oldPosition = this.gameObject.transform.position;
@@ -85,40 +87,9 @@ public class PlayerController : MonoBehaviour
         controlSM.CurrentState.PhysicsUpdate();
     }
 
-    public void AutoAttack(GameObject target)
-    {
-        if (statsComponent.stats.isMelee)
-        {
-            GameManager.Instance.CalculateDamage(
-                new DamageContext(
-                    this.gameObject,
-                    target,
-                    statsComponent.stats.Attack.Value,
-                    Tools.percentChance(statsComponent.stats.CritChance.Value),
-                    DamageDealtType.Basic
-                    )
-                );
-        }
-        else
-        {
-            GameObject autoAttack = Instantiate(autoAttackProjectile, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-            ProjectileController projectile = autoAttack.GetComponent<ProjectileController>();
-            projectile.target = target;
-            projectile.source = this.gameObject;
-            projectile.isCrit = Tools.percentChance(statsComponent.stats.CritChance.Value);
-        }
-    }
-
     public void AutoAttackFire()
     {
         shoot = true;
-    }
-
-    public void Skillshot(Vector2 direction)
-    {
-        GameObject projectileObject = Instantiate(skillShotProjectile, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-        SkillshotController projectile = projectileObject.GetComponent<SkillshotController>();
-        projectile.Launch(direction, 300);
     }
 
     public void TriggerAnimation(int param)
