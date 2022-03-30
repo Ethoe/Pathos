@@ -10,10 +10,11 @@ public class TimedAttackAbility : TimedAbility
         statsComponent = source.GetComponent<StatBlockComponent>();
     }
 
-    public override void Activate(GameObject target, Vector2 direction)
+    public override void Activate(GameObject target, Vector2 direction, int layer)
     {
-        base.Activate(target, direction);
+        base.Activate(target, direction, layer);
         GameObject autoAttack = GameObject.Instantiate(Ability.ability, (Vector2)Source.transform.position + Vector2.up * 0.5f, Quaternion.identity);
+        autoAttack.layer = layer;
         ProjectileController projectile = autoAttack.GetComponent<ProjectileController>();
         projectile.target = target;
         projectile.source = Source;

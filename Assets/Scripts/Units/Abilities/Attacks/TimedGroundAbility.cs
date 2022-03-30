@@ -8,10 +8,11 @@ public class TimedGroundAbility : TimedAbility
     {
     }
 
-    public override void Activate(GameObject target, Vector2 origin)
+    public override void Activate(GameObject target, Vector2 origin, int layer)
     {
-        base.Activate(target, origin);
+        base.Activate(target, origin, layer);
         GameObject groundAbility = GameObject.Instantiate(Ability.ability, origin, Quaternion.identity);
+        groundAbility.layer = layer;
         GroundAbilityController groundTarget = groundAbility.GetComponent<GroundAbilityController>();
         groundTarget.owner = Source;
         groundTarget.duration = ((GroundAbility)Ability).duration;

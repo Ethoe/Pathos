@@ -50,11 +50,11 @@ public class AbilityHolder : MonoBehaviour
         }
     }
 
-    public void Activate(AbilityClass ability, GameObject target, Vector2 direction)
+    public void Activate(AbilityClass ability, GameObject target, Vector2 direction, int layer)
     {
         if (Abilities.ContainsKey(ability))
         {
-            Abilities[ability].Activate(target, direction);
+            Abilities[ability].Activate(target, direction, layer);
         }
     }
 }

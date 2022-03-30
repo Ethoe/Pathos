@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public AttackMovingState attackMoving;
     public SecondAbilityState secondAbility;
     public bool shoot;
+    public int layer = 10; //Physics collider level ally projectile
     public LayerMask hit;
 
     [HideInInspector]
@@ -65,7 +66,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         statsComponent = GetComponent<StatBlockComponent>();
-        Debug.Log(statsComponent.stats.MoveSpeed.Value);
     }
 
     // Update is called once per frame

@@ -46,7 +46,7 @@ public abstract class TimedAbility
         }
     }
 
-    public virtual void Activate(GameObject target, Vector2 direction)
+    public virtual void Activate(GameObject target, Vector2 direction, int layer)
     {
         state = AbilityState.casting;
         CastTime = Ability.CastTime;

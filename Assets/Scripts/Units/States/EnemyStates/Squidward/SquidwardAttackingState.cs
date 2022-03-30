@@ -23,7 +23,7 @@ public class SquidwardAttackingState : SquidwardBaseState
         base.LogicUpdate();
         if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.ready)
         {
-            unit.abilityHolder.Activate(AbilityClass.AbiltyOne, null, unit.aggrod.transform.position);
+            unit.abilityHolder.Activate(AbilityClass.AbiltyOne, null, unit.aggrod.transform.position, unit.layer);
         }
         if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.cooldown)
         {

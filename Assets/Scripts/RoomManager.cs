@@ -33,7 +33,6 @@ public class RoomManager : MonoBehaviour
         solidWalls = new List<Object>();
         currentRoom = currentLevel.enter;
         enemies = Resources.LoadAll("Units/Objects/Enemies");
-        Debug.Log(enemies.Length);
 
         buildRoom();
         spawnRoom();

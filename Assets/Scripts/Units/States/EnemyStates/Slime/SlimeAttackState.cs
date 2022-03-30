@@ -29,7 +29,7 @@ public class SlimeAttackState : SlimeBaseState
         if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.ready)
         {
             unit.TriggerAnimation(abilityParam);
-            unit.abilityHolder.Activate(AbilityClass.AbiltyOne, null, unit.transform.position);
+            unit.abilityHolder.Activate(AbilityClass.AbiltyOne, null, unit.transform.position, unit.layer);
         }
         if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.cooldown)
         {

@@ -28,7 +28,6 @@ public class BaseState : State
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Entered state: " + this.ToString());
     }
 
     public override void Exit()

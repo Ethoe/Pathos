@@ -8,6 +8,7 @@ public class EnemyUnit : MonoBehaviour
     public float abilityTimer;
     public int difficultyLevel;
     public string statLocation;
+    public int layer = 8; //Physics collider level enemy projectile
     public GameObject ability;
     public StateMachine aiSM;
     public GameObject aggrod;
@@ -18,6 +19,7 @@ public class EnemyUnit : MonoBehaviour
 
     [HideInInspector]
     public AbilityHolder abilityHolder;
+
 
     protected void start()
     {
