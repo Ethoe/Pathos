@@ -27,10 +27,6 @@ public class BaseAbilityState : State
     public override void HandleInput()
     {
         base.HandleInput();
-        if (Input.GetKeyDown(player.controls.Move))
-            buffer = player.moving;
-        else if (Input.GetKeyDown(player.controls.AttackMove))
-            buffer = player.attacking;
     }
 
     public override void PhysicsUpdate()

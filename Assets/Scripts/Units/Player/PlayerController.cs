@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public AttackingState attacking;
     public AttackMovingState attackMoving;
     public SecondAbilityState secondAbility;
-    public PlayerControls controls;
     public bool shoot;
     public LayerMask hit;
 
@@ -64,8 +63,6 @@ public class PlayerController : MonoBehaviour
 
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        controls = new PlayerControls();
 
         statsComponent = GetComponent<StatBlockComponent>();
         Debug.Log(statsComponent.stats.MoveSpeed.Value);

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PointAbilityController : MonoBehaviour
+public class GroundAbilityController : MonoBehaviour
 {
     // Public Vars
     protected Vector2 origin;

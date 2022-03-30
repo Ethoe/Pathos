@@ -12,6 +12,7 @@ public class TimedAttackAbility : TimedAbility
 
     public override void Activate(GameObject target, Vector2 direction)
     {
+        base.Activate(target, direction);
         GameObject autoAttack = GameObject.Instantiate(Ability.ability, (Vector2)Source.transform.position + Vector2.up * 0.5f, Quaternion.identity);
         ProjectileController projectile = autoAttack.GetComponent<ProjectileController>();
         projectile.target = target;

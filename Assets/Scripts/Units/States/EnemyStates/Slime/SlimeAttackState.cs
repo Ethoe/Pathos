@@ -5,8 +5,6 @@ using UnityEngine;
 public class SlimeAttackState : SlimeBaseState
 {
     private int abilityParam = Animator.StringToHash("AbilityBlendTree");
-    private float abilityLength;
-    private bool casted;
     private WeightedChanceExecutor weightedChanceExecutor;
     public SlimeAttackState(Slime unit, StateMachine stateMachine) : base(unit, stateMachine)
     {
@@ -18,8 +16,6 @@ public class SlimeAttackState : SlimeBaseState
     public override void Enter()
     {
         base.Enter();
-        abilityLength = .35f; //Animation length
-        casted = false;
     }
 
     public override void HandleInput()
@@ -30,20 +26,14 @@ public class SlimeAttackState : SlimeBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (unit.abilityTimer <= 0)
+        if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.ready)
         {
             unit.TriggerAnimation(abilityParam);
-            casted = true;
-            unit.Ability();
-            unit.abilityTimer = unit.AbilityCooldown();
+            unit.abilityHolder.Activate(AbilityClass.AbiltyOne, null, unit.transform.position);
         }
-        if (casted)
+        if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.cooldown)
         {
-            abilityLength -= Time.deltaTime;
-            if (abilityLength <= 0)
-            {
-                weightedChanceExecutor.Execute();
-            }
+            weightedChanceExecutor.Execute();
         }
     }
 

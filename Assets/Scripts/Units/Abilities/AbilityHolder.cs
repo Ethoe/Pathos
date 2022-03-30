@@ -26,7 +26,7 @@ public class AbilityHolder : MonoBehaviour
     public ScriptableAbility AbiltyThree;
     public ScriptableAbility AbiltyFour;
 
-    private Dictionary<AbilityClass, TimedAbility> Abilities = new Dictionary<AbilityClass, TimedAbility>();
+    public Dictionary<AbilityClass, TimedAbility> Abilities = new Dictionary<AbilityClass, TimedAbility>();
 
     void Start()
     {

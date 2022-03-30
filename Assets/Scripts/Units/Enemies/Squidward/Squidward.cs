@@ -39,7 +39,7 @@ public class Squidward : EnemyUnit
         SkillshotController projectile = projectileObject.GetComponent<SkillshotController>();
         projectile.owner = this.gameObject;
         projectile.range = 9.0f;
-        projectile.Launch(direction, 10 * 50); // 50 = 1 unit per second
+        projectile.Launch(direction); // 50 = 1 unit per second
     }
 
 }

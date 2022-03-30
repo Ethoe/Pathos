@@ -13,7 +13,6 @@ public class Slime : EnemyUnit
     void Start()
     {
         this.start();
-        abilityCooldown = 5.0f;
         wander = new SlimeWanderState(this, aiSM);
         attack = new SlimeAttackState(this, aiSM);
         track = new SlimeTrackingState(this, aiSM);
@@ -32,13 +31,5 @@ public class Slime : EnemyUnit
     {
         this.fixedUpdate();
         aiSM.CurrentState.PhysicsUpdate();
-    }
-
-    public void Ability()
-    {
-        GameObject projectileObject = Instantiate(ability, rigidbody2d.position, Quaternion.identity);
-        PointAbilityController projectile = projectileObject.GetComponent<PointAbilityController>();
-        projectile.owner = this.gameObject;
-        projectile.duration = .5f;
     }
 }

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7250248914366284818}
   - component: {fileID: 7250248914366284831}
   - component: {fileID: 7250248914366284816}
+  - component: {fileID: 220964601096814373}
+  - component: {fileID: 5700077011766114737}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Untagged
@@ -176,3 +178,33 @@ MonoBehaviour:
   ability: {fileID: 702103384415296957, guid: fa02d5677ef374b46b5a47862b023fbb, type: 3}
   aggrod: {fileID: 0}
   animator: {fileID: 0}
+  abilityHolder: {fileID: 0}
+--- !u!114 &220964601096814373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250248914366284822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80170f72dd329c442810fb21ac4beb72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5700077011766114737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250248914366284822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9dee364fa99b34d9bc3247ca29861c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attack: {fileID: 0}
+  AbiltyOne: {fileID: 11400000, guid: deffb2bb0409b6449900321f7608339e, type: 2}
+  AbiltyTwo: {fileID: 0}
+  AbiltyThree: {fileID: 0}
+  AbiltyFour: {fileID: 0}

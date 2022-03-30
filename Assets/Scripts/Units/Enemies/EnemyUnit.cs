@@ -16,12 +16,16 @@ public class EnemyUnit : MonoBehaviour
     protected Vector2 oldPosition;
     protected float abilityCooldown;
 
+    [HideInInspector]
+    public AbilityHolder abilityHolder;
+
     protected void start()
     {
         GameManager.Instance.AddEnemy(this.gameObject);
         stats = GetComponent<StatBlockComponent>().stats;
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        abilityHolder = GetComponent<AbilityHolder>();
         aiSM = new StateMachine();
         oldPosition = this.gameObject.transform.position;
         aggrod = GameManager.Instance.player;
@@ -53,11 +57,6 @@ public class EnemyUnit : MonoBehaviour
     {
         oldPosition = transform.position;
         rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed));
-    }
-
-    public float AbilityCooldown()
-    {
-        return abilityCooldown - (abilityCooldown * stats.CoolDown.Value);
     }
 
     public void TriggerAnimation(int param)

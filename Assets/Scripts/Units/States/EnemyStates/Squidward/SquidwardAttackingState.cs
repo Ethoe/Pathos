@@ -10,7 +10,6 @@ public class SquidwardAttackingState : SquidwardBaseState
     public override void Enter()
     {
         base.Enter();
-        unit.abilityTimer = unit.AbilityCooldown();
     }
 
     public override void HandleInput()
@@ -21,10 +20,13 @@ public class SquidwardAttackingState : SquidwardBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (unit.abilityTimer <= 0)
+        base.LogicUpdate();
+        if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.ready)
         {
-            unit.Ability(unit.aggrod.transform.position - unit.transform.position);
-            unit.abilityTimer = unit.AbilityCooldown();
+            unit.abilityHolder.Activate(AbilityClass.AbiltyOne, null, unit.aggrod.transform.position);
+        }
+        if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.cooldown)
+        {
         }
     }
 

@@ -7,6 +7,7 @@ public class SkillshotController : MonoBehaviour
     protected SpriteRenderer sprite;
     public bool stopOnHit = true;
     public float range;
+    public float speed;
     public GameObject owner;
     public StatBlock stats;
 
@@ -39,9 +40,9 @@ public class SkillshotController : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void Launch(Vector2 direction, float force)
+    public void Launch(Vector2 direction)
     {
-        rigidbody2d.AddForce(direction.normalized * force);
+        rigidbody2d.AddForce(direction.normalized * speed);
     }
 
     protected virtual void EndSkillshot()

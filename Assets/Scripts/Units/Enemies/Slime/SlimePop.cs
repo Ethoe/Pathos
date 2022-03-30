@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimePop : PointAbilityController
+public class SlimePop : GroundAbilityController
 {
     public float fadeDuration = 1.0f;
     private float fadeStartTime;

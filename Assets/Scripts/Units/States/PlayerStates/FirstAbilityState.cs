@@ -23,8 +23,6 @@ public class FirstAbilityState : BaseAbilityState
     public override void HandleInput()
     {
         base.HandleInput();
-        move = Input.GetKeyDown(player.controls.Move);
-        attack = Input.GetKeyDown(player.controls.AttackMove);
     }
 
     public override void LogicUpdate()
