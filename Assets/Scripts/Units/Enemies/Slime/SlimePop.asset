@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0794d2bef521645bd326eb63e6f66d, type: 3}
   m_Name: SlimePop
   m_EditorClassIdentifier: 
-  Name: 
-  Cooldown: 0
-  CastTime: 0
-  ability: {fileID: 0}
-  duration: 0
+  Name: SlimePop
+  Cooldown: 3
+  CastTime: 0.25
+  ability: {fileID: 702103384415296957, guid: fa02d5677ef374b46b5a47862b023fbb, type: 3}
+  duration: 1
