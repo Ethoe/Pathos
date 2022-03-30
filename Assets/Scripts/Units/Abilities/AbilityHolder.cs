@@ -12,19 +12,19 @@ public enum AbilityState
 public enum AbilityClass
 {
     Attack,
-    AbiltyOne,
-    AbiltyTwo,
-    AbiltyThree,
-    AbiltyFour
+    AbilityOne,
+    AbilityTwo,
+    AbilityThree,
+    AbilityFour
 }
 
 public class AbilityHolder : MonoBehaviour
 {
     public ScriptableAbility Attack;
-    public ScriptableAbility AbiltyOne;
-    public ScriptableAbility AbiltyTwo;
-    public ScriptableAbility AbiltyThree;
-    public ScriptableAbility AbiltyFour;
+    public ScriptableAbility AbilityOne;
+    public ScriptableAbility AbilityTwo;
+    public ScriptableAbility AbilityThree;
+    public ScriptableAbility AbilityFour;
 
     public Dictionary<AbilityClass, TimedAbility> Abilities = new Dictionary<AbilityClass, TimedAbility>();
 
@@ -32,14 +32,14 @@ public class AbilityHolder : MonoBehaviour
     {
         if (Attack != null)
             Abilities.Add(AbilityClass.Attack, Attack.InitializeAbility(gameObject));
-        if (AbiltyOne != null)
-            Abilities.Add(AbilityClass.AbiltyOne, AbiltyOne.InitializeAbility(gameObject));
-        if (AbiltyTwo != null)
-            Abilities.Add(AbilityClass.AbiltyTwo, AbiltyTwo.InitializeAbility(gameObject));
-        if (AbiltyThree != null)
-            Abilities.Add(AbilityClass.AbiltyThree, AbiltyThree.InitializeAbility(gameObject));
-        if (AbiltyFour != null)
-            Abilities.Add(AbilityClass.AbiltyFour, AbiltyFour.InitializeAbility(gameObject));
+        if (AbilityOne != null)
+            Abilities.Add(AbilityClass.AbilityOne, AbilityOne.InitializeAbility(gameObject));
+        if (AbilityTwo != null)
+            Abilities.Add(AbilityClass.AbilityTwo, AbilityTwo.InitializeAbility(gameObject));
+        if (AbilityThree != null)
+            Abilities.Add(AbilityClass.AbilityThree, AbilityThree.InitializeAbility(gameObject));
+        if (AbilityFour != null)
+            Abilities.Add(AbilityClass.AbilityFour, AbilityFour.InitializeAbility(gameObject));
     }
 
     void Update()
@@ -52,6 +52,7 @@ public class AbilityHolder : MonoBehaviour
 
     public void Activate(AbilityClass ability, GameObject target, Vector2 direction, int layer)
     {
+        Debug.Log(ability);
         if (Abilities.ContainsKey(ability))
         {
             Abilities[ability].Activate(target, direction, layer);

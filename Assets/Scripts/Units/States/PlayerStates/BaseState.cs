@@ -16,6 +16,7 @@ public class BaseState : State
     {
         this.player = player;
         this.stateMachine = (PlayerStateMachine)stateMachine;
+        ((PlayerStateMachine)stateMachine).UsedAbility = AbilitySwitch.None;
         moveAction = player.playerInput.actions["Move"];
         attackAction = player.playerInput.actions["Attack"];
         abilityOneAction = player.playerInput.actions["AbilityOne"];
@@ -38,13 +39,44 @@ public class BaseState : State
     public override void HandleInput()
     {
         base.HandleInput();
-
+        if (!((PlayerStateMachine)stateMachine).locked)
+        {
+            if (abilityOneAction.triggered)
+                ((PlayerStateMachine)stateMachine).UsedAbility = AbilitySwitch.One;
+            if (abilityTwoAction.triggered)
+                ((PlayerStateMachine)stateMachine).UsedAbility = AbilitySwitch.Two;
+            if (abilityThreeAction.triggered)
+                ((PlayerStateMachine)stateMachine).UsedAbility = AbilitySwitch.Three;
+            if (abilityFourAction.triggered)
+                ((PlayerStateMachine)stateMachine).UsedAbility = AbilitySwitch.Four;
+        }
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        player.animator.SetFloat("Attack Speed", player.statsComponent.stats.AttackSpeed.Value);
+        if (!((PlayerStateMachine)stateMachine).locked && ((PlayerStateMachine)stateMachine).UsedAbility != AbilitySwitch.None)
+        {
+            switch (((PlayerStateMachine)stateMachine).UsedAbility)
+            {
+                case AbilitySwitch.One:
+                    if (player.abilities.Abilities.ContainsKey(AbilityClass.AbilityOne) && player.abilities.Abilities[AbilityClass.AbilityOne].state == AbilityState.ready)
+                        stateMachine.ChangeState(player.ability);
+                    break;
+                case AbilitySwitch.Two:
+                    if (player.abilities.Abilities.ContainsKey(AbilityClass.AbilityTwo) && player.abilities.Abilities[AbilityClass.AbilityTwo].state == AbilityState.ready)
+                        stateMachine.ChangeState(player.ability);
+                    break;
+                case AbilitySwitch.Three:
+                    if (player.abilities.Abilities.ContainsKey(AbilityClass.AbilityThree) && player.abilities.Abilities[AbilityClass.AbilityThree].state == AbilityState.ready)
+                        stateMachine.ChangeState(player.ability);
+                    break;
+                case AbilitySwitch.Four:
+                    if (player.abilities.Abilities.ContainsKey(AbilityClass.AbilityFour) && player.abilities.Abilities[AbilityClass.AbilityFour].state == AbilityState.ready)
+                        stateMachine.ChangeState(player.ability);
+                    break;
+            }
+        }
     }
 
     public override void PhysicsUpdate()

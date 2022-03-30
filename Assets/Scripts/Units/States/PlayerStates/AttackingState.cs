@@ -98,7 +98,6 @@ public class AttackingState : BaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        player.animator.SetFloat("Attack Speed", player.statsComponent.stats.AttackSpeed.Value);
 
         if (move)
         {
@@ -160,6 +159,7 @@ public class AttackingState : BaseState
 
     private void StartAttack()
     {
+        player.animator.SetFloat("Attack Speed", player.statsComponent.stats.AttackSpeed.Value);
         player.shoot = false;
         if (((PlayerStateMachine)stateMachine).target == null)
         {

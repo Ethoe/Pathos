@@ -26,12 +26,12 @@ public class SlimeAttackState : SlimeBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.ready)
+        if (unit.abilityHolder.Abilities[AbilityClass.AbilityOne].state == AbilityState.ready)
         {
             unit.TriggerAnimation(abilityParam);
-            unit.abilityHolder.Activate(AbilityClass.AbiltyOne, null, unit.transform.position, unit.layer);
+            unit.abilityHolder.Activate(AbilityClass.AbilityOne, null, unit.transform.position, unit.layer);
         }
-        if (unit.abilityHolder.Abilities[AbilityClass.AbiltyOne].state == AbilityState.cooldown)
+        if (unit.abilityHolder.Abilities[AbilityClass.AbilityOne].state == AbilityState.cooldown)
         {
             weightedChanceExecutor.Execute();
         }

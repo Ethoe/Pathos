@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public MovingState moving;
     public AttackingState attacking;
     public AttackMovingState attackMoving;
-    public SecondAbilityState secondAbility;
+    public PlayerAbilityState ability;
     public bool shoot;
     public int layer = 10; //Physics collider level ally projectile
     public LayerMask hit;
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         moving = new MovingState(this, controlSM);
         attacking = new AttackingState(this, controlSM);
         attackMoving = new AttackMovingState(this, controlSM);
-        secondAbility = new SecondAbilityState(this, controlSM);
+        ability = new PlayerAbilityState(this, controlSM);
         controlSM.Initialize(idle);
 
         GameManager.Instance.player = gameObject;
