@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         EventManager.StartListening(Events.DealDamageTrigger, ReceiveDamage);
         EventManager.StartListening(Events.DealDamageTrigger, DealDamage);
         EventManager.StartListening(Events.DoorwayTriggerEnter, ExitRoom);
+        EventManager.StartListening(Events.AbilityAnimationTrigger, TriggerAnimationListener);
 
         buffBar = gameObject.GetComponent<BuffableEntity>();
 
@@ -116,6 +117,7 @@ public class PlayerController : MonoBehaviour
         EventManager.StopListening(Events.DealDamageTrigger, ReceiveDamage);
         EventManager.StopListening(Events.DealDamageTrigger, DealDamage);
         EventManager.StopListening(Events.DoorwayTriggerEnter, ExitRoom);
+        EventManager.StopListening(Events.AbilityAnimationTrigger, TriggerAnimationListener);
     }
 
     protected virtual void ReceiveDamage(Dictionary<string, object> message)
@@ -133,6 +135,16 @@ public class PlayerController : MonoBehaviour
         if (damage.source == gameObject)
         {
             statsComponent.stats.Health.CurrentValue += damage.baseDamage * statsComponent.stats.LifeSteal.Value;
+        }
+    }
+
+    public void TriggerAnimationListener(Dictionary<string, object> message)
+    {
+        var source = (GameObject)message["source"];
+        var param = (int)message["param"];
+        if (source == gameObject)
+        {
+            animator.Play(param, 0, 0.0f);
         }
     }
 }

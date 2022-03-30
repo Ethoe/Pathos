@@ -61,19 +61,43 @@ public class BaseState : State
             {
                 case AbilitySwitch.One:
                     if (player.abilities.Abilities.ContainsKey(AbilityClass.AbilityOne) && player.abilities.Abilities[AbilityClass.AbilityOne].state == AbilityState.ready)
+                    {
                         stateMachine.ChangeState(player.ability);
+                    }
+                    else
+                    {
+                        ((PlayerStateMachine)stateMachine).UsedAbility = AbilitySwitch.None;
+                    }
                     break;
                 case AbilitySwitch.Two:
                     if (player.abilities.Abilities.ContainsKey(AbilityClass.AbilityTwo) && player.abilities.Abilities[AbilityClass.AbilityTwo].state == AbilityState.ready)
+                    {
                         stateMachine.ChangeState(player.ability);
+                    }
+                    else
+                    {
+                        ((PlayerStateMachine)stateMachine).UsedAbility = AbilitySwitch.None;
+                    }
                     break;
                 case AbilitySwitch.Three:
                     if (player.abilities.Abilities.ContainsKey(AbilityClass.AbilityThree) && player.abilities.Abilities[AbilityClass.AbilityThree].state == AbilityState.ready)
+                    {
                         stateMachine.ChangeState(player.ability);
+                    }
+                    else
+                    {
+                        ((PlayerStateMachine)stateMachine).UsedAbility = AbilitySwitch.None;
+                    }
                     break;
                 case AbilitySwitch.Four:
                     if (player.abilities.Abilities.ContainsKey(AbilityClass.AbilityFour) && player.abilities.Abilities[AbilityClass.AbilityFour].state == AbilityState.ready)
+                    {
                         stateMachine.ChangeState(player.ability);
+                    }
+                    else
+                    {
+                        ((PlayerStateMachine)stateMachine).UsedAbility = AbilitySwitch.None;
+                    }
                     break;
             }
         }

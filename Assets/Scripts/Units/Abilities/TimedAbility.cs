@@ -44,6 +44,12 @@ public abstract class TimedAbility
                 }
                 break;
         }
+        TickEffect();
+    }
+
+    public virtual void LogicTick(float delta)
+    {
+
     }
 
     public virtual void Activate(GameObject target, Vector2 direction, int layer)
@@ -51,6 +57,8 @@ public abstract class TimedAbility
         state = AbilityState.casting;
         CastTime = Ability.CastTime;
     }
+
+    public virtual void TickEffect() { }
 
     public abstract void End();
 }

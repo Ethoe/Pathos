@@ -12,6 +12,7 @@ public enum Events
     PlayerClick,
     PlayerExitMove,
     SpawnDrop,
+    AbilityAnimationTrigger
 }
 
 public class EventManager : MonoBehaviour

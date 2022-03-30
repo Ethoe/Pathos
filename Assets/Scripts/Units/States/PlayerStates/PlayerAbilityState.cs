@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAbilityState : BaseState
 {
+    private AbilityClass currentAbility;
     public PlayerAbilityState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine) { }
 
     public override void Enter()
@@ -16,15 +17,19 @@ public class PlayerAbilityState : BaseState
         {
             case AbilitySwitch.One:
                 player.abilities.Activate(AbilityClass.AbilityOne, target, mousePos, player.layer);
+                currentAbility = AbilityClass.AbilityOne;
                 break;
             case AbilitySwitch.Two:
                 player.abilities.Activate(AbilityClass.AbilityTwo, target, mousePos, player.layer);
+                currentAbility = AbilityClass.AbilityTwo;
                 break;
             case AbilitySwitch.Three:
                 player.abilities.Activate(AbilityClass.AbilityThree, target, mousePos, player.layer);
+                currentAbility = AbilityClass.AbilityThree;
                 break;
             case AbilitySwitch.Four:
                 player.abilities.Activate(AbilityClass.AbilityFour, target, mousePos, player.layer);
+                currentAbility = AbilityClass.AbilityFour;
                 break;
         }
     }
@@ -37,7 +42,8 @@ public class PlayerAbilityState : BaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        stateMachine.ChangeState(player.idle);
+        if (player.abilities.Abilities[currentAbility].state != AbilityState.casting)
+            stateMachine.ChangeState(player.idle);
     }
 
     public override void Exit()

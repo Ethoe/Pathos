@@ -50,9 +50,16 @@ public class AbilityHolder : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        foreach (var ability in Abilities.Values.ToList())
+        {
+            ability.LogicTick(Time.deltaTime);
+        }
+    }
+
     public void Activate(AbilityClass ability, GameObject target, Vector2 direction, int layer)
     {
-        Debug.Log(ability);
         if (Abilities.ContainsKey(ability))
         {
             Abilities[ability].Activate(target, direction, layer);

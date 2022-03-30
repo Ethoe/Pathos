@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoot: 0
+  layer: 10
   hit:
     serializedVersion: 2
     m_Bits: 128
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attack: {fileID: 11400000, guid: 8dcfd21856f8dba459d094fa79676549, type: 2}
-  AbiltyOne: {fileID: 0}
-  AbiltyTwo: {fileID: 0}
-  AbiltyThree: {fileID: 0}
-  AbiltyFour: {fileID: 0}
+  AbilityOne: {fileID: 0}
+  AbilityTwo: {fileID: 0}
+  AbilityThree: {fileID: 11400000, guid: 356e59a405e7c5d45a45bb1fca538ff3, type: 2}
+  AbilityFour: {fileID: 0}

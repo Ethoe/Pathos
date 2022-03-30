@@ -105,6 +105,8 @@
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\PlayerAbilityState.cs" />
+     <Compile Include="Assets\Scripts\Units\Abilities\Movement\DashAbility.cs" />
+     <Compile Include="Assets\Scripts\Units\Abilities\Movement\TimedDashAbility.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
