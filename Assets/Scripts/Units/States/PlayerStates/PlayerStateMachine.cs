@@ -13,4 +13,5 @@ public class PlayerStateMachine : StateMachine
     public bool locked;
     public GameObject target;
     public AbilitySwitch UsedAbility;
+    public bool WasAttackingState;
 }

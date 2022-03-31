@@ -20,6 +20,7 @@ public class AttackMovingState : BaseState
         attack = false;
         move = false;
         idle = false;
+        ((PlayerStateMachine)stateMachine).WasAttackingState = true;
     }
 
     public override void HandleInput()

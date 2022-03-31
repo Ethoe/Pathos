@@ -5,6 +5,9 @@ using TMPro;
 
 public class EffectManager : MonoBehaviour
 {
+    public Material defaultMaterial;
+    public Material highlightMaterial;
+
     private static EffectManager _instance;
     public GameObject popUpText;
     public static EffectManager Instance
@@ -24,6 +27,8 @@ public class EffectManager : MonoBehaviour
     void Start()
     {
         EventManager.StartListening(Events.DealDamageTrigger, DamageTextAnimation);
+        EventManager.StartListening(Events.PlayerTargettedTrigger, HighlightUnit);
+        EventManager.StartListening(Events.PlayerEndTargettedTrigger, DeHighlightUnit);
     }
 
     void Update()
@@ -72,5 +77,18 @@ public class EffectManager : MonoBehaviour
             default:
                 return new VertexGradient(new Color(1f, 1f, 1f, 1f), new Color(1f, 1f, 1f, 1f), new Color(1f, 0.023f, 0.239f, 1f), new Color(1f, 0.023f, 0.239f, 1f));
         }
+    }
+
+    public void HighlightUnit(Dictionary<string, object> message)
+    {
+        var target = (GameObject)message["target"];
+        if (target != null)
+            target.GetComponent<SpriteRenderer>().material = highlightMaterial;
+    }
+
+    public void DeHighlightUnit(Dictionary<string, object> message)
+    {
+        var target = (GameObject)message["target"];
+        target.GetComponent<SpriteRenderer>().material = defaultMaterial;
     }
 }

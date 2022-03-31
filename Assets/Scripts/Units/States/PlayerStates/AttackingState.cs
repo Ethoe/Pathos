@@ -16,6 +16,7 @@ public class AttackingState : BaseState
 
     public AttackingState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
+        ((PlayerStateMachine)stateMachine).WasAttackingState = false;
     }
 
     private void init()
@@ -41,6 +42,7 @@ public class AttackingState : BaseState
             }
             else if (fired)
             {
+                EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } } } });
                 hasNext = true;
             }
             else
@@ -54,8 +56,9 @@ public class AttackingState : BaseState
     public override void Enter()
     {
         base.Enter();
-        if (((PlayerStateMachine)stateMachine).target == null)
+        if (((PlayerStateMachine)stateMachine).target == null || !((PlayerStateMachine)stateMachine).WasAttackingState)
         {
+            ((PlayerStateMachine)stateMachine).WasAttackingState = true;
             ((PlayerStateMachine)stateMachine).target = GetTarget();
         }
         init();
@@ -76,6 +79,7 @@ public class AttackingState : BaseState
             {
                 if (nextTarget == ((PlayerStateMachine)stateMachine).target)
                 {
+                    EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } } } });
                     hasNext = true;
                 }
                 else
@@ -101,6 +105,8 @@ public class AttackingState : BaseState
 
         if (move)
         {
+            EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
+            ((PlayerStateMachine)stateMachine).target = null;
             stateMachine.ChangeState(player.moving);
         }
 
@@ -125,16 +131,20 @@ public class AttackingState : BaseState
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(mousePosition.ReadValue<Vector2>());
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+        GameObject result;
 
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, Mathf.Infinity, player.hit);
         if (hit.collider != null)
         {
-            return hit.collider.gameObject;
+            result = hit.collider.gameObject;
         }
         else
         {
-            return AttackBuff(3.0f, mousePos2D);
+            result = AttackBuff(3.0f, mousePos2D);
         }
+
+        EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", result } });
+        return result;
     }
 
     private GameObject AttackBuff(float range, Vector2 clickLocation)
