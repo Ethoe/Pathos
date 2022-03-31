@@ -81,14 +81,19 @@ public class EffectManager : MonoBehaviour
 
     public void HighlightUnit(Dictionary<string, object> message)
     {
-        var target = (GameObject)message["target"];
-        if (target != null)
+        if (message["target"] != null)
+        {
+            var target = (GameObject)message["target"];
             target.GetComponent<SpriteRenderer>().material = highlightMaterial;
+        }
     }
 
     public void DeHighlightUnit(Dictionary<string, object> message)
     {
-        var target = (GameObject)message["target"];
-        target.GetComponent<SpriteRenderer>().material = defaultMaterial;
+        if (message["target"] != null)
+        {
+            var target = (GameObject)message["target"];
+            target.GetComponent<SpriteRenderer>().material = defaultMaterial;
+        }
     }
 }

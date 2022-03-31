@@ -6,7 +6,6 @@ public class AttackingState : BaseState
 {
     private bool move;
     private bool fired;
-    private bool hasNext;
     private bool moving;
     private bool first = true;
     private float attackSpeedTimer;
@@ -19,14 +18,15 @@ public class AttackingState : BaseState
         ((PlayerStateMachine)stateMachine).WasAttackingState = false;
     }
 
-    private void init()
+    public override void Enter()
     {
-        if (((PlayerStateMachine)stateMachine).target == null)
+        base.Enter();
+        if (((PlayerStateMachine)stateMachine).target == null || ((PlayerStateMachine)stateMachine).WasAttackingState != true)
         {
-            stateMachine.ChangeState(player.moving);
-            hasNext = true;
-            return;
+            ((PlayerStateMachine)stateMachine).target = GetTarget();
         }
+        ((PlayerStateMachine)stateMachine).WasAttackingState = false;
+
         if (first)
         {
             StartAttack();
@@ -42,8 +42,7 @@ public class AttackingState : BaseState
             }
             else if (fired)
             {
-                EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } } } });
-                hasNext = true;
+                EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
             }
             else
             {
@@ -52,16 +51,6 @@ public class AttackingState : BaseState
 
         }
         move = false;
-    }
-    public override void Enter()
-    {
-        base.Enter();
-        if (((PlayerStateMachine)stateMachine).target == null || !((PlayerStateMachine)stateMachine).WasAttackingState)
-        {
-            ((PlayerStateMachine)stateMachine).WasAttackingState = true;
-            ((PlayerStateMachine)stateMachine).target = GetTarget();
-        }
-        init();
     }
 
     public override void HandleInput()
@@ -77,22 +66,18 @@ public class AttackingState : BaseState
             }
             else
             {
-                if (nextTarget == ((PlayerStateMachine)stateMachine).target)
+                if (nextTarget != ((PlayerStateMachine)stateMachine).target)
                 {
-                    EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } } } });
-                    hasNext = true;
-                }
-                else
-                {
+                    EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
                     if (!fired)
                     {
-                        StartAttack();
                         ((PlayerStateMachine)stateMachine).target = nextTarget;
+                        StartAttack();
                     }
                     else if (fired)
                     {
-                        hasNext = true;
                         ((PlayerStateMachine)stateMachine).target = nextTarget;
+                        EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
                     }
                 }
             }
@@ -117,11 +102,7 @@ public class AttackingState : BaseState
             player.abilities.Activate(AbilityClass.Attack, ((PlayerStateMachine)stateMachine).target, Vector2.zero, player.layer);
             fired = true;
         }
-        if (hasNext && attackSpeedTimer < 0)
-        {
-            StartAttack();
-        }
-        else if (attackSpeedTimer < 0)
+        if (attackSpeedTimer < 0)
         {
             StartAttack();
         }
@@ -142,8 +123,6 @@ public class AttackingState : BaseState
         {
             result = AttackBuff(3.0f, mousePos2D);
         }
-
-        EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", result } });
         return result;
     }
 
@@ -176,9 +155,11 @@ public class AttackingState : BaseState
             stateMachine.ChangeState(player.idle);
             return;
         }
+        EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
         if (Vector2.Distance(player.transform.position, ((PlayerStateMachine)stateMachine).target.transform.position) > player.statsComponent.stats.AttackRange.Value)
         {
             stateMachine.ChangeState(player.attackMoving);
+            return;
         }
         else
         {
@@ -186,8 +167,6 @@ public class AttackingState : BaseState
             player.TriggerAnimation(autoParam);
             deltaTime = Time.time;
             fired = false;
-            hasNext = false;
         }
-
     }
 }

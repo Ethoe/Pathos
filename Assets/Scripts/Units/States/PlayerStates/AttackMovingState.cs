@@ -33,37 +33,44 @@ public class AttackMovingState : BaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (((PlayerStateMachine)stateMachine).target)
+        if (attack)
+        {
+            EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
+            ((PlayerStateMachine)stateMachine).target = null;
+            stateMachine.ChangeState(player.attacking);
+        }
+        else if (move)
+        {
+            EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
+            ((PlayerStateMachine)stateMachine).target = null;
+            stateMachine.ChangeState(player.moving);
+        }
+        else if (idle)
+        {
+            EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
+            ((PlayerStateMachine)stateMachine).target = null;
+            stateMachine.ChangeState(player.idle);
+        }
+
+        if (((PlayerStateMachine)stateMachine).target != null)
         {
             float distance = Vector2.Distance(player.transform.position, ((PlayerStateMachine)stateMachine).target.transform.position);
             if (distance < player.statsComponent.stats.AttackRange.Value)
             {
-                attack = true;
+                stateMachine.ChangeState(player.attacking);
+                return;
             }
         }
         else
         {
             idle = true;
         }
-
-        if (attack)
-        {
-            stateMachine.ChangeState(player.attacking);
-        }
-        else if (move)
-        {
-            stateMachine.ChangeState(player.moving);
-        }
-        else if (idle)
-        {
-            stateMachine.ChangeState(player.idle);
-        }
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        if (((PlayerStateMachine)stateMachine).target)
+        if (((PlayerStateMachine)stateMachine).target != null)
         {
             player.PlayerMove(((PlayerStateMachine)stateMachine).target.transform.position);
         }
