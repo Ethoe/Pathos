@@ -6,6 +6,7 @@ using UnityEngine;
 public class GroundAbility : ScriptableAbility
 {
     public float duration;
+    public float castRange;
     public override TimedAbility InitializeAbility(GameObject source)
     {
         return new TimedGroundAbility(this, source);
