@@ -57,6 +57,7 @@ public class BaseState : State
         base.LogicUpdate();
         if (!((PlayerStateMachine)stateMachine).locked && ((PlayerStateMachine)stateMachine).UsedAbility != AbilitySwitch.None)
         {
+            ((PlayerStateMachine)stateMachine).target = null;
             switch (((PlayerStateMachine)stateMachine).UsedAbility)
             {
                 case AbilitySwitch.One:

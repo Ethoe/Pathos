@@ -33,24 +33,6 @@ public class AttackMovingState : BaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (attack)
-        {
-            EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
-            ((PlayerStateMachine)stateMachine).target = null;
-            stateMachine.ChangeState(player.attacking);
-        }
-        else if (move)
-        {
-            EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
-            ((PlayerStateMachine)stateMachine).target = null;
-            stateMachine.ChangeState(player.moving);
-        }
-        else if (idle)
-        {
-            EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
-            ((PlayerStateMachine)stateMachine).target = null;
-            stateMachine.ChangeState(player.idle);
-        }
 
         if (((PlayerStateMachine)stateMachine).target != null)
         {
@@ -64,6 +46,22 @@ public class AttackMovingState : BaseState
         else
         {
             idle = true;
+        }
+
+        if (attack)
+        {
+            ((PlayerStateMachine)stateMachine).target = null;
+            stateMachine.ChangeState(player.attacking);
+        }
+        else if (move)
+        {
+            ((PlayerStateMachine)stateMachine).target = null;
+            stateMachine.ChangeState(player.moving);
+        }
+        else if (idle)
+        {
+            ((PlayerStateMachine)stateMachine).target = null;
+            stateMachine.ChangeState(player.idle);
         }
     }
 

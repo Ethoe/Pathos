@@ -36,19 +36,10 @@ public class AttackingState : BaseState
         {
             attackSpeedTimer -= Time.time - deltaTime;
             deltaTime = Time.time;
-            if (attackSpeedTimer < 0)
+            if (attackSpeedTimer < 0 || !fired)
             {
                 StartAttack();
             }
-            else if (fired)
-            {
-                EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
-            }
-            else
-            {
-                StartAttack();
-            }
-
         }
         move = false;
     }
@@ -68,16 +59,10 @@ public class AttackingState : BaseState
             {
                 if (nextTarget != ((PlayerStateMachine)stateMachine).target)
                 {
-                    EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
+                    ((PlayerStateMachine)stateMachine).target = nextTarget;
                     if (!fired)
                     {
-                        ((PlayerStateMachine)stateMachine).target = nextTarget;
                         StartAttack();
-                    }
-                    else if (fired)
-                    {
-                        ((PlayerStateMachine)stateMachine).target = nextTarget;
-                        EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
                     }
                 }
             }
@@ -90,7 +75,6 @@ public class AttackingState : BaseState
 
         if (move)
         {
-            EventManager.TriggerEvent(Events.PlayerEndTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
             ((PlayerStateMachine)stateMachine).target = null;
             stateMachine.ChangeState(player.moving);
         }
@@ -155,7 +139,6 @@ public class AttackingState : BaseState
             stateMachine.ChangeState(player.idle);
             return;
         }
-        EventManager.TriggerEvent(Events.PlayerTargettedTrigger, new Dictionary<string, object> { { "target", ((PlayerStateMachine)stateMachine).target } });
         if (Vector2.Distance(player.transform.position, ((PlayerStateMachine)stateMachine).target.transform.position) > player.statsComponent.stats.AttackRange.Value)
         {
             stateMachine.ChangeState(player.attackMoving);

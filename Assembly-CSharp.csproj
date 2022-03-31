@@ -41,8 +41,9 @@
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeTrackingState.cs" />
      <Compile Include="Assets\Scripts\EffectManager.cs" />
+     <Compile Include="Assets\Scripts\Units\States\PlayerStates\PlayerAbilityState.cs" />
+     <Compile Include="Assets\Scripts\Units\Abilities\Movement\DashAbility.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatBlockComponent.cs" />
-     <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseAbliltyState.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\TimedAttackAbility.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\TimedSkillshotAbility.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardIdleState.cs" />
@@ -88,25 +89,21 @@
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\SpeedBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeIdleState.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Units\States\PlayerStates\FirstAbilityState.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\MovingState.cs" />
      <Compile Include="Assets\Scripts\Units\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\SkillshotController.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardWanderState.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\Squidward\DarkBolt.cs" />
+     <Compile Include="Assets\Scripts\Units\Abilities\Movement\TimedDashAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonGenerator.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\CharacterResource.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\Slime\SlimePop.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\CharacterStat.cs" />
      <Compile Include="Assets\Scripts\World\DamageTextProcedural.cs" />
-     <Compile Include="Assets\Scripts\Units\States\PlayerStates\SecondAbilityState.cs" />
      <Compile Include="Assets\Scripts\World\LazyHealthBar.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\GroundAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\States\PlayerStates\PlayerAbilityState.cs" />
-     <Compile Include="Assets\Scripts\Units\Abilities\Movement\DashAbility.cs" />
-     <Compile Include="Assets\Scripts\Units\Abilities\Movement\TimedDashAbility.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -725,6 +722,14 @@
       <Project>{cdcda2d0-2951-1df3-81e7-5b92eb953ca3}</Project>
       <Name>Unity.2D.PixelPerfect</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj">
+      <Project>{d461afba-ef9a-6580-3c77-0e25961afbbf}</Project>
+      <Name>Unity.RenderPipelines.Universal.Shaders</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj">
+      <Project>{d84187ab-4051-706e-6c50-7df2e2848e11}</Project>
+      <Name>Unity.RenderPipelines.Universal.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="PsdPlugin.csproj">
       <Project>{08c28888-76fc-ef03-e60c-3fae3c8936ab}</Project>
       <Name>PsdPlugin</Name>
@@ -745,6 +750,10 @@
       <Project>{673d7791-0e00-f44e-8c38-4603c8be4145}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Searcher.Editor.csproj">
+      <Project>{f8e1d4cf-6940-e277-5088-e2254f78f06d}</Project>
+      <Name>Unity.Searcher.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.2D.IK.Editor.csproj">
       <Project>{80139949-2c86-db07-2475-7b065997fb26}</Project>
       <Name>Unity.2D.IK.Editor</Name>
@@ -757,9 +766,9 @@
       <Project>{77f14a5b-a371-c2a5-7268-39ed3d8ff8c2}</Project>
       <Name>Unity.2D.Path.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.InternalAPIEditorBridge.001.csproj">
-      <Project>{82adb002-7a4f-3f7e-794b-0fca7be50cdf}</Project>
-      <Name>Unity.InternalAPIEditorBridge.001</Name>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
+      <Project>{b0cbc076-3d47-3687-2c90-6fba62ecea15}</Project>
+      <Name>Unity.RenderPipelines.Core.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.InputSystem.csproj">
       <Project>{ee5c8958-bb52-127c-2d24-c49e75405ba2}</Project>
@@ -769,13 +778,21 @@
       <Project>{683f52af-512f-c6d4-f969-46b29bebfec8}</Project>
       <Name>Unity.Rider.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
-      <Project>{d8509072-6d3a-3839-75e3-314e3eb0f5ba}</Project>
-      <Name>Unity.PlasticSCM.Editor</Name>
+    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj">
+      <Project>{a7c2c12d-f7d7-b92f-ff9c-781b8bd901aa}</Project>
+      <Name>Unity.RenderPipelines.Core.ShaderLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="com.talecrafter.animationimporter.Editor.csproj">
       <Project>{5d1f24c4-2e55-4332-b98b-dd3007473930}</Project>
       <Name>com.talecrafter.animationimporter.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InternalAPIEditorBridge.001.csproj">
+      <Project>{82adb002-7a4f-3f7e-794b-0fca7be50cdf}</Project>
+      <Name>Unity.InternalAPIEditorBridge.001</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
+      <Project>{d8509072-6d3a-3839-75e3-314e3eb0f5ba}</Project>
+      <Name>Unity.PlasticSCM.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.csproj">
       <Project>{0f183c81-6cb5-82c8-eac3-b40546703b2f}</Project>
@@ -785,6 +802,10 @@
       <Project>{c68c652f-af49-ccd3-5142-f810307b5f16}</Project>
       <Name>Unity.2D.IK.Runtime</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.ShaderGraph.Editor.csproj">
+      <Project>{24225f15-a5af-e366-c8ce-733d88477cfa}</Project>
+      <Name>Unity.ShaderGraph.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Cinemachine.csproj">
       <Project>{081f77f5-914b-1931-4ade-d8611dc07340}</Project>
       <Name>Cinemachine</Name>
@@ -792,6 +813,10 @@
     <ProjectReference Include="com.unity.cinemachine.editor.csproj">
       <Project>{b79282d7-1892-ac69-a3fe-0dc97f7a91cd}</Project>
       <Name>com.unity.cinemachine.editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj">
+      <Project>{b735db70-e1a2-cde3-d0ca-1e11d241c763}</Project>
+      <Name>Unity.RenderPipelines.Universal.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Animation.Triangle.Runtime.csproj">
       <Project>{bf9a8539-2fbe-4d1f-43fd-d15f9bce5598}</Project>
@@ -804,6 +829,14 @@
     <ProjectReference Include="Unity.2D.PixelPerfect.Editor.csproj">
       <Project>{02afeb2b-c34e-4498-84d5-674bcab7c2d4}</Project>
       <Name>Unity.2D.PixelPerfect.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj">
+      <Project>{fc4e01f7-f126-acd1-b6fd-ddb333f59752}</Project>
+      <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj">
+      <Project>{8a0b5d21-21b5-31b2-6dc4-f0138defdeaf}</Project>
+      <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Timeline.Editor.csproj">
       <Project>{42876d03-a3d7-d8b9-6c30-9818bab1ca3f}</Project>
@@ -824,6 +857,10 @@
     <ProjectReference Include="Unity.2D.Common.Editor.csproj">
       <Project>{1b352798-69ec-374c-1195-2fd7c18ae9b5}</Project>
       <Name>Unity.2D.Common.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj">
+      <Project>{7cc459ff-efa3-cc24-ee4b-17f830cccd9c}</Project>
+      <Name>Unity.RenderPipelines.Core.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj">
       <Project>{0ac2d99b-906c-b789-111f-fa00ba00d061}</Project>
