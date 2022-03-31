@@ -165,6 +165,7 @@ MonoBehaviour:
   abilityTimer: 0
   difficultyLevel: 1
   statLocation: Stats/Enemies/Squidward
+  layer: 8
   ability: {fileID: 4098796617896256146, guid: ea7f647f56d42584ca16462dd9d1976c, type: 3}
   aggrod: {fileID: 0}
   animator: {fileID: 0}
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attack: {fileID: 0}
-  AbiltyOne: {fileID: 11400000, guid: 8073fd7c5d23e2f48acdbc81a977c957, type: 2}
-  AbiltyTwo: {fileID: 0}
-  AbiltyThree: {fileID: 0}
-  AbiltyFour: {fileID: 0}
+  AbilityOne: {fileID: 11400000, guid: 8073fd7c5d23e2f48acdbc81a977c957, type: 2}
+  AbilityTwo: {fileID: 0}
+  AbilityThree: {fileID: 0}
+  AbilityFour: {fileID: 0}

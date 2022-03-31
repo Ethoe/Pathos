@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d683e1c59530e3f4187170f3a9ca9d78, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   abilityTimer: 0
   difficultyLevel: 1
   statLocation: Stats/Enemies/Slime
+  layer: 8
   ability: {fileID: 702103384415296957, guid: fa02d5677ef374b46b5a47862b023fbb, type: 3}
   aggrod: {fileID: 0}
   animator: {fileID: 0}
@@ -204,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attack: {fileID: 0}
-  AbiltyOne: {fileID: 11400000, guid: deffb2bb0409b6449900321f7608339e, type: 2}
-  AbiltyTwo: {fileID: 0}
-  AbiltyThree: {fileID: 0}
-  AbiltyFour: {fileID: 0}
+  AbilityOne: {fileID: 11400000, guid: deffb2bb0409b6449900321f7608339e, type: 2}
+  AbilityTwo: {fileID: 0}
+  AbilityThree: {fileID: 0}
+  AbilityFour: {fileID: 0}

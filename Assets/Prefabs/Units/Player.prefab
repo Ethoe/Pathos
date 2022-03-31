@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d683e1c59530e3f4187170f3a9ca9d78, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,7 +151,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 16, y: 16}
+    oldSize: {x: 19, y: 19}
     newSize: {x: 16, y: 16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attack: {fileID: 11400000, guid: 8dcfd21856f8dba459d094fa79676549, type: 2}
-  AbilityOne: {fileID: 0}
+  AbilityOne: {fileID: 11400000, guid: 8073fd7c5d23e2f48acdbc81a977c957, type: 2}
   AbilityTwo: {fileID: 0}
   AbilityThree: {fileID: 11400000, guid: 356e59a405e7c5d45a45bb1fca538ff3, type: 2}
   AbilityFour: {fileID: 0}
