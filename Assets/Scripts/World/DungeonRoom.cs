@@ -11,22 +11,17 @@ public enum RoomType
     BossCleared,
 }
 
-public struct RoomDrop
-{
-    public GameObject Object;
-    public Vector2 Location;
-}
-
 public class DungeonRoom
 {
     public RoomType type;
     public GameObject layout;
-    public List<RoomDrop> drops;
+    public List<GameObject> drops;
     public Vector2Int location;
     public bool visited;
 
     public DungeonRoom(Vector2Int location)
     {
+        drops = new List<GameObject>();
         this.location = location;
     }
 }

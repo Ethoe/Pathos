@@ -84,7 +84,8 @@ public class EffectManager : MonoBehaviour
         if (message["target"] != null)
         {
             var target = (GameObject)message["target"];
-            target.GetComponent<SpriteRenderer>().material = highlightMaterial;
+            if (target != null)
+                target.GetComponent<SpriteRenderer>().material = highlightMaterial;
         }
     }
 
@@ -93,7 +94,8 @@ public class EffectManager : MonoBehaviour
         if (message["target"] != null)
         {
             var target = (GameObject)message["target"];
-            target.GetComponent<SpriteRenderer>().material = defaultMaterial;
+            if (target != null)
+                target.GetComponent<SpriteRenderer>().material = defaultMaterial;
         }
     }
 }

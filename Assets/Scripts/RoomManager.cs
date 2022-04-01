@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Text;
+using System.Linq;
 using System.Collections.Generic;
 
 public class RoomManager : MonoBehaviour
@@ -43,6 +43,18 @@ public class RoomManager : MonoBehaviour
         EventManager.StartListening(Events.DoorwayTriggerEnter, ExitRoom);
         EventManager.StartListening(Events.ClearedRoomTrigger, ClearRoom);
         EventManager.StartListening(Events.FilledRoomTrigger, CloseRoom);
+        EventManager.StartListening(Events.SpawnDropTrigger, AddDrop);
+    }
+
+    private void AddDrop(Dictionary<string, object> message)
+    {
+        Debug.Log("called");
+        if (message["drop"] != null)
+        {
+            var drop = (GameObject)message["drop"];
+            if (drop != null)
+                currentRoom.drops.Add(drop);
+        }
     }
 
     private void ClearRoom(Dictionary<string, object> message)
@@ -92,9 +104,12 @@ public class RoomManager : MonoBehaviour
 
         if (currentRoom.drops != null)
         {
-            foreach (var drop in currentRoom.drops)
+            foreach (var drop in currentRoom.drops.Reverse<GameObject>())
             {
-                drop.Object.SetActive(false);
+                if (drop == null)
+                    currentRoom.drops.Remove(drop);
+                else
+                    drop.SetActive(false);
             }
         }
 
@@ -201,25 +216,30 @@ public class RoomManager : MonoBehaviour
 
     private void spawnRoom()
     {
-        if (currentRoom.type == RoomType.FloorEnd || currentRoom.type == RoomType.FloorStart)
+        switch (currentRoom.type)
         {
-            return;
-        }
-        if (currentRoom.type == RoomType.Standard)
-        {
-            for (int count = 0; count < 1; count++)
-            {
-                Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
-                GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];
-                spawnUnit(enemy, spawnLocation);
-            }
+            case RoomType.Standard:
+                for (int count = 0; count < 1; count++)
+                {
+                    Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
+                    GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];
+                    spawnUnit(enemy, spawnLocation);
+                }
+                break;
+            case RoomType.FloorStart:
+                break;
+            default:
+                break;
         }
 
         if (currentRoom.drops != null)
         {
-            foreach (var drop in currentRoom.drops)
+            foreach (var drop in currentRoom.drops.Reverse<GameObject>())
             {
-                drop.Object.SetActive(true);
+                if (drop == null)
+                    currentRoom.drops.Remove(drop);
+                else
+                    drop.SetActive(true);
             }
         }
     }

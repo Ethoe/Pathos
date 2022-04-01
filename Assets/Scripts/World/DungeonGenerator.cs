@@ -15,7 +15,6 @@ public class DungeonGenerator
     public DungeonRoom[,] map;
     public DungeonRoom enter;
     private int size = 16;
-    private int tries;
     private int numberRooms;
     private int currentRooms;
     private Queue<DungeonRoom> generatorQueue;
@@ -23,24 +22,21 @@ public class DungeonGenerator
 
     public DungeonGenerator(int rooms)
     {
-        map = new DungeonRoom[size, size]; // Create an empty 16,16 map
-        generatorQueue = new Queue<DungeonRoom>();
-        deadEnds = new List<DungeonRoom>();
-        currentRooms = 1;
-        tries = 0;
         Generate(rooms);
-        DecideRooms();
     }
 
     public void Generate(int targetRooms)
     {
-        numberRooms = targetRooms;
         CleanDungeon();
+        map = new DungeonRoom[size, size]; // Create an empty 16,16 map
+        generatorQueue = new Queue<DungeonRoom>();
+        deadEnds = new List<DungeonRoom>();
+        currentRooms = 1;
+        numberRooms = targetRooms;
         map[8, 8] = new DungeonRoom(new Vector2Int(8, 8)); // Create a room in the center lets call it starting room
         enter = map[8, 8];
         enter.type = RoomType.FloorStart;
         enter.visited = true;
-        tries += 1;
         generatorQueue.Enqueue(enter);
 
 
@@ -61,13 +57,15 @@ public class DungeonGenerator
 
         if (currentRooms < numberRooms) // Did not generate enough rooms
         {
-            if (tries > 5)
-                return;
             map = new DungeonRoom[size, size]; // Create an empty 16,16 map
             generatorQueue = new Queue<DungeonRoom>();
             deadEnds = new List<DungeonRoom>();
             currentRooms = 1;
             Generate(targetRooms);
+        }
+        else
+        {
+            DecideRooms();
         }
     }
 
@@ -160,6 +158,9 @@ public class DungeonGenerator
 
     public void CleanDungeon()
     {
+        if (map == null)
+            return;
+
         for (int x = 0; x < map.GetLength(0); x++)
         {
             for (int y = 0; y < map.GetLength(1); y++)
@@ -168,7 +169,7 @@ public class DungeonGenerator
                 {
                     foreach (var drop in map[x, y].drops)
                     {
-                        Object.Destroy(drop.Object);
+                        Object.Destroy(drop);
                     }
                 }
             }

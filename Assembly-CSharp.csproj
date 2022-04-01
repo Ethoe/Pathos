@@ -104,6 +104,7 @@
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\GroundAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
+     <Compile Include="Assets\Scripts\Units\Items\DropableObject.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
