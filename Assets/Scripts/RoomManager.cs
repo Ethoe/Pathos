@@ -48,7 +48,6 @@ public class RoomManager : MonoBehaviour
 
     private void AddDrop(Dictionary<string, object> message)
     {
-        Debug.Log("called");
         if (message["drop"] != null)
         {
             var drop = (GameObject)message["drop"];

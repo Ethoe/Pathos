@@ -6,7 +6,6 @@ public class DropableObject : MonoBehaviour
 {
     void Start()
     {
-        Debug.Log("wow");
         EventManager.TriggerEvent(Events.SpawnDropTrigger, new Dictionary<string, object> { { "drop", gameObject } });
     }
 }

@@ -18,6 +18,21 @@ public class LazyHealthBar : MonoBehaviour
         boundingBox = target.GetComponent<Collider2D>();
         statsComp = target.GetComponent<StatBlockComponent>();
         currHPSlow = 0;
+        EventManager.StartListening(Events.UnitDiedTrigger, destroyUnit);
+    }
+
+    private void destroyUnit(Dictionary<string, object> message)
+    {
+        if (target == (GameObject)message["source"])
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnDestroy()
+    {
+        EventManager.StopListening(Events.UnitDiedTrigger, destroyUnit);
+
     }
 
     // Update is called once per frame

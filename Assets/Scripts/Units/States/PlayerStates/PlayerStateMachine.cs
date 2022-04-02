@@ -17,6 +17,13 @@ public class PlayerStateMachine : StateMachine
     {
         get
         {
+            if (_target != null)
+            {
+                if (!_target.activeInHierarchy)
+                {
+                    _target = null;
+                }
+            }
             return _target;
         }
         set

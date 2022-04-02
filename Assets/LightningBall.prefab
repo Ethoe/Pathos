@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2683046890001747787}
   - component: {fileID: 2683046890001747784}
-  - component: {fileID: 2683046890001747781}
   - component: {fileID: 2683046890001747786}
+  - component: {fileID: 2683046890001747781}
   - component: {fileID: 2683046890001747780}
   m_Layer: 0
   m_Name: LightningBall
@@ -85,19 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2683046890001747781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2683046890001747785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2687b1c565871349a48829ff0a50950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemBuff: {fileID: 11400000, guid: 42bdf916926b04d4e92b02756c886591, type: 2}
 --- !u!61 &2683046890001747786
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124,6 +111,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.46317983, y: 0.4403417}
   m_EdgeRadius: 0
+--- !u!114 &2683046890001747781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2683046890001747785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2687b1c565871349a48829ff0a50950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemBuff: {fileID: 11400000, guid: 42bdf916926b04d4e92b02756c886591, type: 2}
 --- !u!114 &2683046890001747780
 MonoBehaviour:
   m_ObjectHideFlags: 0

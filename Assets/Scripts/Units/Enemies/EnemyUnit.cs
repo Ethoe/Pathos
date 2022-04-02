@@ -40,10 +40,9 @@ public class EnemyUnit : MonoBehaviour
         abilityTimer -= Time.deltaTime;
         if (stats.Health.CurrentValue <= 0)
         {
+            EventManager.TriggerEvent(Events.UnitDiedTrigger, new Dictionary<string, object> { { "source", gameObject } });
             GameManager.Instance.RemoveEnemy(gameObject);
-            EventManager.StopListening(Events.DealDamageTrigger, ReceiveDamage);
-            EventManager.StopListening(Events.DealDamageTrigger, DealDamage);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         if (animator != null)
         {
@@ -51,6 +50,17 @@ public class EnemyUnit : MonoBehaviour
             animator.SetFloat("Move X", moving.x);
             animator.SetFloat("Move Y", moving.y);
         }
+    }
+
+    void OnDestroy()
+    {
+        onDestroy();
+    }
+
+    protected void onDestroy()
+    {
+        EventManager.StopListening(Events.DealDamageTrigger, ReceiveDamage);
+        EventManager.StopListening(Events.DealDamageTrigger, DealDamage);
     }
 
     protected void fixedUpdate() { }

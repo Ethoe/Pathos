@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 public class WeightedChanceParam
 {
@@ -32,7 +33,7 @@ public class WeightedChanceParam
 /// weightedChanceExecutor.Execute();
 public class WeightedChanceExecutor
 {
-    public WeightedChanceParam[] Parameters { get; }
+    public List<WeightedChanceParam> Parameters { get; }
     private Random r;
 
     public double RatioSum
@@ -42,8 +43,13 @@ public class WeightedChanceExecutor
 
     public WeightedChanceExecutor(params WeightedChanceParam[] parameters)
     {
-        Parameters = parameters;
+        Parameters = parameters.ToList<WeightedChanceParam>();
         r = new Random();
+    }
+
+    public void AddChance(WeightedChanceParam param)
+    {
+        Parameters.Add(param);
     }
 
     public void Execute()

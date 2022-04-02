@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,7 +22,24 @@ public class GameManager : MonoBehaviour
         enemies = new List<GameObject> { };
     }
 
-    void Start() { }
+    void Start()
+    {
+        EventManager.StartListening(Events.UnitDiedTrigger, destroyUnit);
+    }
+
+    private void destroyUnit(Dictionary<string, object> message)
+    {
+        if (message["source"] != null)
+        {
+            StartCoroutine(destroyUnit((GameObject)message["source"]));
+        }
+    }
+
+    private IEnumerator destroyUnit(GameObject source)
+    {
+        yield return new WaitForSeconds(1);
+        GameObject.Destroy(source);
+    }
 
     public List<GameObject> GetEnemies()
     {
