@@ -15,6 +15,7 @@ public class IdleState : BaseState
         player.TriggerAnimation(idleParam);
         attack = false;
         move = false;
+        player.movement.activelyMoving = false;
         ((PlayerStateMachine)stateMachine).locked = false;
     }
 

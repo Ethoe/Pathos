@@ -114,6 +114,7 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   animator: {fileID: 0}
   abilities: {fileID: 0}
+  movement: {fileID: 0}
 --- !u!50 &2981067955125792487
 Rigidbody2D:
   serializedVersion: 4
@@ -192,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8023319431ca3f24c8f8acdcbdbabdf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: 1
   originalStats: {fileID: 11400000, guid: 0c9edafa68446a240aa60f1fb8a02a56, type: 2}
   stats: {fileID: 0}
 --- !u!114 &1551568880110406814
@@ -250,7 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: {fileID: 11400000, guid: 8dcfd21856f8dba459d094fa79676549, type: 2}
   AbilityOne: {fileID: 11400000, guid: 8073fd7c5d23e2f48acdbc81a977c957, type: 2}
-  AbilityTwo: {fileID: 0}
+  AbilityTwo: {fileID: 11400000, guid: deffb2bb0409b6449900321f7608339e, type: 2}
   AbilityThree: {fileID: 11400000, guid: 356e59a405e7c5d45a45bb1fca538ff3, type: 2}
   AbilityFour: {fileID: 0}
 --- !u!114 &1987164424773095876
@@ -265,4 +267,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5934542a1d6b3489d4a37bea5873f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {x: 0, y: 0}
+  activelyMoving: 0
+  SetMoveSpeed: 0

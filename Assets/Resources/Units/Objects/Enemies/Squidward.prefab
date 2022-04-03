@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 9121761334137381984}
   - component: {fileID: 9121761334137381987}
   - component: {fileID: 3793258711291285077}
-  - component: {fileID: 8485031502723728218}
   - component: {fileID: -7041865072604313983}
   - component: {fileID: 5976045661004813912}
   - component: {fileID: -1061397062626715534}
+  - component: {fileID: 1777034884520172905}
+  - component: {fileID: 5210409512445354914}
   m_Layer: 7
   m_Name: Squidward
   m_TagString: Untagged
@@ -150,27 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalStats: {fileID: 11400000, guid: 383ffe3124cd79e4a8257c13b8be9d1e, type: 2}
   stats: {fileID: 0}
---- !u!114 &8485031502723728218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9121761334137381988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce5a06122e06e64f8fe4f7f26876402, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 0}
-  abilityTimer: 0
-  difficultyLevel: 1
-  statLocation: Stats/Enemies/Squidward
-  layer: 8
-  ability: {fileID: 4098796617896256146, guid: ea7f647f56d42584ca16462dd9d1976c, type: 3}
-  aggrod: {fileID: 0}
-  animator: {fileID: 0}
-  abilityHolder: {fileID: 0}
 --- !u!114 &-7041865072604313983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,3 +193,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropTable: {fileID: 11400000, guid: c40f5605f045c5d46858d179ec77f99e, type: 2}
+--- !u!114 &1777034884520172905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9121761334137381988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee95e945c83672d49940b15bc751e9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialState: {fileID: 11400000, guid: d66196c40a52dc94e950e41eae839a8a, type: 2}
+  CurrentState: {fileID: 0}
+--- !u!114 &5210409512445354914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9121761334137381988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5934542a1d6b3489d4a37bea5873f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activelyMoving: 0
+  SetMoveSpeed: 0

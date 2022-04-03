@@ -22,7 +22,7 @@ public class DropperComponent : MonoBehaviour
 
     private void ExecuteDropTable(Dictionary<string, object> message)
     {
-        if (message["source"] != null || (GameObject)message["source"] == gameObject)
+        if (message["source"] != null && (GameObject)message["source"] == gameObject)
         {
             var source = (GameObject)message["source"];
             weightedChanceExecutor.Execute();

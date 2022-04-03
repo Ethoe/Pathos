@@ -35,8 +35,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventManager.StartListening(Events.DealDamageTrigger, ReceiveDamage);
-        EventManager.StartListening(Events.DealDamageTrigger, DealDamage);
         EventManager.StartListening(Events.DoorwayTriggerEnter, ExitRoom);
         EventManager.StartListening(Events.AbilityAnimationTrigger, TriggerAnimationListener);
 
@@ -48,7 +46,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         shoot = false;
 
-
         playerInput = GetComponent<PlayerInput>();
         controlSM = new PlayerStateMachine();
         idle = new IdleState(this, controlSM);
@@ -57,8 +54,6 @@ public class PlayerController : MonoBehaviour
         attackMoving = new AttackMovingState(this, controlSM);
         ability = new PlayerAbilityState(this, controlSM);
         controlSM.Initialize(idle);
-
-        GameManager.Instance.player = gameObject;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -98,28 +93,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnDestroy()
     {
-        EventManager.StopListening(Events.DealDamageTrigger, ReceiveDamage);
-        EventManager.StopListening(Events.DealDamageTrigger, DealDamage);
         EventManager.StopListening(Events.DoorwayTriggerEnter, ExitRoom);
         EventManager.StopListening(Events.AbilityAnimationTrigger, TriggerAnimationListener);
-    }
-
-    protected virtual void ReceiveDamage(Dictionary<string, object> message)
-    {
-        var damage = (DamageContext)message["damage"];
-        if (damage.target == gameObject)
-        {
-            statsComponent.stats.Health.CurrentValue -= damage.baseDamage;
-        }
-    }
-
-    protected virtual void DealDamage(Dictionary<string, object> message)
-    {
-        var damage = (DamageContext)message["damage"];
-        if (damage.source == gameObject)
-        {
-            statsComponent.stats.Health.CurrentValue += damage.baseDamage * statsComponent.stats.LifeSteal.Value;
-        }
     }
 
     public void TriggerAnimationListener(Dictionary<string, object> message)

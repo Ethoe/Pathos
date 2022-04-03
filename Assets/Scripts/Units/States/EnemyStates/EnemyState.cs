@@ -20,4 +20,20 @@ public class EnemyState : EnemyBaseState
             transition.Execute(machine);
         }
     }
+
+    public override void Enter(BaseStateMachine machine)
+    {
+        foreach (var action in Action)
+        {
+            action.Enter(machine);
+        }
+    }
+
+    public override void Exit(BaseStateMachine machine)
+    {
+        foreach (var action in Action)
+        {
+            action.Exit(machine);
+        }
+    }
 }

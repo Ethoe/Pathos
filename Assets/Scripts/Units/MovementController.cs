@@ -40,7 +40,7 @@ public class MovementController : MonoBehaviour
                 {
                     return Vector2.Distance((Vector2)transform.position, Target) > .1;
                 }
-                return (Vector2.Distance((Vector2)transform.position, Target) > .1) && Speed > .001;
+                return (Vector2.Distance((Vector2)transform.position, Target) > .1) && Speed > .01;
             }
             return activelyMoving;
         }

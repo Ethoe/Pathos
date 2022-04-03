@@ -7,23 +7,25 @@ public class EnemyUnit : MonoBehaviour
     public StatBlock stats;
     public float abilityTimer;
     public int difficultyLevel;
-    public string statLocation;
     public int layer = 8; //Physics collider level enemy projectile
     public GameObject ability;
     public StateMachine aiSM;
-    public GameObject aggrod;
     public Animator animator;
     protected Rigidbody2D rigidbody2d;
     protected Vector2 oldPosition;
-    protected float abilityCooldown;
 
     [HideInInspector]
     public AbilityHolder abilityHolder;
+    [HideInInspector]
+    public GameObject aggrod;
 
 
+    void Start()
+    {
+        start();
+    }
     protected void start()
     {
-        GameManager.Instance.AddEnemy(this.gameObject);
         stats = GetComponent<StatBlockComponent>().stats;
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -31,36 +33,21 @@ public class EnemyUnit : MonoBehaviour
         aiSM = new StateMachine();
         oldPosition = this.gameObject.transform.position;
         aggrod = GameManager.Instance.player;
-        EventManager.StartListening(Events.DealDamageTrigger, ReceiveDamage);
-        EventManager.StartListening(Events.DealDamageTrigger, DealDamage);
     }
 
+    void Update()
+    {
+        update();
+    }
     protected void update()
     {
         abilityTimer -= Time.deltaTime;
-        if (stats.Health.CurrentValue <= 0)
-        {
-            EventManager.TriggerEvent(Events.UnitDiedTrigger, new Dictionary<string, object> { { "source", gameObject } });
-            GameManager.Instance.RemoveEnemy(gameObject);
-            gameObject.SetActive(false);
-        }
         if (animator != null)
         {
             Vector2 moving = ((Vector2)this.gameObject.transform.position - oldPosition).normalized;
             animator.SetFloat("Move X", moving.x);
             animator.SetFloat("Move Y", moving.y);
         }
-    }
-
-    void OnDestroy()
-    {
-        onDestroy();
-    }
-
-    protected void onDestroy()
-    {
-        EventManager.StopListening(Events.DealDamageTrigger, ReceiveDamage);
-        EventManager.StopListening(Events.DealDamageTrigger, DealDamage);
     }
 
     protected void fixedUpdate() { }
@@ -74,23 +61,5 @@ public class EnemyUnit : MonoBehaviour
     public void TriggerAnimation(int param)
     {
         animator.Play(param, 0, 0.0f);
-    }
-
-    protected virtual void ReceiveDamage(Dictionary<string, object> message)
-    {
-        var damage = (DamageContext)message["damage"];
-        if (damage.target == gameObject)
-        {
-            stats.Health.CurrentValue -= damage.baseDamage;
-        }
-    }
-
-    protected virtual void DealDamage(Dictionary<string, object> message)
-    {
-        var damage = (DamageContext)message["damage"];
-        if (damage.source == gameObject)
-        {
-            stats.Health.CurrentValue += damage.baseDamage * stats.LifeSteal.Value;
-        }
     }
 }

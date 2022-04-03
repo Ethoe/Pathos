@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     public bool RemoveEnemy(GameObject enemy)
     {
         bool res = enemies.Remove(enemy);
-        if (enemies.Count <= 0)
+        if (enemies.Count <= 0 && res)
         {
             EventManager.TriggerEvent(Events.ClearedRoomTrigger, null);
         }

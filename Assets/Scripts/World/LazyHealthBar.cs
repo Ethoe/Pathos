@@ -32,7 +32,6 @@ public class LazyHealthBar : MonoBehaviour
     void OnDestroy()
     {
         EventManager.StopListening(Events.UnitDiedTrigger, destroyUnit);
-
     }
 
     // Update is called once per frame

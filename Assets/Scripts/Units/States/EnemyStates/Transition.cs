@@ -10,8 +10,8 @@ public class Transition : ScriptableObject
     public void Execute(BaseStateMachine stateMachine)
     {
         if (Decision.Decide(stateMachine) && !(TrueState is RemainInState))
-            stateMachine.CurrentState = TrueState;
+            stateMachine.ChangeState(TrueState);
         else if (!(FalseState is RemainInState))
-            stateMachine.CurrentState = FalseState;
+            stateMachine.ChangeState(FalseState);
     }
 }
