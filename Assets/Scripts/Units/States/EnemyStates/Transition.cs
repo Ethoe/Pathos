@@ -23,7 +23,12 @@ public class Transition : ScriptableObject
             WeightedChanceExecutor weightedChanceExecutor = new WeightedChanceExecutor();
             foreach (var state in TrueState)
             {
-                weightedChanceExecutor.AddChance(new WeightedChanceParam(() => { stateMachine.ChangeState(state.State); }, state.Weight));
+                weightedChanceExecutor.AddChance(new WeightedChanceParam(() =>
+                {
+                    if (state.State is RemainInState)
+                        return;
+                    stateMachine.ChangeState(state.State);
+                }, state.Weight));
             }
             weightedChanceExecutor.Execute();
         }
