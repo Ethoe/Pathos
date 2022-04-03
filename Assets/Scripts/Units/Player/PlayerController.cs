@@ -29,10 +29,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     [HideInInspector]
     public AbilityHolder abilities;
-
-    // Private Vars
-    private Rigidbody2D rigidbody2d;
-    protected Vector2 oldPosition;
+    public MovementController movement;
     #endregion
 
     // Start is called before the first frame update
@@ -46,9 +43,9 @@ public class PlayerController : MonoBehaviour
         buffBar = gameObject.GetComponent<BuffableEntity>();
 
         abilities = GetComponent<AbilityHolder>();
+        movement = GetComponent<MovementController>();
 
         animator = GetComponent<Animator>();
-        oldPosition = this.gameObject.transform.position;
         shoot = false;
 
 
@@ -63,7 +60,6 @@ public class PlayerController : MonoBehaviour
 
         GameManager.Instance.player = gameObject;
 
-        rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         statsComponent = GetComponent<StatBlockComponent>();
@@ -72,16 +68,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector2 moving = movement.Direction;
+        animator.SetFloat("Move X", moving.x);
+        animator.SetFloat("Move Y", moving.y);
+
         controlSM.CurrentState.HandleInput();
         controlSM.CurrentState.LogicUpdate();
     }
 
     void FixedUpdate()
     {
-        Vector2 moving = ((Vector2)this.gameObject.transform.position - oldPosition).normalized;
-        animator.SetFloat("Move X", moving.x);
-        animator.SetFloat("Move Y", moving.y);
-
         controlSM.CurrentState.PhysicsUpdate();
     }
 
@@ -93,18 +89,6 @@ public class PlayerController : MonoBehaviour
     public void TriggerAnimation(int param)
     {
         animator.Play(param, 0, 0.0f);
-    }
-
-    public void PlayerMove(Vector2 target)
-    {
-        oldPosition = transform.position;
-        rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * statsComponent.stats.MoveSpeed.Value));
-    }
-
-    public void PlayerMove(Vector2 target, float moveSpeed)
-    {
-        oldPosition = transform.position;
-        rigidbody2d.MovePosition(Vector2.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed));
     }
 
     private void ExitRoom(Dictionary<string, object> message)

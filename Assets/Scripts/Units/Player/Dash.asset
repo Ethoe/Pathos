@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   Name: Dash
-  Cooldown: 2
+  Cooldown: 1
   CastTime: 0.5
   ability: {fileID: 0}
   distance: 6

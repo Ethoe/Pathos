@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseState.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\AttackAbility.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\TimedAbility.cs" />
+     <Compile Include="Assets\Scripts\Units\Items\DropTable.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedTMCSBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatModifier.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeBaseState.cs" />
@@ -82,6 +83,7 @@
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardAttackingState.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\Slime\Slime.cs" />
      <Compile Include="Assets\Scripts\World\DamageContext.cs" />
+     <Compile Include="Assets\Scripts\Units\Items\ItemDrop.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\PlayerStateMachine.cs" />
      <Compile Include="Assets\Scripts\Units\States\State.cs" />
      <Compile Include="Assets\Scripts\Tools\Tools.cs" />
@@ -94,6 +96,7 @@
      <Compile Include="Assets\Scripts\Units\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\SkillshotController.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Squidward\SquidwardWanderState.cs" />
+     <Compile Include="Assets\Scripts\Units\Items\DropperComponent.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\Squidward\DarkBolt.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Movement\TimedDashAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonGenerator.cs" />
@@ -105,9 +108,14 @@
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\GroundAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\Items\DropTable.cs" />
-     <Compile Include="Assets\Scripts\Units\Items\DropperComponent.cs" />
-     <Compile Include="Assets\Scripts\Units\Items\ItemDrop.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\BaseStateMachine.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\EnemyBaseState.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\EnemyState.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\RemainInState.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\FSMAction.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Decision.cs" />
+     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Transition.cs" />
+     <Compile Include="Assets\Scripts\Units\MovementController.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

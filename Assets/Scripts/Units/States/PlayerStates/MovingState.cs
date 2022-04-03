@@ -5,7 +5,6 @@ using UnityEngine;
 public class MovingState : BaseState
 {
     private bool attack;
-    private Vector2 moveTarget;
     private int movingParam = Animator.StringToHash("WalkBlend");
 
 
@@ -16,7 +15,7 @@ public class MovingState : BaseState
     {
         base.Enter();
         player.TriggerAnimation(movingParam);
-        moveTarget = GetMouseLocation();
+        GetMouseLocation();
         attack = false;
         ((PlayerStateMachine)stateMachine).locked = false;
     }
@@ -24,6 +23,7 @@ public class MovingState : BaseState
     public override void Exit()
     {
         base.Exit();
+        player.movement.activelyMoving = false;
         EventManager.TriggerEvent(Events.PlayerExitMove, null);
     }
 
@@ -32,7 +32,7 @@ public class MovingState : BaseState
         base.HandleInput();
         if (moveAction.triggered || moveAction.ReadValue<float>() > 0f)
         {
-            moveTarget = GetMouseLocation();
+            GetMouseLocation();
         }
 
         attack = attackAction.triggered;
@@ -42,8 +42,7 @@ public class MovingState : BaseState
     {
         base.LogicUpdate();
 
-        float distance = Vector2.Distance(player.transform.position, moveTarget);
-        if (distance <= .1f)
+        if (!player.movement.IsMoving)
         {
             stateMachine.ChangeState(player.idle);
         }
@@ -56,13 +55,13 @@ public class MovingState : BaseState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        player.PlayerMove(moveTarget);
     }
 
-    private Vector2 GetMouseLocation()
+    private void GetMouseLocation()
     {
-        moveTarget = Camera.main.ScreenToWorldPoint(mousePosition.ReadValue<Vector2>());
+        Vector2 moveTarget = Camera.main.ScreenToWorldPoint(mousePosition.ReadValue<Vector2>());
         EventManager.TriggerEvent(Events.PlayerClick, new Dictionary<string, object> { { "target", moveTarget } });
-        return moveTarget + new Vector2(0, player.spriteRenderer.bounds.extents.y);
+        moveTarget += new Vector2(0, player.spriteRenderer.bounds.extents.y);
+        player.movement.Target = moveTarget;
     }
 }

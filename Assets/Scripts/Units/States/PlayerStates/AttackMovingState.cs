@@ -36,8 +36,8 @@ public class AttackMovingState : BaseState
 
         if (((PlayerStateMachine)stateMachine).target != null)
         {
-            float distance = Vector2.Distance(player.transform.position, ((PlayerStateMachine)stateMachine).target.transform.position);
-            if (distance < player.statsComponent.stats.AttackRange.Value)
+            player.movement.Target = ((PlayerStateMachine)stateMachine).target.transform.position;
+            if (player.movement.Distance < player.statsComponent.stats.AttackRange.Value)
             {
                 stateMachine.ChangeState(player.attacking);
                 return;
@@ -65,16 +65,14 @@ public class AttackMovingState : BaseState
         }
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+        player.movement.activelyMoving = false;
+    }
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        if (((PlayerStateMachine)stateMachine).target != null)
-        {
-            player.PlayerMove(((PlayerStateMachine)stateMachine).target.transform.position);
-        }
-        else
-        {
-            idle = true;
-        }
     }
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TimedDashAbility : TimedAbility
 {
-    private Vector2 startPos;
-    private Vector2 moveTarget;
+    private MovementController movement;
     private Rigidbody2D rigidbody2D;
     public TimedDashAbility(ScriptableAbility ability, GameObject source) : base(ability, source)
     {
         state = AbilityState.ready;
+        movement = source.GetComponent<MovementController>();
         rigidbody2D = source.GetComponent<Rigidbody2D>();
     }
 
@@ -18,30 +18,23 @@ public class TimedDashAbility : TimedAbility
         base.Activate(target, direction, layer);
         EventManager.TriggerEvent(Events.AbilityAnimationTrigger, new Dictionary<string, object> { { "source", Source }, { "param", Animator.StringToHash("DashBlend") } });
 
-        startPos = Source.transform.position;
-        moveTarget = ((direction - startPos).normalized * ((DashAbility)Ability).distance) + startPos; // Get angle of mouse and multiply vector by dashdistance magnitude
+        Vector2 startPos = Source.transform.position;
+        movement.Target = ((direction - startPos).normalized * ((DashAbility)Ability).distance) + startPos;
+        movement.MoveSpeed = ((DashAbility)Ability).speed;
     }
 
     public override void TickEffect()
     {
         base.TickEffect();
-        float distance = Vector2.Distance(Source.transform.position, startPos);
-        if (distance >= ((DashAbility)Ability).distance && state == AbilityState.casting)
+        if (!movement.IsMoving && state == AbilityState.casting)
         {
             state = AbilityState.cooldown;
             Cooldown = Ability.Cooldown;
         }
     }
 
-    public override void LogicTick(float delta)
+    public override void End()
     {
-        base.LogicTick(delta);
-        if (state == AbilityState.casting)
-            move(moveTarget, ((DashAbility)Ability).speed, delta);
-    }
-    public override void End() { }
-    public void move(Vector2 target, float moveSpeed, float delta)
-    {
-        rigidbody2D.MovePosition(Vector2.MoveTowards(Source.transform.position, target, delta * moveSpeed));
+        
     }
 }

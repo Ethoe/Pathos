@@ -28,7 +28,7 @@ public class SlimeAttackState : SlimeBaseState
         base.LogicUpdate();
         if (unit.abilityHolder.Abilities[AbilityClass.AbilityOne].state == AbilityState.ready)
         {
-            unit.TriggerAnimation(abilityParam);
+            unit.TriggerAnimation(abilityParam); // make event trigger
             unit.abilityHolder.Activate(AbilityClass.AbilityOne, null, unit.transform.position, unit.layer);
         }
         if (unit.abilityHolder.Abilities[AbilityClass.AbilityOne].state == AbilityState.cooldown)
