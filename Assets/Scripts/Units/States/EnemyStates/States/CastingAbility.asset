@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4787409eca6ad4395be5aa2fccc08f, type: 3}
   m_Name: CastingAbility
   m_EditorClassIdentifier: 
-  Action: []
-  Transitions: []
+  Action:
+  - {fileID: 11400000, guid: 1f475c2c4bdeeb445a61915d81761549, type: 2}
+  Transitions:
+  - {fileID: 11400000, guid: 588e92cd87b7e4f4d8ab53293eec3521, type: 2}

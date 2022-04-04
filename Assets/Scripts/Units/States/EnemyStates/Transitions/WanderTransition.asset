@@ -17,5 +17,5 @@ MonoBehaviour:
   - State: {fileID: 11400000, guid: b5a326673dff85942b2d7e85e1aac73b, type: 2}
     Weight: 1
   - State: {fileID: 11400000, guid: d66196c40a52dc94e950e41eae839a8a, type: 2}
-    Weight: 2
+    Weight: 10
   FalseState: {fileID: 11400000, guid: fd360082d56ae2849a611586d11a9a12, type: 2}

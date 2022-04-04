@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: IdleTransition
   m_EditorClassIdentifier: 
   Decision: {fileID: 11400000, guid: 80a6d2bd9c3860343bf912e9752ed1e4, type: 2}
-  TrueState: []
+  TrueState:
+  - State: {fileID: 11400000, guid: d66196c40a52dc94e950e41eae839a8a, type: 2}
+    Weight: 1
   FalseState: {fileID: 11400000, guid: fd360082d56ae2849a611586d11a9a12, type: 2}

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: AbilityCheck
   m_EditorClassIdentifier: 
   Action: []
-  Transitions: []
+  Transitions:
+  - {fileID: 11400000, guid: 44d7cc81757ea80438387e730658233b, type: 2}

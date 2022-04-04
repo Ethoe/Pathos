@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4787409eca6ad4395be5aa2fccc08f, type: 3}
   m_Name: Track
   m_EditorClassIdentifier: 
-  Action: []
-  Transitions: []
+  Action:
+  - {fileID: 11400000, guid: 146bbf0ca30770f4c8d52af566165ef5, type: 2}
+  Transitions:
+  - {fileID: 11400000, guid: 2b3551f7a6ed0bb4da2a2b068d6a6158, type: 2}
+  - {fileID: 11400000, guid: 398477b8904470d4aa3122bada87be33, type: 2}

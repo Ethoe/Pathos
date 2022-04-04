@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e768ccdacb38a44a3c3d990d498862, type: 3}
   m_Name: AbilityReadyTransition
   m_EditorClassIdentifier: 
-  Decision: {fileID: 0}
-  TrueState: []
-  FalseState: {fileID: 0}
+  Decision: {fileID: 11400000, guid: 158008e129080cb4fb149579b6773eab, type: 2}
+  TrueState:
+  - State: {fileID: 11400000, guid: 1d2658fb79f4c994e80f98146f625686, type: 2}
+    Weight: 1
+  FalseState: {fileID: 11400000, guid: fd360082d56ae2849a611586d11a9a12, type: 2}

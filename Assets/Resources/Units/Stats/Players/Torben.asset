@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Torben
   m_EditorClassIdentifier: 
   Health:
-    BaseValue: 100000
-    CurrentValue: 100000
+    BaseValue: 1000
+    CurrentValue: 1000
   AttackSpeed:
-    BaseValue: 1
+    BaseValue: 2
   AttackRange:
     BaseValue: 3
   CritChance:
@@ -26,9 +26,9 @@ MonoBehaviour:
   CoolDown:
     BaseValue: 0
   LifeSteal:
-    BaseValue: 0.1
+    BaseValue: 0.01
   Attack:
-    BaseValue: 10000
+    BaseValue: 150
   Armor:
     BaseValue: 5
   MoveSpeed:
