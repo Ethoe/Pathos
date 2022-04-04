@@ -6,7 +6,6 @@ using UnityEngine;
 public class SkillshotAbility : ScriptableAbility
 {
     public bool stopOnHit;
-    public float range;
     public float speed;
     public override TimedAbility InitializeAbility(GameObject source)
     {

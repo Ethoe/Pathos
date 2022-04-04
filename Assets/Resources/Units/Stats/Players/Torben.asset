@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Torben
   m_EditorClassIdentifier: 
   Health:
-    BaseValue: 1000
-    CurrentValue: 1000
+    BaseValue: 100000
+    CurrentValue: 100000
   AttackSpeed:
     BaseValue: 1
   AttackRange:

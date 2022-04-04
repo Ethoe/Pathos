@@ -18,7 +18,7 @@ public class TimedSkillshotAbility : TimedAbility
         projectileObject.layer = layer;
         SkillshotController projectile = projectileObject.GetComponent<SkillshotController>();
         projectile.owner = Source;
-        projectile.range = ((SkillshotAbility)Ability).range;
+        projectile.range = ((SkillshotAbility)Ability).Range;
         projectile.stopOnHit = ((SkillshotAbility)Ability).stopOnHit;
         projectile.speed = ((SkillshotAbility)Ability).speed;
         projectile.Launch(direction);

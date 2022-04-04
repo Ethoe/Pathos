@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4787409eca6ad4395be5aa2fccc08f, type: 3}
   m_Name: Idle
   m_EditorClassIdentifier: 
-  Action: []
-  Transitions: []
+  Action:
+  - {fileID: 11400000, guid: 5b5ce9915b51c7f4c95e02b8ab6399e1, type: 2}
+  Transitions:
+  - {fileID: 11400000, guid: 263fbbd2880e27b4298247cb002f4a81, type: 2}

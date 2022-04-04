@@ -6,14 +6,20 @@ public class BaseStateMachine : MonoBehaviour
 {
     [SerializeField] private EnemyBaseState _initialState;
     private Dictionary<Type, Component> _cachedComponents;
+    [SerializeField] private EnemyBaseState CurrentState;
+    [HideInInspector] public int layer = 8;
     [HideInInspector] public float TimeInState;
     public GameObject Target;
-    [SerializeField] private EnemyBaseState CurrentState;
     void Awake()
     {
         CurrentState = _initialState;
         CurrentState.Enter(this);
         _cachedComponents = new Dictionary<Type, Component>();
+    }
+
+    void Start()
+    {
+        Target = GameManager.Instance.player;
     }
 
     // Update is called once per frame
