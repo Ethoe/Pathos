@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7250248914366284817}
   - component: {fileID: 7250248914366284818}
   - component: {fileID: 7250248914366284831}
-  - component: {fileID: 7250248914366284816}
   - component: {fileID: 220964601096814373}
   - component: {fileID: 5700077011766114737}
   - component: {fileID: 5552771167039651904}
@@ -163,26 +162,6 @@ MonoBehaviour:
   Player: 0
   originalStats: {fileID: 11400000, guid: 72a5d5b725422b740bd101d7eeb596c3, type: 2}
   stats: {fileID: 0}
---- !u!114 &7250248914366284816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7250248914366284822}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab097b7492247b24d96a4240ec6ec657, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 0}
-  abilityTimer: 0
-  difficultyLevel: 1
-  layer: 8
-  ability: {fileID: 702103384415296957, guid: fa02d5677ef374b46b5a47862b023fbb, type: 3}
-  animator: {fileID: 0}
-  abilityHolder: {fileID: 0}
-  aggrod: {fileID: 0}
 --- !u!114 &220964601096814373
 MonoBehaviour:
   m_ObjectHideFlags: 0
