@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 220964601096814373}
   - component: {fileID: 5700077011766114737}
   - component: {fileID: 5552771167039651904}
+  - component: {fileID: 5101227236776887785}
+  - component: {fileID: 2809549503388940716}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Untagged
@@ -158,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8023319431ca3f24c8f8acdcbdbabdf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: 0
   originalStats: {fileID: 11400000, guid: 72a5d5b725422b740bd101d7eeb596c3, type: 2}
   stats: {fileID: 0}
 --- !u!114 &7250248914366284816
@@ -167,7 +170,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7250248914366284822}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab097b7492247b24d96a4240ec6ec657, type: 3}
   m_Name: 
@@ -175,12 +178,11 @@ MonoBehaviour:
   stats: {fileID: 0}
   abilityTimer: 0
   difficultyLevel: 1
-  statLocation: Stats/Enemies/Slime
   layer: 8
   ability: {fileID: 702103384415296957, guid: fa02d5677ef374b46b5a47862b023fbb, type: 3}
-  aggrod: {fileID: 0}
   animator: {fileID: 0}
   abilityHolder: {fileID: 0}
+  aggrod: {fileID: 0}
 --- !u!114 &220964601096814373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,3 +225,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropTable: {fileID: 11400000, guid: c40f5605f045c5d46858d179ec77f99e, type: 2}
+--- !u!114 &5101227236776887785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250248914366284822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5934542a1d6b3489d4a37bea5873f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activelyMoving: 0
+  SetMoveSpeed: 0
+--- !u!114 &2809549503388940716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250248914366284822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee95e945c83672d49940b15bc751e9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialState: {fileID: 11400000, guid: d66196c40a52dc94e950e41eae839a8a, type: 2}
+  CurrentState: {fileID: 0}
+  layer: 8
+  TimeInState: 0
+  Target: {fileID: 0}
