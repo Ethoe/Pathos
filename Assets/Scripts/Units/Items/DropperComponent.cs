@@ -48,7 +48,8 @@ public class DropperComponent : MonoBehaviour
                     weightedChanceExecutor.AddChance(
                         new WeightedChanceParam(() =>
                         {
-                            Instantiate(drop.drop, transform.position, Quaternion.identity);
+                            if (drop.drop != null)
+                                Instantiate(drop.drop, transform.position, Quaternion.identity);
                         }, drop.dropWeight)
                     );
                 }
