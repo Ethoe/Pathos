@@ -14,7 +14,7 @@ public class MovementController : MonoBehaviour
         set
         {
             _CheckDelay = true;
-            _Delay = .1f;
+            _Delay = .01f;
             SetMoveSpeed = false;
             activelyMoving = true;
             _Target = value;

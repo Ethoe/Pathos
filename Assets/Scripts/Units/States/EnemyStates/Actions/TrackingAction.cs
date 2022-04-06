@@ -13,13 +13,15 @@ public class TrackingAction : FSMAction
         if (stateMachine.Target == null)
             return;
 
-        Debug.Log("tracking");
         movement.Target = stateMachine.Target.transform.position;
     }
 
     public override void Enter(BaseStateMachine stateMachine)
     {
         base.Enter(stateMachine);
+        var animator = stateMachine.GetComponent<AnimationController>();
+        if (animator != null)
+            animator.TriggerAnimation(animator.animationParam["Move"]);
         stateMachine.Target = GameManager.Instance.player;
         stateMachine.TimeInState = Random.Range(4, 8);
     }

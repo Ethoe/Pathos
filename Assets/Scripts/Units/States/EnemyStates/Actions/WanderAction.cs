@@ -6,13 +6,11 @@ public class WanderAction : FSMAction
     public override void Execute(BaseStateMachine stateMachine)
     {
         stateMachine.TimeInState -= Time.deltaTime;
-        Debug.Log("trying" + stateMachine.TimeInState);
         var movement = stateMachine.GetComponent<MovementController>();
 
         if (movement.IsMoving)
             return;
 
-        Debug.Log("movin");
         var goingTo = new Vector2(stateMachine.transform.position.x + Random.Range(-5, 5), stateMachine.transform.position.y + Random.Range(-5, 5));
         RaycastHit2D hit = Physics2D.Raycast(goingTo, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Walls"));
         if (hit.collider != null)
@@ -26,6 +24,9 @@ public class WanderAction : FSMAction
     public override void Enter(BaseStateMachine stateMachine)
     {
         base.Enter(stateMachine);
+        var animator = stateMachine.GetComponent<AnimationController>();
+        if (animator != null)
+            animator.TriggerAnimation(animator.animationParam["Move"]);
         stateMachine.TimeInState = Random.Range(4, 8);
     }
 

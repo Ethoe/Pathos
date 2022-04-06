@@ -14,9 +14,11 @@ public class UseAbilityAction : FSMAction
     {
         base.Enter(stateMachine);
         var abilityHolder = stateMachine.GetComponent<AbilityHolder>();
+        var animator = stateMachine.GetComponent<AnimationController>();
         if (abilityHolder.Abilities[AbilityClass.AbilityOne].state == AbilityState.ready)
         {
-            // TriggerAnimation(abilityParam); // make event trigger
+            if (animator != null)
+                animator.TriggerAnimation(animator.animationParam["Ability"]);
             abilityHolder.Activate(AbilityClass.AbilityOne, stateMachine.Target, stateMachine.Target.transform.position, stateMachine.layer);
         }
     }

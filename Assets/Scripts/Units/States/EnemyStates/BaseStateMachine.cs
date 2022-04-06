@@ -13,12 +13,12 @@ public class BaseStateMachine : MonoBehaviour
     void Awake()
     {
         CurrentState = _initialState;
-        CurrentState.Enter(this);
         _cachedComponents = new Dictionary<Type, Component>();
     }
 
     void Start()
     {
+        CurrentState.Enter(this);
         Target = GameManager.Instance.player;
     }
 
@@ -38,13 +38,14 @@ public class BaseStateMachine : MonoBehaviour
     public new T GetComponent<T>() where T : Component
     {
         if (_cachedComponents.ContainsKey(typeof(T)))
+        {
+            if (_cachedComponents[typeof(T)] == null)
+                return null;
             return _cachedComponents[typeof(T)] as T;
+        }
 
         var component = base.GetComponent<T>();
-        if (component != null)
-        {
-            _cachedComponents.Add(typeof(T), component);
-        }
+        _cachedComponents.Add(typeof(T), component);
         return component;
     }
 }

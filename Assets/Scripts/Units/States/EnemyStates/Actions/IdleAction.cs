@@ -11,6 +11,9 @@ public class IdleAction : FSMAction
     public override void Enter(BaseStateMachine stateMachine)
     {
         base.Enter(stateMachine);
+        var animator = stateMachine.GetComponent<AnimationController>();
+        if (animator != null)
+            animator.TriggerAnimation(animator.animationParam["Idle"]);
         stateMachine.TimeInState = Random.Range(4, 8);
     }
 }
