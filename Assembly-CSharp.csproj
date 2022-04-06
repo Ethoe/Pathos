@@ -40,7 +40,6 @@
      <Compile Include="Assets\Scripts\World\MoveIndicator.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Actions\UseAbilityAction.cs" />
-     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeTrackingState.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Decisions\IsInRangeDecision.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Actions\TrackingAction.cs" />
      <Compile Include="Assets\Scripts\EffectManager.cs" />
@@ -72,8 +71,6 @@
      <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedTMCSBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Decisions\IsAbilityReadyDecision.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\StatModifier.cs" />
-     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeBaseState.cs" />
-     <Compile Include="Assets\Scripts\Units\Enemies\EnemyUnit.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedSpeedBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\StateMachine.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\SkillshotAbility.cs" />
@@ -85,9 +82,7 @@
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\TMCSBuff.cs" />
      <Compile Include="Assets\Scripts\World\Minimap.cs" />
      <Compile Include="Assets\Settings\Controls.cs" />
-     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeWanderState.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\AbilityHolder.cs" />
-     <Compile Include="Assets\Scripts\Units\Enemies\Slime\Slime.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Actions\IdleAction.cs" />
      <Compile Include="Assets\Scripts\World\DamageContext.cs" />
      <Compile Include="Assets\Scripts\Units\Items\ItemDrop.cs" />
@@ -96,12 +91,10 @@
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\RemainInState.cs" />
      <Compile Include="Assets\Scripts\Units\MovementController.cs" />
      <Compile Include="Assets\Scripts\Tools\Tools.cs" />
-     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeAttackState.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\FSMAction.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackMovingState.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\SpeedBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Actions\WanderAction.cs" />
-     <Compile Include="Assets\Scripts\Units\States\EnemyStates\Slime\SlimeIdleState.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Decisions\StateTimeDecision.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\MovingState.cs" />
