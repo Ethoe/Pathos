@@ -8,14 +8,14 @@ public class LazyHealthBar : MonoBehaviour
     private float currHPSlow;
 
     private StatBlockComponent statsComp;
-    private Collider2D boundingBox;
+    private SpriteRenderer boundingBox;
     public GameObject target;
     public Image barFast, barSlow;
     // Start is called before the first frame update
 
     void Start()
     {
-        boundingBox = target.GetComponent<Collider2D>();
+        boundingBox = target.GetComponent<SpriteRenderer>();
         statsComp = target.GetComponent<StatBlockComponent>();
         currHPSlow = 0;
         EventManager.StartListening(Events.UnitDiedTrigger, destroyUnit);

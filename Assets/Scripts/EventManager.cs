@@ -17,6 +17,7 @@ public enum Events
     PlayerTargettedTrigger,
     PlayerEndTargettedTrigger,
     UnitDiedTrigger,
+    LeaveLevelTrigger,
 }
 
 public class EventManager : MonoBehaviour

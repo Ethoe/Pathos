@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Units\Abilities\ScriptableAbility.cs" />
-     <Compile Include="Assets\Scripts\World\MoveIndicator.cs" />
+     <Compile Include="Assets\Scripts\World\Interactables\MoveIndicator.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Actions\UseAbilityAction.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Decisions\IsInRangeDecision.cs" />
@@ -49,7 +49,7 @@
      <Compile Include="Assets\Scripts\Units\Stats\StatBlockComponent.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\TimedAttackAbility.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\TimedSkillshotAbility.cs" />
-     <Compile Include="Assets\Scripts\World\DoorEnter.cs" />
+     <Compile Include="Assets\Scripts\World\Interactables\DoorEnter.cs" />
      <Compile Include="Assets\Scripts\EventManager.cs" />
      <Compile Include="Assets\Scripts\Tools\JsonHelper.cs" />
      <Compile Include="Assets\Scripts\RoomManager.cs" />
@@ -80,7 +80,7 @@
      <Compile Include="Assets\Scripts\Units\Buffs\BuffableEntity.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\EnemyBaseState.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\TMCSBuff.cs" />
-     <Compile Include="Assets\Scripts\World\Minimap.cs" />
+     <Compile Include="Assets\Scripts\World\Interactables\Minimap.cs" />
      <Compile Include="Assets\Settings\Controls.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\AbilityHolder.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Actions\IdleAction.cs" />
@@ -95,6 +95,7 @@
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackMovingState.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\SpeedBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Actions\WanderAction.cs" />
+     <Compile Include="Assets\Scripts\Units\AnimationController.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Decisions\StateTimeDecision.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\MovingState.cs" />
@@ -108,11 +109,11 @@
      <Compile Include="Assets\Scripts\Units\Enemies\Slime\SlimePop.cs" />
      <Compile Include="Assets\Scripts\Units\Stats\CharacterStat.cs" />
      <Compile Include="Assets\Scripts\World\DamageTextProcedural.cs" />
-     <Compile Include="Assets\Scripts\World\LazyHealthBar.cs" />
+     <Compile Include="Assets\Scripts\World\Interactables\LazyHealthBar.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\GroundAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\AnimationController.cs" />
+     <Compile Include="Assets\Scripts\World\Interactables\RopeController.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public AbilityHolder abilities;
     public MovementController movement;
+    private Collider2D collider2d;
+    private bool playerInControl;
     #endregion
 
     // Start is called before the first frame update
@@ -37,12 +39,16 @@ public class PlayerController : MonoBehaviour
     {
         EventManager.StartListening(Events.DoorwayTriggerEnter, ExitRoom);
         EventManager.StartListening(Events.AbilityAnimationTrigger, TriggerAnimationListener);
+        EventManager.StartListening(Events.LeaveLevelTrigger, LeaveLevelListener);
+
+        playerInControl = true;
 
         buffBar = gameObject.GetComponent<BuffableEntity>();
 
         abilities = GetComponent<AbilityHolder>();
         movement = GetComponent<MovementController>();
 
+        collider2d = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         shoot = false;
 
@@ -67,13 +73,19 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Move X", moving.x);
         animator.SetFloat("Move Y", moving.y);
 
-        controlSM.CurrentState.HandleInput();
-        controlSM.CurrentState.LogicUpdate();
+        if (playerInControl)
+        {
+            controlSM.CurrentState.HandleInput();
+            controlSM.CurrentState.LogicUpdate();
+        }
     }
 
     void FixedUpdate()
     {
-        controlSM.CurrentState.PhysicsUpdate();
+        if (playerInControl)
+        {
+            controlSM.CurrentState.PhysicsUpdate();
+        }
     }
 
     public void AutoAttackFire()
@@ -86,6 +98,26 @@ public class PlayerController : MonoBehaviour
         animator.Play(param, 0, 0.0f);
     }
 
+    private void TriggerAnimationListener(Dictionary<string, object> message)
+    {
+        var source = (GameObject)message["source"];
+        var param = (int)message["param"];
+        if (source == gameObject)
+        {
+            animator.Play(param, 0, 0.0f);
+        }
+    }
+
+    private void LeaveLevelListener(Dictionary<string, object> message)
+    {
+        controlSM.ChangeState(idle);
+        playerInControl = false;
+        movement.Target = (Vector2)message["target"];
+        movement.MoveSpeed = (float)message["speed"];
+        collider2d.enabled = false;
+        // TODO: remember to remove movespeed active and turn on collider
+    }
+
     private void ExitRoom(Dictionary<string, object> message)
     {
         controlSM.ChangeState(idle);
@@ -95,15 +127,6 @@ public class PlayerController : MonoBehaviour
     {
         EventManager.StopListening(Events.DoorwayTriggerEnter, ExitRoom);
         EventManager.StopListening(Events.AbilityAnimationTrigger, TriggerAnimationListener);
-    }
-
-    public void TriggerAnimationListener(Dictionary<string, object> message)
-    {
-        var source = (GameObject)message["source"];
-        var param = (int)message["param"];
-        if (source == gameObject)
-        {
-            animator.Play(param, 0, 0.0f);
-        }
+        EventManager.StopListening(Events.LeaveLevelTrigger, LeaveLevelListener);
     }
 }
