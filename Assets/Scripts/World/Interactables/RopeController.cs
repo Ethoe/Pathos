@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class RopeController : MonoBehaviour
 {
-    Vector2 target;
-    bool isLeaving;
-    float LeaveSpeed = 10f;
+    private Collider2D collider2d;
+    private Vector2 target;
+    private bool isLeaving;
+    private float LeaveSpeed = 10f;
     void Awake()
     {
         target = Vector2.zero;
         isLeaving = false;
+        collider2d = GetComponent<Collider2D>();
+        collider2d.enabled = false;
     }
 
     void FixedUpdate()
     {
         transform.position = Vector2.MoveTowards(transform.position, target, movespeed() * Time.deltaTime);
+        if (Mathf.Approximately(Vector2.Distance(transform.position, target), 0))
+        {
+            collider2d.enabled = true;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("triggered");
         if (other.gameObject == GameManager.Instance.player)
         {
-            // Probably want to trigger something
-            // EventManager.TriggerEvent(Events.DoorwayTriggerEnter, new Dictionary<string, object> { { "side", side } });
             isLeaving = true;
             target = new Vector2(0f, 15f);
             EventManager.TriggerEvent(Events.LeaveLevelTrigger, new Dictionary<string, object> { { "speed", LeaveSpeed }, { "target", target } });

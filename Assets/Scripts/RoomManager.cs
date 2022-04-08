@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour
             return _instance;
         }
     }
-    public GameObject hpBar;
+    public GameObject hpBar, leaveRope;
     public DungeonGenerator currentLevel;
     public DungeonRoom currentRoom;
     private Object solidWall, closedGate, openGate;
@@ -226,6 +226,9 @@ public class RoomManager : MonoBehaviour
                 }
                 break;
             case RoomType.FloorStart:
+                break;
+            case RoomType.FloorEnd:
+                Instantiate(leaveRope, new Vector3(0, 14, 0), Quaternion.identity);
                 break;
             default:
                 break;
