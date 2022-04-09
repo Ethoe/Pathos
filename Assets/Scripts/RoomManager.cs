@@ -25,7 +25,7 @@ public class RoomManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        currentLevel = new DungeonGenerator(10);
+        currentLevel = new DungeonGenerator(5);
         solidWall = LoadWall("Wall");
         closedGate = LoadWall("DoorClosed");
         openGate = LoadWall("DoorOpen");
@@ -44,6 +44,43 @@ public class RoomManager : MonoBehaviour
         EventManager.StartListening(Events.ClearedRoomTrigger, ClearRoom);
         EventManager.StartListening(Events.FilledRoomTrigger, CloseRoom);
         EventManager.StartListening(Events.SpawnDropTrigger, AddDrop);
+        EventManager.StartListening(Events.EnterLevelTrigger, NextDungeon);
+    }
+
+    private void NextDungeon(Dictionary<string, object> message)
+    {
+        for (int i = 0; i < walls.Length; i++)
+        {
+            if (walls[i] != null)
+            {
+                Destroy(walls[i]);
+                walls[i] = null;
+            }
+        }
+
+        for (int i = solidWalls.Count - 1; i >= 0; i--)
+        {
+            Destroy(solidWalls[i]);
+            solidWalls.RemoveAt(i);
+        }
+
+        if (currentRoom.drops != null)
+        {
+            foreach (var drop in currentRoom.drops.Reverse<GameObject>())
+            {
+                if (drop == null)
+                    currentRoom.drops.Remove(drop);
+                else
+                    drop.SetActive(false);
+            }
+        }
+
+        currentLevel.Generate(10); // put in growing number;
+        currentRoom = currentLevel.enter;
+        currentRoom.visited = true;
+        buildRoom();
+        spawnRoom();
+        EventManager.TriggerEvent(Events.GenerateRoomTrigger, null);
     }
 
     private void AddDrop(Dictionary<string, object> message)

@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         EventManager.StartListening(Events.DoorwayTriggerEnter, ExitRoom);
         EventManager.StartListening(Events.AbilityAnimationTrigger, TriggerAnimationListener);
         EventManager.StartListening(Events.LeaveLevelTrigger, LeaveLevelListener);
+        EventManager.StartListening(Events.EnterLevelTrigger, EnterLevelListener);
 
         playerInControl = true;
 
@@ -118,6 +119,15 @@ public class PlayerController : MonoBehaviour
         // TODO: remember to remove movespeed active and turn on collider
     }
 
+    private void EnterLevelListener(Dictionary<string, object> message)
+    {
+        playerInControl = true;
+        movement.activelyMoving = false;
+        movement.SetMoveSpeed = false;
+        transform.position = new Vector3(0, 0, 0);
+        collider2d.enabled = true;
+    }
+
     private void ExitRoom(Dictionary<string, object> message)
     {
         controlSM.ChangeState(idle);
@@ -128,5 +138,6 @@ public class PlayerController : MonoBehaviour
         EventManager.StopListening(Events.DoorwayTriggerEnter, ExitRoom);
         EventManager.StopListening(Events.AbilityAnimationTrigger, TriggerAnimationListener);
         EventManager.StopListening(Events.LeaveLevelTrigger, LeaveLevelListener);
+        EventManager.StopListening(Events.EnterLevelTrigger, EnterLevelListener);
     }
 }

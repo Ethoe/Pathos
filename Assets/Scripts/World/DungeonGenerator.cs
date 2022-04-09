@@ -156,7 +156,7 @@ public class DungeonGenerator
         map[location.x, location.y].type = type;
     }
 
-    public void CleanDungeon()
+    private void CleanDungeon()
     {
         if (map == null)
             return;

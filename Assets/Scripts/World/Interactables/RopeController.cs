@@ -23,6 +23,11 @@ public class RopeController : MonoBehaviour
         {
             collider2d.enabled = true;
         }
+        if (Mathf.Approximately(Vector2.Distance(transform.position, target), 0) && isLeaving)
+        {
+            EventManager.TriggerEvent(Events.EnterLevelTrigger, new Dictionary<string, object> { });
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
