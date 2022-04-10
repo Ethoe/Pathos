@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2687b1c565871349a48829ff0a50950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemBuff: {fileID: 0}
+  itemBuff: {fileID: 11400000, guid: 24176557efc8cde43a5bc060def17220, type: 2}
   Range: 0
 --- !u!61 &121593944
 BoxCollider2D:
@@ -817,7 +817,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &560434009 stripped
 Transform:
@@ -1168,7 +1168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1205154598989327742, guid: b45692c32f409024c88977d1dec064d3, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1205154598989327742, guid: b45692c32f409024c88977d1dec064d3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1566,7 +1566,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2981067955125792484, guid: 3ddff186252a5594f9e1530c678ce4a9, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2981067955125792484, guid: 3ddff186252a5594f9e1530c678ce4a9, type: 3}
       propertyPath: m_LocalPosition.x
