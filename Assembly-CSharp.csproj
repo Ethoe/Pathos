@@ -117,6 +117,7 @@
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedAttackBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\AttackBuff.cs" />
+     <Compile Include="Assets\Scripts\Units\Items\ScriptableItemList.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

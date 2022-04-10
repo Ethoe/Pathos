@@ -19,3 +19,6 @@ MonoBehaviour:
   - drop: {fileID: 0}
     dropWeight: 10
     isGuarenteed: 0
+  - drop: {fileID: 2314625178611488447, guid: 4dfe09d5371812b40b62e850a6d5db35, type: 3}
+    dropWeight: 5
+    isGuarenteed: 0

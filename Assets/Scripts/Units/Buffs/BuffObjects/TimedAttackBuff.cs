@@ -13,7 +13,6 @@ public class TimedAttackBuff : TimedBuff
     {
         AttackBuff AttackBuff = (AttackBuff)Buff;
 
-        Debug.Log(statBlock.stats.Attack.Value);
         if (!Mathf.Approximately(AttackBuff.FlatIncrease, 0))
         {
             statBlock.stats.Attack.AddModifier(new StatModifier(AttackBuff.FlatIncrease, StatModType.Flat, this));
@@ -23,7 +22,6 @@ public class TimedAttackBuff : TimedBuff
         {
             statBlock.stats.Attack.AddModifier(new StatModifier(AttackBuff.PercentIncrease, StatModType.PercentAdd, this));
         }
-        Debug.Log(statBlock.stats.Attack.Value);
     }
 
     protected override void TickEffect() { }
