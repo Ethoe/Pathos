@@ -1,10 +1,12 @@
 using UnityEngine;
-using System;
+using System.Collections.Generic;
 
 public class ItemComponent : MonoBehaviour
 {
     // Public Vars
     public ScriptableBuff itemBuff;
+    [Range(0, 5)]
+    public int Range;
 
     // Private Vars
     private Collider2D collider2d;

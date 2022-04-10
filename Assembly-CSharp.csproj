@@ -79,6 +79,7 @@
      <Compile Include="Assets\Scripts\World\DestroyOnAnimationEnd.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\BuffableEntity.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\EnemyBaseState.cs" />
+     <Compile Include="Assets\Scripts\World\Interactables\RopeController.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\TMCSBuff.cs" />
      <Compile Include="Assets\Scripts\World\Interactables\Minimap.cs" />
      <Compile Include="Assets\Settings\Controls.cs" />
@@ -113,7 +114,7 @@
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\GroundAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\World\Interactables\RopeController.cs" />
+     <Compile Include="Assets\Scripts\Units\Items\ItemInventory.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
