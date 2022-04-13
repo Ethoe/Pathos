@@ -18,8 +18,9 @@ public class RoomManager : MonoBehaviour
     public DungeonGenerator currentLevel;
     public DungeonRoom currentRoom;
     private Object solidWall, closedGate, openGate;
+    public ScriptableEnemyList enemyList;
+    public ScriptableItemList itemList;
     private GameObject[] walls; // Goes Up Right Down Left
-    private object[] enemies;
     private List<Object> solidWalls;
 
     private void Awake()
@@ -32,7 +33,6 @@ public class RoomManager : MonoBehaviour
         walls = new GameObject[4];
         solidWalls = new List<Object>();
         currentRoom = currentLevel.enter;
-        enemies = Resources.LoadAll("Units/Objects/Enemies");
 
         buildRoom();
         spawnRoom();
@@ -258,7 +258,7 @@ public class RoomManager : MonoBehaviour
                 for (int count = 0; count < 2; count++)
                 {
                     Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
-                    GameObject enemy = (GameObject)enemies[Random.Range(0, enemies.Length)];
+                    GameObject enemy = enemyList.Tier1Enemy[Random.Range(0, enemyList.Tier1Enemy.Count)];
                     spawnUnit(enemy, spawnLocation);
                 }
                 break;
