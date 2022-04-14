@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Units\Stats\StatBlock.cs" />
      <Compile Include="Assets\Scripts\Units\Items\ItemComponent.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseState.cs" />
+     <Compile Include="Assets\Scripts\Units\Enemies\ScriptableEnemyList.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\AttackAbility.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\TimedAbility.cs" />
      <Compile Include="Assets\Scripts\Units\Items\DropTable.cs" />
@@ -118,7 +119,7 @@
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\GroundAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\Enemies\ScriptableEnemyList.cs" />
+     <Compile Include="Assets\Scripts\World\Interactables\ChangeCursor.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
