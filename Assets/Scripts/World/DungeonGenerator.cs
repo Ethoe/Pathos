@@ -71,7 +71,19 @@ public class DungeonGenerator
 
     private void DecideRooms()
     {
-        deadEnds[Random.Range(0, deadEnds.Count - 1)].type = RoomType.FloorEnd;
+        if (deadEnds.Count >= 1)
+        {
+            var randomNumb = Random.Range(0, deadEnds.Count - 1);
+            deadEnds[randomNumb].type = RoomType.FloorEnd;
+            deadEnds.RemoveAt(randomNumb);
+        }
+
+        if (deadEnds.Count >= 1)
+        {
+            var randomNumb = Random.Range(0, deadEnds.Count - 1);
+            deadEnds[randomNumb].type = RoomType.Shop;
+            deadEnds.RemoveAt(randomNumb);
+        }
     }
 
     private int countNeighbors(Vector2Int location)

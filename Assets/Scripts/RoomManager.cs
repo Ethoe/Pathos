@@ -246,7 +246,7 @@ public class RoomManager : MonoBehaviour
             case Direction.Left:
                 return new Vector2(8, 1);
             default:
-                return new Vector2();
+                return Vector2.zero;
         }
     }
 
