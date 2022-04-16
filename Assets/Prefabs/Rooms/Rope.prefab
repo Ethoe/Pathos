@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 612997039863863463}
   - component: {fileID: 612997039863863461}
   - component: {fileID: 612997039863863460}
+  - component: {fileID: 4902009069798508701}
   m_Layer: 0
   m_Name: Rope
   m_TagString: Untagged
@@ -110,5 +111,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e30998d24b1e46e4599295b2dd95ba73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4902009069798508701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612997039863863464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3188e731ed4a58d4caa098e5cec5f20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

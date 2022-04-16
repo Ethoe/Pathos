@@ -26,7 +26,7 @@ public class RoomManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        currentLevel = new DungeonGenerator(5);
+        currentLevel = new DungeonGenerator(7);
         solidWall = LoadWall("Wall");
         closedGate = LoadWall("DoorClosed");
         openGate = LoadWall("DoorOpen");
@@ -78,9 +78,9 @@ public class RoomManager : MonoBehaviour
         currentLevel.Generate(10); // put in growing number;
         currentRoom = currentLevel.enter;
         currentRoom.visited = true;
+        EventManager.TriggerEvent(Events.GenerateRoomTrigger, null);
         buildRoom();
         spawnRoom();
-        EventManager.TriggerEvent(Events.GenerateRoomTrigger, null);
     }
 
     private void AddDrop(Dictionary<string, object> message)
@@ -138,7 +138,7 @@ public class RoomManager : MonoBehaviour
             solidWalls.RemoveAt(i);
         }
 
-        if (currentRoom.drops != null)
+        if (currentRoom.drops != null && currentRoom.drops.Count > 0)
         {
             foreach (var drop in currentRoom.drops.Reverse<GameObject>())
             {
@@ -265,13 +265,16 @@ public class RoomManager : MonoBehaviour
             case RoomType.FloorStart:
                 break;
             case RoomType.FloorEnd:
-                Instantiate(leaveRope, new Vector3(0, 14, 0), Quaternion.identity);
+                if (!currentRoom.visited)
+                    Instantiate(leaveRope, new Vector3(0, 14, 0), Quaternion.identity);
+                break;
+            case RoomType.Shop:
                 break;
             default:
                 break;
         }
 
-        if (currentRoom.drops != null)
+        if (currentRoom.drops != null && currentRoom.drops.Count > 0)
         {
             foreach (var drop in currentRoom.drops.Reverse<GameObject>())
             {

@@ -10,8 +10,10 @@ public enum Direction
     Left
 }
 
+
 public class DungeonGenerator
 {
+    private RoomType[] roomsToGenerate = new RoomType[] { RoomType.FloorEnd, RoomType.Shop };
     public DungeonRoom[,] map;
     public DungeonRoom enter;
     private int size = 16;
@@ -71,19 +73,30 @@ public class DungeonGenerator
 
     private void DecideRooms()
     {
-        if (deadEnds.Count >= 1)
+        Tools.Shuffle(deadEnds);
+        var count = 0;
+        foreach (var room in deadEnds)
         {
-            var randomNumb = Random.Range(0, deadEnds.Count - 1);
-            deadEnds[randomNumb].type = RoomType.FloorEnd;
-            deadEnds.RemoveAt(randomNumb);
+            if (deadEnds.Count > count)
+            {
+                room.type = roomsToGenerate[count];
+                count++;
+            }
         }
+        // Debug.Log(deadEnds);
+        // if (deadEnds.Count >= 1)
+        // {
+        //     var randomNumb = Random.Range(0, deadEnds.Count - 1);
+        //     deadEnds[randomNumb].type = RoomType.FloorEnd;
+        //     deadEnds.RemoveAt(randomNumb);
+        // }
 
-        if (deadEnds.Count >= 1)
-        {
-            var randomNumb = Random.Range(0, deadEnds.Count - 1);
-            deadEnds[randomNumb].type = RoomType.Shop;
-            deadEnds.RemoveAt(randomNumb);
-        }
+        // // // if (deadEnds.Count >= 1)
+        // // // {
+        // // //     var randomNumb = Random.Range(0, deadEnds.Count - 1);
+        // // //     deadEnds[randomNumb].type = RoomType.Shop;
+        // // //     deadEnds.RemoveAt(randomNumb);
+        // // // }
     }
 
     private int countNeighbors(Vector2Int location)

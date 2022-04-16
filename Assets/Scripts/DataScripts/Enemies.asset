@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800b2de5bcf460a41bd17f8f391391a0, type: 3}
   m_Name: Enemies
   m_EditorClassIdentifier: 
-  Tier1Enemy: []
+  Tier1Enemy:
+  - {fileID: 9121761334137381988, guid: b2766a3ec94bef848990f2361417c102, type: 3}
+  - {fileID: 7250248914366284822, guid: 0041b59eb9d31b8429029da815f9f172, type: 3}
   Tier2Enemy: []
   Tier3Enemy: []
   Tier4Enemy: []
