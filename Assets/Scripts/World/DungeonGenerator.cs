@@ -13,7 +13,7 @@ public enum Direction
 
 public class DungeonGenerator
 {
-    private RoomType[] roomsToGenerate = new RoomType[] { RoomType.FloorEnd, RoomType.Shop };
+    private RoomType[] roomsToGenerate = new RoomType[] { RoomType.Boss, RoomType.Shop };
     public DungeonRoom[,] map;
     public DungeonRoom enter;
     private int size = 16;
@@ -77,7 +77,7 @@ public class DungeonGenerator
         var count = 0;
         foreach (var room in deadEnds)
         {
-            if (deadEnds.Count > count)
+            if (deadEnds.Count > count && count < roomsToGenerate.Length)
             {
                 room.type = roomsToGenerate[count];
                 count++;

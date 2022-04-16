@@ -264,9 +264,9 @@ public class RoomManager : MonoBehaviour
                 break;
             case RoomType.FloorStart:
                 break;
-            case RoomType.FloorEnd:
-                if (!currentRoom.visited)
-                    Instantiate(leaveRope, new Vector3(0, 14, 0), Quaternion.identity);
+            case RoomType.Boss:
+                Instantiate(leaveRope, new Vector3(0, 14, 0), Quaternion.identity);
+                currentRoom.type = RoomType.BossCleared;
                 break;
             case RoomType.Shop:
                 break;
