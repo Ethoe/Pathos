@@ -7,6 +7,7 @@ public class EffectManager : MonoBehaviour
 {
     public Material defaultMaterial;
     public Material highlightMaterial;
+    public ParticleSystem groundClick;
 
     private static EffectManager _instance;
     public GameObject popUpText;
@@ -19,6 +20,8 @@ public class EffectManager : MonoBehaviour
             return _instance;
         }
     }
+
+    private float CoolDownBuffer = .1f;
     private void Awake()
     {
         _instance = this;
@@ -29,13 +32,26 @@ public class EffectManager : MonoBehaviour
         EventManager.StartListening(Events.DealDamageTrigger, DamageTextAnimation);
         EventManager.StartListening(Events.PlayerTargettedTrigger, HighlightUnit);
         EventManager.StartListening(Events.PlayerEndTargettedTrigger, DeHighlightUnit);
+        EventManager.StartListening(Events.PlayerClick, moveIndicator);
     }
 
     void Update()
     {
-
+        if (CoolDownBuffer > 0)
+        {
+            CoolDownBuffer -= Time.deltaTime;
+        }
     }
 
+    void moveIndicator(Dictionary<string, object> message)
+    {
+        if (CoolDownBuffer < 0)
+        {
+            CoolDownBuffer = .1f;
+            var location = (Vector2)message["target"];
+            GameObject.Instantiate(groundClick, location, Quaternion.identity);
+        }
+    }
     public void DamageTextAnimation(Dictionary<string, object> message)
     {
         var context = (DamageContext)message["damage"];
