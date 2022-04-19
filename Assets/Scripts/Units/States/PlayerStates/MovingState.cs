@@ -7,15 +7,19 @@ public class MovingState : BaseState
     private bool attack;
     private int movingParam = Animator.StringToHash("WalkBlend");
 
+    private float ReinputBuffer;
+
 
     public MovingState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
+        ReinputBuffer = .1f;
     }
     public override void Enter()
     {
         base.Enter();
         player.TriggerAnimation(movingParam);
         GetMouseLocation();
+        ReinputBuffer = .1f;
         attack = false;
         ((PlayerStateMachine)stateMachine).locked = false;
     }
@@ -30,8 +34,9 @@ public class MovingState : BaseState
     public override void HandleInput()
     {
         base.HandleInput();
-        if (moveAction.triggered || moveAction.ReadValue<float>() > 0f)
+        if ((moveAction.triggered || moveAction.ReadValue<float>() > 0f) && ReinputBuffer <= 0)
         {
+            ReinputBuffer = .1f;
             GetMouseLocation();
         }
 
@@ -41,6 +46,8 @@ public class MovingState : BaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        ReinputBuffer -= Time.deltaTime;
 
         if (!player.movement.IsMoving)
         {
