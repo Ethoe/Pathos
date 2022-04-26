@@ -35,6 +35,13 @@ public class BaseStateMachine : MonoBehaviour
         CurrentState.Enter(this);
     }
 
+    public void ChangeState<T>(EnemyBaseState state, T param)
+    {
+        CurrentState.Exit(this);
+        CurrentState = state;
+        CurrentState.Enter(this, param);
+    }
+
     public new T GetComponent<T>() where T : Component
     {
         if (_cachedComponents.ContainsKey(typeof(T)))

@@ -28,10 +28,11 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Animator animator;
     [HideInInspector]
+    public bool playerInControl;
+    [HideInInspector]
     public AbilityHolder abilities;
     public MovementController movement;
     private Collider2D collider2d;
-    private bool playerInControl;
     #endregion
 
     // Start is called before the first frame update

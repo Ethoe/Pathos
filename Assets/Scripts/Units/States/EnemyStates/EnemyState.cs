@@ -29,6 +29,14 @@ public class EnemyState : EnemyBaseState
         }
     }
 
+    public override void Enter<T>(BaseStateMachine machine, T param)
+    {
+        foreach (var action in Action)
+        {
+            action.Enter(machine, param);
+        }
+    }
+
     public override void Exit(BaseStateMachine machine)
     {
         foreach (var action in Action)
