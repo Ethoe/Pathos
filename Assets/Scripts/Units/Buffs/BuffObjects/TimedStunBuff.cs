@@ -25,7 +25,7 @@ public class TimedStunBuff : TimedBuff
         }
         else
         {
-
+            enemy.ChangeState(((StunBuff)Buff).StunState, Buff.Duration);
         }
     }
 
@@ -36,10 +36,6 @@ public class TimedStunBuff : TimedBuff
         if (player)
         {
             player.playerInControl = true;
-        }
-        else
-        {
-
         }
     }
 }

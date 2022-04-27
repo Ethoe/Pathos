@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4787409eca6ad4395be5aa2fccc08f, type: 3}
   m_Name: Stun
   m_EditorClassIdentifier: 
-  Action: []
+  Action:
+  - {fileID: 11400000, guid: 0263d496ac653dc4ba11917a6d9d5155, type: 2}
   Transitions: []
