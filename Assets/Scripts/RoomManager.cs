@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using System.Reflection;
 
 public class RoomManager : MonoBehaviour
 {
@@ -16,16 +17,20 @@ public class RoomManager : MonoBehaviour
     }
     public GameObject hpBar, leaveRope;
     public DungeonGenerator currentLevel;
+    private int difficultyLevel;
     public DungeonRoom currentRoom;
     private Object solidWall, closedGate, openGate;
     public ScriptableEnemyList enemyList;
     public ScriptableItemList itemList;
     private GameObject[] walls; // Goes Up Right Down Left
     private List<Object> solidWalls;
+    private WeightedChanceExecutor dropTable;
 
     private void Awake()
     {
         _instance = this;
+        difficultyLevel = 1;
+        buildDropTable();
         currentLevel = new DungeonGenerator(7);
         solidWall = LoadWall("Wall");
         closedGate = LoadWall("DoorClosed");
@@ -33,9 +38,10 @@ public class RoomManager : MonoBehaviour
         walls = new GameObject[4];
         solidWalls = new List<Object>();
         currentRoom = currentLevel.enter;
+        var isNewRoom = !currentRoom.visited; // Should always be false
 
         buildRoom();
-        spawnRoom();
+        spawnRoom(isNewRoom);
     }
 
     private void Start()
@@ -74,13 +80,16 @@ public class RoomManager : MonoBehaviour
                     drop.SetActive(false);
             }
         }
+        difficultyLevel++;
 
+        buildDropTable();
         currentLevel.Generate(10); // put in growing number;
         currentRoom = currentLevel.enter;
+        var isNewRoom = !currentRoom.visited;
         currentRoom.visited = true;
         EventManager.TriggerEvent(Events.GenerateRoomTrigger, null);
         buildRoom();
-        spawnRoom();
+        spawnRoom(isNewRoom);
     }
 
     private void AddDrop(Dictionary<string, object> message)
@@ -151,11 +160,12 @@ public class RoomManager : MonoBehaviour
 
         currentRoom = currentLevel.GetRoom(currentRoom, side);
 
+        var isNewRoom = !currentRoom.visited;
         currentRoom.visited = true;
 
         EventManager.TriggerEvent(Events.GenerateRoomTrigger, null);
         buildRoom();
-        spawnRoom();
+        spawnRoom(isNewRoom);
 
         GameManager.Instance.player.transform.position = GetPlayerSpawn(side);
     }
@@ -250,11 +260,11 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private void spawnRoom()
+    private void spawnRoom(bool isNewRoom)
     {
         switch (currentRoom.type)
         {
-            case RoomType.Standard:
+            case RoomType.Standard: // Need to refactor to use isNewRoom rather than changing to room.cleared
                 for (int count = 0; count < 2; count++)
                 {
                     Vector2 spawnLocation = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
@@ -269,6 +279,10 @@ public class RoomManager : MonoBehaviour
                 currentRoom.type = RoomType.BossCleared;
                 break;
             case RoomType.Shop:
+                if (isNewRoom)
+                {
+                    spawnShop();
+                }
                 break;
             default:
                 break;
@@ -291,5 +305,33 @@ public class RoomManager : MonoBehaviour
         GameObject currentUnit = Instantiate(unit, spawnLocation, Quaternion.identity);
         GameObject hpUnit = Instantiate(hpBar, spawnLocation, Quaternion.identity);
         hpUnit.GetComponent<LazyHealthBar>().target = currentUnit;
+    }
+
+    private void spawnShop()
+    {
+        //Todo: figure out spawning mechanics better depending on dungeon level (maybe add a new table for weights per level per dungeon floor)
+        //Right now only items in tier 1 so only going to be selecting from there
+        dropTable.Execute();
+    }
+
+    // Call new droptable at the start of each dungeon
+    private void buildDropTable()
+    {
+        dropTable = new WeightedChanceExecutor();
+        var itemLists = itemList.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        int counter = 1;
+        foreach (var prop in itemLists)
+        {
+            // Todo: update this function to be a spawner with location as input param
+            foreach (var item in (List<GameObject>)prop.GetValue(itemList))
+            {
+                if (item != null)
+                {
+                    dropTable.AddChance(new WeightedChanceParam(() =>
+                            { Instantiate(item, new Vector2(0, 0), Quaternion.identity); }, 1 / (counter * counter))); // Spawn item in center of room with 1/rarity^2 dropweight
+                }
+            }
+            counter++;
+        }
     }
 }

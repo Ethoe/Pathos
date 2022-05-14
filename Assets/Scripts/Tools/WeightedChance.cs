@@ -68,4 +68,20 @@ public class WeightedChanceExecutor
         }
 
     }
+
+    public Action GetAction()
+    {
+        double numericValue = r.NextDouble() * RatioSum;
+
+        foreach (var parameter in Parameters)
+        {
+            numericValue -= parameter.Ratio;
+
+            if (!(numericValue <= 0))
+                continue;
+
+            return parameter.Func;
+        }
+        return null;
+    }
 }
