@@ -24,6 +24,11 @@ public class AttackingState : BaseState
         if (((PlayerStateMachine)stateMachine).target == null || ((PlayerStateMachine)stateMachine).WasAttackingState != true)
         {
             ((PlayerStateMachine)stateMachine).target = GetTarget();
+            if (((PlayerStateMachine)stateMachine).target == null)
+            {
+                stateMachine.ChangeState(player.moving);
+                return;
+            }
         }
         ((PlayerStateMachine)stateMachine).WasAttackingState = false;
 
