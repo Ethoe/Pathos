@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Buffs/AttackBuff")]
+[CreateAssetMenu(menuName = "Buffs/Stat/AttackBuff")]
 public class AttackBuff : ScriptableBuff
 {
     public float FlatIncrease;

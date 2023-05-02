@@ -5,10 +5,14 @@ using UnityEngine;
 public class ChangeCursor : MonoBehaviour
 {
     public Texture2D cursor;
+    public bool Enabled;
     void Awake()
     {
-        DefaultCur();
-        Cursor.lockState = CursorLockMode.Confined;
+        if (Enabled)
+        {
+            DefaultCur();
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
     public void ChangeCrsr(Texture2D cursorType)
     {

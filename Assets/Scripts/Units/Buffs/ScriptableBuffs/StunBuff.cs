@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Buffs/StunBuff")]
+[CreateAssetMenu(menuName = "Buffs/CC/StunBuff")]
 public class StunBuff : ScriptableBuff
 {
     public EnemyState StunState;

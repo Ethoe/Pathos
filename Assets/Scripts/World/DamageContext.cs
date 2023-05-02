@@ -6,6 +6,7 @@ public enum DamageDealtType
 {
     Basic,
     Ability,
+    Item,
     True,
 }
 

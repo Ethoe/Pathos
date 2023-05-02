@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Buffs/SpeedBuff")]
+[CreateAssetMenu(menuName = "Buffs/Stat/SpeedBuff")]
 public class SpeedBuff : ScriptableBuff
 {
     public float SpeedIncrease;

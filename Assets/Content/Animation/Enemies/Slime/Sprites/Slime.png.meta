@@ -255,7 +255,7 @@ TextureImporter:
       213: 3859681932778834740
     second: Slime 31
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -276,6 +276,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -314,9 +315,34 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
+    maxTextureSize: 120
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 120
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 120
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1432,6 +1458,59 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Slime 0: -6004438579733817993
+      Slime 1: 8062508193072130441
+      Slime 10: 436225974254759161
+      Slime 11: 2477220329485230906
+      Slime 12: 5471510001871287801
+      Slime 13: -2426937495561576911
+      Slime 14: 7118986318282685214
+      Slime 15: -6471527855921363459
+      Slime 16: 381864178210863779
+      Slime 17: 4409751294889982324
+      Slime 18: -4926510650179292834
+      Slime 19: -6384527813206339386
+      Slime 2: -8694796982232507922
+      Slime 20: -940316531904550310
+      Slime 21: -9181477850843093196
+      Slime 22: 1251368414395675770
+      Slime 23: -5863144455848015767
+      Slime 24: 7244803843450675430
+      Slime 25: 72371779479316229
+      Slime 26: 6690495534783262895
+      Slime 27: 8296475859336625819
+      Slime 28: 8358964148418726195
+      Slime 29: 8342046462127430135
+      Slime 3: -1400297456666436261
+      Slime 30: -8301866826848427267
+      Slime 31: 4705766254012607038
+      Slime 32: 4567582604042193729
+      Slime 33: 6921150404343318217
+      Slime 34: 2056935403022612061
+      Slime 35: 7913062882288556499
+      Slime 36: -5486417161906056379
+      Slime 37: -48483530026011753
+      Slime 38: 8665697180055901544
+      Slime 39: -2871445759066946251
+      Slime 4: -7442366550910320326
+      Slime 40: -6280145848987665802
+      Slime 41: -2355970272694718701
+      Slime 42: 4763826378260093508
+      Slime 43: -4967038125602884306
+      Slime 44: 101751843038796342
+      Slime 45: -6606447195192101782
+      Slime 46: 1536582238543537161
+      Slime 47: 2565602991290728854
+      Slime 48: 3825907824127566321
+      Slime 49: 4143978859662417643
+      Slime 5: 6953812063887960609
+      Slime 50: -3172602731110304517
+      Slime 51: -7805790199957324825
+      Slime 6: -8211766271916752325
+      Slime 7: -4284600435602050511
+      Slime 8: -6966674699820874386
+      Slime 9: -1602113479283383170
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

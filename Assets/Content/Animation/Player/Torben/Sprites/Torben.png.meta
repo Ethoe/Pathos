@@ -213,7 +213,7 @@ TextureImporter:
       213: -2865975469784900206
     second: Torben 69
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -234,6 +234,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -272,6 +273,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -300,6 +302,18 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 304
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -1792,6 +1806,77 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Torben 0: -8023628388343317118
+      Torben 1: 3672681867258623454
+      Torben 10: -6514379072202977612
+      Torben 11: -690440120641335920
+      Torben 12: -1959122982755711895
+      Torben 13: -1306719263844151282
+      Torben 14: 7545932271163695847
+      Torben 15: 8738552369480976279
+      Torben 16: -6776490336812155429
+      Torben 17: 8111246491079563507
+      Torben 18: -3219612252563212277
+      Torben 19: -1260231047224900392
+      Torben 2: 2196136515661975224
+      Torben 20: -2792720189366659010
+      Torben 21: 5157684349606982431
+      Torben 22: 1709559260969488281
+      Torben 23: -5625921649577623665
+      Torben 24: 1067596866346937006
+      Torben 25: -7843805582229248265
+      Torben 26: 7641394668031442583
+      Torben 27: 3575113409117022869
+      Torben 28: -8300730398665642134
+      Torben 29: -7632527783382761684
+      Torben 3: -5215813230942960544
+      Torben 30: -5930679911556982735
+      Torben 31: -2316879086299405008
+      Torben 32: 700813960431450611
+      Torben 33: 8936670887877085044
+      Torben 34: -466109955334093015
+      Torben 35: -1811967510545903359
+      Torben 36: -8728683287574075726
+      Torben 37: 2633173400265335044
+      Torben 38: -8719881359654934822
+      Torben 39: 2000492244904692528
+      Torben 4: 1462432592046584452
+      Torben 40: 4913355085093856464
+      Torben 41: 3477021581735069233
+      Torben 42: -2674771134557060012
+      Torben 43: -6771519380286429368
+      Torben 44: 5040514456064173031
+      Torben 45: -6116169348755345131
+      Torben 46: -3807511996598901244
+      Torben 47: 6072197491364443932
+      Torben 48: 8351737752716352208
+      Torben 49: -236246112776924839
+      Torben 5: 5401515812562327741
+      Torben 50: -1807932690617360837
+      Torben 51: -949886513348113728
+      Torben 52: 2020176777402975711
+      Torben 53: -2685625552456016124
+      Torben 54: -3584239134474257685
+      Torben 55: -8695018005894420256
+      Torben 56: 8549979903729507244
+      Torben 57: -200082865219987003
+      Torben 58: -3105597508741611988
+      Torben 59: -1044213331135592038
+      Torben 6: -1149992192407567208
+      Torben 60: -8859394251757572710
+      Torben 61: 4203377594380513502
+      Torben 62: -1177712625301632687
+      Torben 63: -5940435757759466787
+      Torben 64: -7300193426784307811
+      Torben 65: 1995627209383404396
+      Torben 66: -8302866909527453255
+      Torben 67: 6911545072005361089
+      Torben 68: 7547526353179007739
+      Torben 69: -2865975469784900206
+      Torben 7: -536612837184365360
+      Torben 8: -671008584886113231
+      Torben 9: -5356850395267673969
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
