@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BuffType
+{
+    ConsumeableBuff,
+    PermanentBuff,
+    TimedBuff,
+}
 public abstract class ScriptableBuff : ScriptableObject
 {
     /// Time duration of the buff in seconds.
@@ -14,7 +20,7 @@ public abstract class ScriptableBuff : ScriptableObject
     public bool IsEffectStacked;
 
     // Duration does not tick down.
-    public bool IsPermanent;
+    public BuffType BuffType;
 
     public abstract TimedBuff InitializeBuff(GameObject obj);
 }

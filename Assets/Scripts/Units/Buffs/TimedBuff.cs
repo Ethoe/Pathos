@@ -15,7 +15,7 @@ public abstract class TimedBuff
     }
     public void Tick(float delta)
     {
-        if (!Buff.IsPermanent)
+        if (Buff.BuffType != BuffType.PermanentBuff)
         {
             Duration -= delta;
             if (Duration <= 0)
@@ -35,7 +35,7 @@ public abstract class TimedBuff
             EffectStacks++;
         }
 
-        if (!Buff.IsPermanent)
+        if (Buff.BuffType != BuffType.PermanentBuff)
         {
             if (Buff.IsDurationStacked || Duration <= 0)
             {

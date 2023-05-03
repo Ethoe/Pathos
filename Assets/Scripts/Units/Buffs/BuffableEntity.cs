@@ -8,7 +8,7 @@ public class BuffableEntity : MonoBehaviour
 
     void Update()
     {
-        //OPTIONAL, return before updating each buff if game is paused
+        // return before updating each buff if game is paused
         // if (Game.isPaused)
         //    return;
 
@@ -32,6 +32,10 @@ public class BuffableEntity : MonoBehaviour
         {
             _buffs.Add(buff.Buff, buff);
             buff.Activate();
+            if (buff.Buff.BuffType != BuffType.ConsumeableBuff)
+            {
+                RemoveBuff(buff);
+            }
         }
     }
 
