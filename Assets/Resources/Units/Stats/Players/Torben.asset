@@ -28,7 +28,7 @@ MonoBehaviour:
   LifeSteal:
     BaseValue: 0.01
   Attack:
-    BaseValue: 150
+    BaseValue: 95
   Armor:
     BaseValue: 5
   MoveSpeed:

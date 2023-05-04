@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   Health:
-    BaseValue: 800
-    CurrentValue: 800
+    BaseValue: 900
+    CurrentValue: 900
   AttackSpeed:
     BaseValue: 1
   AttackRange:
@@ -30,7 +30,7 @@ MonoBehaviour:
   Attack:
     BaseValue: 100
   Armor:
-    BaseValue: 50
+    BaseValue: 25
   MoveSpeed:
     BaseValue: 2.5
   Invincible: 0
