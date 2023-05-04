@@ -1,5 +1,19 @@
 using UnityEngine;
 
+public class BuffContext
+{
+    public TimedBuff buff;
+    public GameObject source;
+    public GameObject target;
+
+    public BuffContext(GameObject source, GameObject target, TimedBuff buff)
+    {
+        this.source = source;
+        this.target = target;
+        this.buff = buff;
+    }
+}
+
 public abstract class TimedBuff
 {
     protected float Duration;

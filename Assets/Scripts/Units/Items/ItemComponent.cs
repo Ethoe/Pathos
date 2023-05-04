@@ -23,8 +23,16 @@ public class ItemComponent : MonoBehaviour
     {
         if (other.gameObject == GameManager.Instance.player)
         {
-            BuffableEntity buffableEntity = GameManager.Instance.player.GetComponent<BuffableEntity>();
-            buffableEntity.AddBuff(itemBuff.InitializeBuff(GameManager.Instance.player));
+            EventManager.TriggerEvent(Events.AddBuffTrigger, new Dictionary<string, object> {
+                {
+                    "buff",
+                    new BuffContext(
+                        source: gameObject,
+                        target: GameManager.Instance.player,
+                        buff: itemBuff.InitializeBuff(GameManager.Instance.player)
+                    )
+                }
+            });
             Destroy(gameObject);
         }
     }

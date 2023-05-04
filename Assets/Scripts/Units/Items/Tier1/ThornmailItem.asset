@@ -15,6 +15,6 @@ MonoBehaviour:
   Duration: 1
   IsDurationStacked: 0
   IsEffectStacked: 0
-  IsPermanent: 1
+  BuffType: 1
   FlatDamage: 10
   PercentDamage: 0.123

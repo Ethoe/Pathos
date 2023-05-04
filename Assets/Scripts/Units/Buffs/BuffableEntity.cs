@@ -6,6 +6,11 @@ public class BuffableEntity : MonoBehaviour
 {
     private readonly Dictionary<ScriptableBuff, TimedBuff> _buffs = new Dictionary<ScriptableBuff, TimedBuff>();
 
+    void Start()
+    {
+        EventManager.StartListening(Events.AddBuffTrigger, AddBuffListener);
+    }
+
     void Update()
     {
         // return before updating each buff if game is paused
@@ -22,6 +27,20 @@ public class BuffableEntity : MonoBehaviour
         }
     }
 
+    protected void OnDestroy()
+    {
+        EventManager.StopListening(Events.AddBuffTrigger, AddBuffListener);
+    }
+
+    private void AddBuffListener(Dictionary<string, object> message)
+    {
+        var buff = (BuffContext)message["buff"];
+        if (buff.target == gameObject)
+        {
+            AddBuff(buff.buff);
+        }
+    }
+
     public void AddBuff(TimedBuff buff)
     {
         if (_buffs.ContainsKey(buff.Buff))
@@ -32,7 +51,7 @@ public class BuffableEntity : MonoBehaviour
         {
             _buffs.Add(buff.Buff, buff);
             buff.Activate();
-            if (buff.Buff.BuffType != BuffType.ConsumeableBuff)
+            if (buff.Buff.BuffType == BuffType.ConsumeableBuff)
             {
                 RemoveBuff(buff);
             }

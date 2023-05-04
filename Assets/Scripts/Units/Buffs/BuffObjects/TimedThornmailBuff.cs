@@ -12,8 +12,6 @@ public class TimedThornmailBuff : TimedBuff
     protected override void ApplyEffect()
     {
         EventManager.StartListening(Events.DealDamageTrigger, ReceiveDamage);
-        ThornmailBuff thornmailBuff = (ThornmailBuff)Buff;
-
     }
 
     protected override void TickEffect() { }

@@ -8,7 +8,7 @@ public enum Events
     ClearedRoomTrigger,
     GenerateRoomTrigger,
     FilledRoomTrigger,
-    DealDamageTrigger,
+
     PlayerClick,
     PlayerExitMove,
     SpawnDropTrigger,
@@ -19,6 +19,10 @@ public enum Events
     UnitDiedTrigger,
     LeaveLevelTrigger,
     EnterLevelTrigger,
+
+    DealDamageTrigger,
+    AddBuffTrigger,
+    ToxinActivateTrigger,
 }
 
 public class EventManager : MonoBehaviour
