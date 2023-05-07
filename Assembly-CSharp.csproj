@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\Units\Stats\StatBlock.cs" />
      <Compile Include="Assets\Scripts\Units\Items\ItemComponent.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\BaseState.cs" />
+     <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\ToxinBuffCounter.cs" />
      <Compile Include="Assets\Scripts\Units\Enemies\ScriptableEnemyList.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\AttackAbility.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\TimedAbility.cs" />
@@ -77,6 +78,7 @@
      <Compile Include="Assets\Scripts\Units\Stats\StatModifier.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedSpeedBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\HealBuff.cs" />
+     <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedToxinBuffCounter.cs" />
      <Compile Include="Assets\Scripts\Units\States\StateMachine.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\ConsHealBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\SkillshotAbility.cs" />
@@ -103,8 +105,10 @@
      <Compile Include="Assets\Scripts\Tools\Tools.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\FSMAction.cs" />
      <Compile Include="Assets\Scripts\World\Interactables\ChangeCursor.cs" />
+     <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\ToxinBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Actions\StunAction.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackMovingState.cs" />
+     <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\PermToxinBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\SpeedBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\ThornmailBuff.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Actions\WanderAction.cs" />
@@ -127,10 +131,7 @@
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\GroundAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\ToxinBuff.cs" />
-     <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\PermToxinBuff.cs" />
-     <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\ToxinBuffCounter.cs" />
-     <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedToxinBuffCounter.cs" />
+     <Compile Include="Assets\Scripts\Units\Stats\StatBlockObject.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

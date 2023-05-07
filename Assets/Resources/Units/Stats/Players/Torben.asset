@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a201cc95d2c64664f8ba336d3f51b6fe, type: 3}
+  m_Script: {fileID: 11500000, guid: a99c70d514e7c4b4fabe7a5d73e9b415, type: 3}
   m_Name: Torben
   m_EditorClassIdentifier: 
   Health:
     BaseValue: 1000
     CurrentValue: 1000
   AttackSpeed:
-    BaseValue: 2
+    BaseValue: 1.5
   AttackRange:
     BaseValue: 3
   CritChance:
-    BaseValue: 0.1
+    BaseValue: 0.25
   CritDamage:
     BaseValue: 0.1
   CoolDown:
@@ -28,10 +28,10 @@ MonoBehaviour:
   LifeSteal:
     BaseValue: 0.01
   Attack:
-    BaseValue: 95
+    BaseValue: 75
   Armor:
     BaseValue: 5
   MoveSpeed:
-    BaseValue: 5
+    BaseValue: 4
   Invincible: 0
   isMelee: 0

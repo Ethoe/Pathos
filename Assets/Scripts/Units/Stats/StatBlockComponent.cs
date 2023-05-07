@@ -4,12 +4,12 @@ using UnityEngine;
 public class StatBlockComponent : MonoBehaviour
 {
     public bool Player = false;
-    public StatBlock originalStats;
+    public StatBlockObject originalStats;
     public StatBlock stats;
 
     void Awake()
     {
-        stats = Instantiate<StatBlock>(originalStats);
+        stats = new StatBlock(originalStats);
     }
 
     void Start()

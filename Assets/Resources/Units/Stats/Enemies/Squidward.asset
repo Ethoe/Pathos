@@ -9,29 +9,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a201cc95d2c64664f8ba336d3f51b6fe, type: 3}
+  m_Script: {fileID: 11500000, guid: a99c70d514e7c4b4fabe7a5d73e9b415, type: 3}
   m_Name: Squidward
   m_EditorClassIdentifier: 
   Health:
     BaseValue: 500
-    CurrentValue: 500
+    CurrentValue: 0.0005187988
   AttackSpeed:
     BaseValue: 1
   AttackRange:
-    BaseValue: 3
+    BaseValue: 10
   CritChance:
-    BaseValue: 0.1
-  CritDamage:
-    BaseValue: 0.1
-  CoolDown:
     BaseValue: 0
+  CritDamage:
+    BaseValue: 0
+  CoolDown:
+    BaseValue: 10
   LifeSteal:
     BaseValue: 0
   Attack:
-    BaseValue: 120
-  Armor:
     BaseValue: 100
+  Armor:
+    BaseValue: 10
   MoveSpeed:
-    BaseValue: 3
+    BaseValue: 4
   Invincible: 0
   isMelee: 0

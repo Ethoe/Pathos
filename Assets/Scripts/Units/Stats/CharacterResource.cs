@@ -8,6 +8,7 @@ public class CharacterResource : CharacterStat
 
     public CharacterResource(float currentValue) : base()
     {
+        BaseValue = currentValue;
         CurrentValue = currentValue;
     }
 
