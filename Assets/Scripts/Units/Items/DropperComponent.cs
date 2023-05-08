@@ -25,7 +25,10 @@ public class DropperComponent : MonoBehaviour
         if (message["source"] != null && (GameObject)message["source"] == gameObject)
         {
             var source = (GameObject)message["source"];
-            weightedChanceExecutor.Execute();
+            for (int i = 0; i < dropTable.Rolls; i++)
+            {
+                weightedChanceExecutor.Execute();
+            }
             foreach (var drop in GuarenteedDrops)
             {
                 Instantiate(drop, transform.position, Quaternion.identity);
@@ -35,24 +38,26 @@ public class DropperComponent : MonoBehaviour
 
     private void AddDrops()
     {
-        if (dropTable.Drops != null)
+        if (dropTable.Drops == null)
         {
-            foreach (var drop in dropTable.Drops)
+            return;
+        }
+
+        foreach (var drop in dropTable.Drops)
+        {
+            if (drop.isGuarenteed)
             {
-                if (drop.isGuarenteed)
-                {
-                    GuarenteedDrops.Add(drop.drop);
-                }
-                else
-                {
-                    weightedChanceExecutor.AddChance(
-                        new WeightedChanceParam(() =>
-                        {
-                            if (drop.drop != null)
-                                Instantiate(drop.drop, transform.position, Quaternion.identity);
-                        }, drop.dropWeight)
-                    );
-                }
+                GuarenteedDrops.Add(drop.drop);
+            }
+            else
+            {
+                weightedChanceExecutor.AddChance(
+                    new WeightedChanceParam(() =>
+                    {
+                        if (drop.drop != null)
+                            Instantiate(drop.drop, transform.position, Quaternion.identity);
+                    }, drop.dropWeight)
+                );
             }
         }
     }

@@ -80,6 +80,7 @@
      <Compile Include="Assets\Scripts\Units\Buffs\ScriptableBuffs\HealBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\TimedToxinBuffCounter.cs" />
      <Compile Include="Assets\Scripts\Units\States\StateMachine.cs" />
+     <Compile Include="Assets\Scripts\Units\Stats\StatBlockObject.cs" />
      <Compile Include="Assets\Scripts\Units\Buffs\BuffObjects\ConsHealBuff.cs" />
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\SkillshotAbility.cs" />
      <Compile Include="Assets\Scripts\Units\States\EnemyStates\Decisions\IsAbilityDoneDecision.cs" />
@@ -131,7 +132,6 @@
      <Compile Include="Assets\Scripts\Units\Abilities\Attacks\GroundAbility.cs" />
      <Compile Include="Assets\Scripts\World\DungeonRoom.cs" />
      <Compile Include="Assets\Scripts\Units\States\PlayerStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\Units\Stats\StatBlockObject.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
